@@ -1,0 +1,235 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="wireHarness" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#333"/>
+      <stop offset="100%" stop-color="#222"/>
+    </linearGradient>
+    <linearGradient id="ledOn" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFDD44"/>
+      <stop offset="100%" stop-color="#FFAA00"/>
+    </linearGradient>
+    <linearGradient id="bulbGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFCC"/>
+      <stop offset="100%" stop-color="#FFDD88"/>
+    </linearGradient>
+  </defs>
+
+  <!-- HEADLIGHT ASSEMBLIES -->
+
+  <!-- Headlight - Left -->
+  <g data-component-id="headlight-assembly-lh">
+    <path d="M 180 380 Q 160 370, 150 390 Q 140 410, 150 430 Q 160 450, 180 440 Z"
+          fill="#444" stroke="#555" stroke-width="2"/>
+    <!-- Low beam -->
+    <circle cx="165" cy="400" r="12" fill="url(#bulbGlow)" stroke="#AAA" data-component-id="low-beam-lh"/>
+    <!-- High beam -->
+    <circle cx="165" cy="425" r="8" fill="url(#bulbGlow)" stroke="#AAA" data-component-id="high-beam-lh"/>
+    <!-- Turn signal -->
+    <ellipse cx="178" cy="380" rx="10" ry="6" fill="#FFAA00" fill-opacity="0.8" stroke="#AA7700" data-component-id="turn-signal-front-lh"/>
+  </g>
+
+  <!-- Headlight - Right (partial) -->
+  <g data-component-id="headlight-assembly-rh">
+    <path d="M 180 380 Q 200 370, 210 390 Q 220 410, 210 430 Q 200 450, 180 440"
+          fill="#444" stroke="#555" stroke-width="2" transform="translate(240,0)"/>
+    <circle cx="425" cy="400" r="12" fill="url(#bulbGlow)" stroke="#AAA" data-component-id="low-beam-rh"/>
+    <circle cx="425" cy="425" r="8" fill="url(#bulbGlow)" stroke="#AAA" data-component-id="high-beam-rh"/>
+  </g>
+
+  <!-- TAILLIGHT ASSEMBLIES -->
+
+  <!-- Taillight - Left -->
+  <g data-component-id="taillight-assembly-lh">
+    <rect x="950" y="400" width="40" height="60" rx="5" fill="#881111" stroke="#550000" stroke-width="2"/>
+    <!-- Brake light -->
+    <rect x="955" y="405" width="30" height="20" rx="3" fill="#CC2222" data-component-id="brake-light-lh"/>
+    <!-- Turn signal -->
+    <rect x="955" y="430" width="30" height="12" rx="2" fill="#FFAA00" fill-opacity="0.7" data-component-id="turn-signal-rear-lh"/>
+    <!-- Reverse light -->
+    <rect x="955" y="447" width="30" height="10" rx="2" fill="#FFFFFF" fill-opacity="0.7" data-component-id="reverse-light-lh"/>
+  </g>
+
+  <!-- Third brake light (center high-mount) -->
+  <g data-component-id="third-brake-light">
+    <rect x="810" y="280" width="60" height="10" rx="2" fill="#CC2222" stroke="#AA1111"/>
+  </g>
+
+  <!-- LICENSE PLATE LIGHTS -->
+  <g fill="#FFFFCC" stroke="#AAA">
+    <circle cx="880" cy="520" r="5" data-component-id="license-plate-light-lh"/>
+    <circle cx="920" cy="520" r="5" data-component-id="license-plate-light-rh"/>
+  </g>
+
+  <!-- FOG LIGHTS (if equipped) -->
+  <g data-component-id="fog-light-lh">
+    <circle cx="200" cy="470" r="15" fill="#444" stroke="#555"/>
+    <circle cx="200" cy="470" r="10" fill="url(#bulbGlow)" fill-opacity="0.6"/>
+  </g>
+
+  <!-- INTERIOR LIGHTING -->
+
+  <!-- Dome light -->
+  <g data-component-id="dome-light">
+    <ellipse cx="620" cy="290" rx="25" ry="10" fill="#555" stroke="#666"/>
+    <ellipse cx="620" cy="290" rx="18" ry="6" fill="url(#bulbGlow)" fill-opacity="0.4"/>
+  </g>
+
+  <!-- Map lights -->
+  <g fill="#555" stroke="#666">
+    <circle cx="550" cy="295" r="8" data-component-id="map-light-lh"/>
+    <circle cx="690" cy="295" r="8" data-component-id="map-light-rh"/>
+  </g>
+
+  <!-- Door courtesy lights -->
+  <g fill="url(#bulbGlow)" fill-opacity="0.5" stroke="#AAA">
+    <rect x="500" y="420" width="15" height="8" rx="2" data-component-id="door-courtesy-light-lh-f"/>
+    <rect x="720" y="420" width="15" height="8" rx="2" data-component-id="door-courtesy-light-rh-f"/>
+  </g>
+
+  <!-- Trunk light -->
+  <g data-component-id="trunk-light">
+    <rect x="880" y="460" width="20" height="12" rx="2" fill="#555" stroke="#666"/>
+    <rect x="883" y="463" width="14" height="6" fill="url(#bulbGlow)" fill-opacity="0.5"/>
+  </g>
+
+  <!-- INSTRUMENT CLUSTER -->
+  <g data-component-id="instrument-cluster">
+    <rect x="530" y="340" width="140" height="50" rx="5" fill="#222" stroke="#444"/>
+    <!-- Speedometer -->
+    <circle cx="570" cy="365" r="18" fill="#1a1a1a" stroke="#444"/>
+    <circle cx="570" cy="365" r="3" fill="#CC4444"/>
+    <!-- Tachometer -->
+    <circle cx="630" cy="365" r="18" fill="#1a1a1a" stroke="#444"/>
+    <circle cx="630" cy="365" r="3" fill="#CC4444"/>
+    <!-- Indicators -->
+    <circle cx="550" cy="345" r="3" fill="#33AA33" data-component-id="turn-indicator-lh"/>
+    <circle cx="650" cy="345" r="3" fill="#33AA33" data-component-id="turn-indicator-rh"/>
+    <circle cx="590" cy="345" r="3" fill="#4477CC" data-component-id="high-beam-indicator"/>
+    <circle cx="610" cy="345" r="3" fill="#CC4444" data-component-id="brake-warning"/>
+  </g>
+
+  <!-- POWER WINDOW MOTORS -->
+  <g fill="#444" stroke="#555">
+    <rect x="480" y="380" width="20" height="15" rx="2" data-component-id="power-window-motor-lh-f"/>
+    <rect x="700" y="380" width="20" height="15" rx="2" data-component-id="power-window-motor-rh-f"/>
+    <rect x="650" y="400" width="18" height="14" rx="2" data-component-id="power-window-motor-lh-r"/>
+    <rect x="550" y="400" width="18" height="14" rx="2" data-component-id="power-window-motor-rh-r"/>
+  </g>
+
+  <!-- POWER DOOR LOCK ACTUATORS -->
+  <g fill="#555" stroke="#666">
+    <rect x="485" y="398" width="12" height="10" rx="1" data-component-id="door-lock-actuator-lh-f"/>
+    <rect x="705" y="398" width="12" height="10" rx="1" data-component-id="door-lock-actuator-rh-f"/>
+    <rect x="655" y="416" width="10" height="9" rx="1" data-component-id="door-lock-actuator-lh-r"/>
+    <rect x="555" y="416" width="10" height="9" rx="1" data-component-id="door-lock-actuator-rh-r"/>
+  </g>
+
+  <!-- POWER MIRRORS -->
+  <g data-component-id="power-mirror-lh">
+    <ellipse cx="450" cy="360" rx="15" ry="10" fill="#444" stroke="#555"/>
+    <ellipse cx="450" cy="360" rx="10" ry="6" fill="#333"/>
+  </g>
+  <g data-component-id="power-mirror-rh">
+    <ellipse cx="750" cy="360" rx="15" ry="10" fill="#444" stroke="#555"/>
+    <ellipse cx="750" cy="360" rx="10" ry="6" fill="#333"/>
+  </g>
+
+  <!-- HORN -->
+  <g data-component-id="horn-assembly">
+    <circle cx="300" cy="450" r="20" fill="#444" stroke="#555"/>
+    <circle cx="300" cy="450" r="12" fill="#333"/>
+    <circle cx="340" cy="450" r="18" fill="#444" stroke="#555"/>
+    <circle cx="340" cy="450" r="10" fill="#333"/>
+  </g>
+
+  <!-- WIPER MOTOR -->
+  <g data-component-id="wiper-motor">
+    <rect x="420" y="310" width="35" height="25" rx="3" fill="#444" stroke="#555"/>
+    <circle cx="445" cy="322" r="8" fill="#333"/>
+    <!-- Wiper linkage -->
+    <line x1="453" y1="322" x2="480" y2="315" stroke="#666" stroke-width="2"/>
+  </g>
+
+  <!-- WASHER PUMP -->
+  <g data-component-id="washer-pump">
+    <rect x="380" y="315" width="18" height="12" rx="2" fill="#555" stroke="#666"/>
+  </g>
+
+  <!-- BODY HARNESS ROUTING -->
+  <g stroke="url(#wireHarness)" stroke-width="6" fill="none" stroke-linecap="round">
+    <!-- Main dash harness -->
+    <path d="M 350 360 Q 450 355, 550 360 Q 650 365, 750 360" data-component-id="dash-harness"/>
+
+    <!-- Door harness feedthroughs -->
+    <path d="M 500 360 L 500 400 Q 490 410, 485 420" data-component-id="door-harness-lh-f"/>
+    <path d="M 700 360 L 700 400 Q 710 410, 715 420" data-component-id="door-harness-rh-f"/>
+
+    <!-- Rear body harness -->
+    <path d="M 750 360 Q 800 370, 850 380 Q 900 390, 940 410" data-component-id="rear-body-harness"/>
+
+    <!-- Floor harness -->
+    <path d="M 450 400 Q 550 420, 650 420 Q 750 420, 850 400" data-component-id="floor-harness"/>
+  </g>
+
+  <!-- FUSE BOX - Interior -->
+  <g data-component-id="fuse-box-interior">
+    <rect x="460" y="420" width="40" height="30" rx="3" fill="#333" stroke="#444"/>
+    <g fill="#555">
+      <rect x="465" y="425" width="6" height="8" rx="1"/>
+      <rect x="474" y="425" width="6" height="8" rx="1"/>
+      <rect x="483" y="425" width="6" height="8" rx="1"/>
+      <rect x="465" y="436" width="6" height="8" rx="1"/>
+      <rect x="474" y="436" width="6" height="8" rx="1"/>
+      <rect x="483" y="436" width="6" height="8" rx="1"/>
+    </g>
+  </g>
+
+  <!-- RELAY BOX -->
+  <g data-component-id="relay-box">
+    <rect x="360" y="430" width="35" height="25" rx="3" fill="#333" stroke="#444"/>
+    <circle cx="370" cy="440" r="5" fill="#555"/>
+    <circle cx="385" cy="440" r="5" fill="#555"/>
+  </g>
+
+  <!-- CONNECTORS -->
+  <g fill="#444" stroke="#333">
+    <rect x="520" y="375" width="12" height="8" rx="1" data-component-id="connector-c101"/>
+    <rect x="660" y="375" width="12" height="8" rx="1" data-component-id="connector-c102"/>
+    <rect x="800" y="395" width="12" height="8" rx="1" data-component-id="connector-c103"/>
+  </g>
+
+  <!-- ANTENNA -->
+  <g data-component-id="radio-antenna">
+    <rect x="870" y="290" width="3" height="40" fill="#555"/>
+    <circle cx="871" cy="290" r="3" fill="#444"/>
+  </g>
+
+  <!-- RADIO/AUDIO UNIT -->
+  <g data-component-id="radio-unit">
+    <rect x="580" y="395" width="60" height="30" rx="3" fill="#222" stroke="#333"/>
+    <rect x="585" y="400" width="50" height="10" fill="#1a1a1a"/>
+    <circle cx="595" cy="417" r="5" fill="#333"/>
+    <circle cx="625" cy="417" r="5" fill="#333"/>
+  </g>
+
+  <!-- SPEAKERS -->
+  <g fill="#333" stroke="#444">
+    <circle cx="470" cy="350" r="15" data-component-id="speaker-front-lh"/>
+    <circle cx="470" cy="350" r="8" fill="#222"/>
+    <circle cx="730" cy="350" r="15" data-component-id="speaker-front-rh"/>
+    <circle cx="730" cy="350" r="8" fill="#222"/>
+    <circle cx="870" cy="380" r="12" data-component-id="speaker-rear-lh"/>
+    <circle cx="870" cy="380" r="6" fill="#222"/>
+  </g>
+
+  <!-- Labels -->
+  <g font-family="Inter, sans-serif" font-size="9" fill="#777">
+    <text x="140" y="375">Headlights</text>
+    <text x="935" y="395">Taillights</text>
+    <text x="530" y="335">Instrument Cluster</text>
+    <text x="295" y="485">Horns</text>
+    <text x="410" y="305">Wipers</text>
+    <text x="460" y="465">Fuse Box</text>
+    <text x="580" y="390">Radio</text>
+  </g>
+</svg>

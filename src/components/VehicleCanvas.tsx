@@ -13,7 +13,7 @@ export function VehicleCanvas() {
 
   // Stores
   const { currentVehicle } = useVehicleStore();
-  const { activeLayers, layerOpacity, globalOpacity, isolatedLayer } = useLayersStore();
+  const { activeLayers, layerOpacity, globalOpacity, isolatedLayer, is3D, rotation3D, set3DRotation } = useLayersStore();
   const { setSelectedComponent } = useSelectedComponentStore();
   const { getData } = useManualStore();
   const { trackComponentVisit } = useNotesStore();
@@ -21,7 +21,9 @@ export function VehicleCanvas() {
   // Pan & zoom state
   const [transform, setTransform] = useState({ x: 0, y: 0, scale: 1 });
   const [isDragging, setIsDragging] = useState(false);
+  const [isRotating, setIsRotating] = useState(false);
   const dragStart = useRef({ x: 0, y: 0, tx: 0, ty: 0 });
+  const rotateStart = useRef({ x: 0, y: 0, rx: 0, ry: 0 });
 
   // Handle component click
   const handleClick = useCallback(
@@ -46,23 +48,46 @@ export function VehicleCanvas() {
     [isDragging, getData, setSelectedComponent, trackComponentVisit]
   );
 
-  // Pan handlers
+  // Pan handlers (or 3D rotation when in 3D mode)
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => {
       if (e.button !== 0) return;
-      setIsDragging(true);
-      dragStart.current = {
-        x: e.clientX,
-        y: e.clientY,
-        tx: transform.x,
-        ty: transform.y,
-      };
+
+      if (is3D && e.shiftKey) {
+        // 3D rotation mode (hold shift)
+        setIsRotating(true);
+        rotateStart.current = {
+          x: e.clientX,
+          y: e.clientY,
+          rx: rotation3D.x,
+          ry: rotation3D.y,
+        };
+      } else {
+        setIsDragging(true);
+        dragStart.current = {
+          x: e.clientX,
+          y: e.clientY,
+          tx: transform.x,
+          ty: transform.y,
+        };
+      }
     },
-    [transform]
+    [transform, is3D, rotation3D]
   );
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
+      if (isRotating && is3D) {
+        const dx = e.clientX - rotateStart.current.x;
+        const dy = e.clientY - rotateStart.current.y;
+        set3DRotation({
+          x: Math.max(-45, Math.min(45, rotateStart.current.rx - dy * 0.3)),
+          y: Math.max(-60, Math.min(60, rotateStart.current.ry + dx * 0.3)),
+          z: rotation3D.z,
+        });
+        return;
+      }
+
       if (!isDragging) return;
       const dx = e.clientX - dragStart.current.x;
       const dy = e.clientY - dragStart.current.y;
@@ -72,11 +97,12 @@ export function VehicleCanvas() {
         y: dragStart.current.ty + dy,
       }));
     },
-    [isDragging]
+    [isDragging, isRotating, is3D, rotation3D.z, set3DRotation]
   );
 
   const handleMouseUp = useCallback(() => {
     setIsDragging(false);
+    setIsRotating(false);
   }, []);
 
   // Zoom handler
@@ -92,18 +118,29 @@ export function VehicleCanvas() {
   // Reset view
   const resetView = useCallback(() => {
     setTransform({ x: 0, y: 0, scale: 1 });
-  }, []);
+    if (is3D) {
+      set3DRotation({ x: 0, y: 0, z: 0 });
+    }
+  }, [is3D, set3DRotation]);
 
   // Get visible layers
   const visibleLayers = isolatedLayer
     ? currentVehicle.layers.filter((l) => l.id === isolatedLayer)
     : currentVehicle.layers.filter((l) => activeLayers.includes(l.id));
 
+  // Build 3D transform string
+  const transform3D = is3D
+    ? `perspective(1200px) rotateX(${rotation3D.x}deg) rotateY(${rotation3D.y}deg) rotateZ(${rotation3D.z}deg)`
+    : '';
+
   return (
     <div
       ref={containerRef}
       className="relative w-full h-full overflow-hidden"
-      style={{ background: '#F8F6F0' }}
+      style={{
+        background: '#F8F6F0',
+        perspective: is3D ? '1200px' : 'none',
+      }}
     >
       <svg
         ref={svgRef}
@@ -117,9 +154,11 @@ export function VehicleCanvas() {
         onMouseLeave={handleMouseUp}
         onWheel={handleWheel}
         style={{
-          cursor: isDragging ? 'grabbing' : 'grab',
-          transform: `translate(${transform.x}px, ${transform.y}px) scale(${transform.scale})`,
+          cursor: isDragging || isRotating ? 'grabbing' : 'grab',
+          transform: `translate(${transform.x}px, ${transform.y}px) scale(${transform.scale}) ${transform3D}`,
           transformOrigin: 'center',
+          transformStyle: is3D ? 'preserve-3d' : 'flat',
+          transition: isRotating || isDragging ? 'none' : 'transform 0.1s ease-out',
         }}
       >
         {/* Background gradient */}
@@ -183,6 +222,54 @@ export function VehicleCanvas() {
           ⟲
         </button>
       </div>
+
+      {/* 3D Rotation Controls */}
+      {is3D && (
+        <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur rounded-xl shadow-lg p-4">
+          <div className="text-xs font-semibold text-gray-600 mb-3">3D View</div>
+          <div className="flex gap-2 mb-3">
+            <button
+              onClick={() => set3DRotation({ x: 0, y: 0, z: 0 })}
+              className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 rounded-lg"
+            >
+              Side
+            </button>
+            <button
+              onClick={() => set3DRotation({ x: 15, y: -30, z: 0 })}
+              className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 rounded-lg"
+            >
+              3/4 Front
+            </button>
+            <button
+              onClick={() => set3DRotation({ x: 15, y: 30, z: 0 })}
+              className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 rounded-lg"
+            >
+              3/4 Rear
+            </button>
+          </div>
+          <div className="flex gap-2 mb-3">
+            <button
+              onClick={() => set3DRotation({ x: 45, y: 0, z: 0 })}
+              className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 rounded-lg"
+            >
+              Top
+            </button>
+            <button
+              onClick={() => set3DRotation({ x: -30, y: 0, z: 0 })}
+              className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 rounded-lg"
+            >
+              Under
+            </button>
+            <button
+              onClick={() => set3DRotation({ x: 0, y: -90, z: 0 })}
+              className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 rounded-lg"
+            >
+              Front
+            </button>
+          </div>
+          <div className="text-[10px] text-gray-400">Hold Shift + drag to rotate</div>
+        </div>
+      )}
 
       {/* Layer indicator */}
       {visibleLayers.length > 0 && (

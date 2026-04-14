@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="metalGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#666"/>
+      <stop offset="100%" stop-color="#444"/>
+    </linearGradient>
+    <linearGradient id="springGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4477AA"/>
+      <stop offset="100%" stop-color="#335588"/>
+    </linearGradient>
+    <linearGradient id="rubberGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#333"/>
+      <stop offset="100%" stop-color="#1a1a1a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- FRONT SUSPENSION (MacPherson Strut) -->
+
+  <!-- Front strut assembly - Left -->
+  <g data-component-id="front-strut-lh">
+    <!-- Strut tower mount -->
+    <circle cx="280" cy="340" r="20" fill="#555" stroke="#666"/>
+    <circle cx="280" cy="340" r="8" fill="#444"/>
+
+    <!-- Strut body -->
+    <rect x="270" y="360" width="20" height="80" rx="3" fill="url(#metalGradient)" stroke="#555"/>
+
+    <!-- Coil spring -->
+    <g stroke="url(#springGradient)" stroke-width="4" fill="none">
+      <path d="M 265 370 Q 295 375, 265 385 Q 295 395, 265 405 Q 295 415, 265 425 Q 295 435, 265 440"/>
+    </g>
+
+    <!-- Lower strut mount -->
+    <rect x="265" y="440" width="30" height="15" rx="2" fill="#555" stroke="#666"/>
+  </g>
+
+  <!-- Front lower control arm - Left -->
+  <g data-component-id="lower-control-arm-front-lh">
+    <path d="M 240 480 Q 200 490, 180 510 L 160 530"
+          stroke="url(#metalGradient)" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <!-- Ball joint -->
+    <circle cx="280" cy="455" r="8" fill="#444" stroke="#555"/>
+    <!-- Front bushing -->
+    <circle cx="160" cy="530" r="10" fill="url(#rubberGradient)" stroke="#555"/>
+    <!-- Rear bushing -->
+    <circle cx="200" cy="530" r="10" fill="url(#rubberGradient)" stroke="#555"/>
+  </g>
+
+  <!-- Front lower control arm - Right (partial view) -->
+  <g data-component-id="lower-control-arm-front-rh">
+    <path d="M 360 480 Q 400 490, 420 510"
+          stroke="url(#metalGradient)" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <circle cx="340" cy="455" r="8" fill="#444" stroke="#555"/>
+  </g>
+
+  <!-- Front stabilizer bar -->
+  <g data-component-id="front-stabilizer-bar">
+    <path d="M 180 520 Q 200 525, 280 525 Q 360 525, 400 520"
+          stroke="#666" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <!-- End links -->
+    <line x1="190" y1="520" x2="190" y2="490" stroke="#555" stroke-width="4"/>
+    <line x1="390" y1="520" x2="390" y2="490" stroke="#555" stroke-width="4"/>
+    <!-- Bushings -->
+    <rect x="230" y="520" width="20" height="12" rx="3" fill="url(#rubberGradient)" stroke="#444"/>
+    <rect x="330" y="520" width="20" height="12" rx="3" fill="url(#rubberGradient)" stroke="#444"/>
+  </g>
+
+  <!-- Front wheel hub - Left -->
+  <g data-component-id="front-wheel-hub-lh">
+    <circle cx="280" cy="490" r="25" fill="#444" stroke="#555"/>
+    <circle cx="280" cy="490" r="12" fill="#333"/>
+    <!-- Wheel studs -->
+    <circle cx="270" cy="480" r="3" fill="#555"/>
+    <circle cx="290" cy="480" r="3" fill="#555"/>
+    <circle cx="270" cy="500" r="3" fill="#555"/>
+    <circle cx="290" cy="500" r="3" fill="#555"/>
+  </g>
+
+  <!-- STEERING SYSTEM -->
+
+  <!-- Steering wheel (represented position) -->
+  <g data-component-id="steering-wheel">
+    <circle cx="550" cy="320" r="35" fill="none" stroke="#555" stroke-width="4"/>
+    <circle cx="550" cy="320" r="15" fill="#444" stroke="#555"/>
+    <line x1="515" y1="320" x2="585" y2="320" stroke="#555" stroke-width="3"/>
+    <line x1="550" y1="285" x2="550" y2="355" stroke="#555" stroke-width="3"/>
+  </g>
+
+  <!-- Steering column -->
+  <g data-component-id="steering-column">
+    <path d="M 550 355 Q 520 400, 480 430 Q 440 460, 400 470"
+          stroke="#666" stroke-width="8" fill="none"/>
+    <!-- Universal joints -->
+    <circle cx="490" cy="420" r="8" fill="#555" stroke="#666"/>
+    <circle cx="420" cy="460" r="8" fill="#555" stroke="#666"/>
+  </g>
+
+  <!-- Steering rack -->
+  <g data-component-id="steering-rack">
+    <rect x="200" y="465" width="200" height="20" rx="5" fill="url(#metalGradient)" stroke="#555"/>
+    <!-- Rack housing -->
+    <ellipse cx="200" cy="475" rx="12" ry="15" fill="#555" stroke="#666"/>
+    <ellipse cx="400" cy="475" rx="12" ry="15" fill="#555" stroke="#666"/>
+  </g>
+
+  <!-- Tie rods -->
+  <g stroke="url(#metalGradient)" stroke-width="5" fill="none">
+    <path d="M 200 475 Q 220 480, 240 490 L 260 495" data-component-id="tie-rod-inner-lh"/>
+    <path d="M 260 495 L 275 500" data-component-id="tie-rod-outer-lh"/>
+    <path d="M 400 475 Q 380 480, 360 490 L 340 495" data-component-id="tie-rod-inner-rh"/>
+    <path d="M 340 495 L 325 500" data-component-id="tie-rod-outer-rh"/>
+  </g>
+
+  <!-- Tie rod ends -->
+  <g fill="#444" stroke="#555">
+    <circle cx="260" cy="495" r="6" data-component-id="tie-rod-end-lh"/>
+    <circle cx="340" cy="495" r="6" data-component-id="tie-rod-end-rh"/>
+  </g>
+
+  <!-- Power steering pump -->
+  <g data-component-id="power-steering-pump">
+    <circle cx="350" cy="380" r="18" fill="#555" stroke="#666"/>
+    <circle cx="350" cy="380" r="10" fill="#444"/>
+    <!-- Pulley -->
+    <circle cx="350" cy="380" r="15" fill="none" stroke="#666" stroke-width="2"/>
+    <!-- Reservoir -->
+    <rect x="330" y="355" width="20" height="15" rx="3" fill="#444" stroke="#555"/>
+  </g>
+
+  <!-- Power steering lines -->
+  <g stroke="#555" stroke-width="3" fill="none">
+    <path d="M 350 398 Q 320 420, 300 450 Q 290 465, 290 475" data-component-id="ps-pressure-line"/>
+    <path d="M 365 395 Q 380 430, 370 460 Q 360 475, 350 475" data-component-id="ps-return-line"/>
+  </g>
+
+  <!-- REAR SUSPENSION (Double Wishbone / Multi-link simplified) -->
+
+  <!-- Rear strut assembly -->
+  <g data-component-id="rear-strut-lh">
+    <!-- Strut tower mount -->
+    <circle cx="850" cy="380" r="15" fill="#555" stroke="#666"/>
+
+    <!-- Strut/shock body -->
+    <rect x="842" y="395" width="16" height="60" rx="2" fill="url(#metalGradient)" stroke="#555"/>
+
+    <!-- Coil spring -->
+    <g stroke="url(#springGradient)" stroke-width="3" fill="none">
+      <path d="M 838 400 Q 862 405, 838 415 Q 862 425, 838 435 Q 862 445, 838 450"/>
+    </g>
+  </g>
+
+  <!-- Rear upper control arm -->
+  <g data-component-id="upper-control-arm-rear-lh">
+    <path d="M 870 420 Q 900 415, 920 420" stroke="url(#metalGradient)" stroke-width="6" fill="none"/>
+    <circle cx="870" cy="420" r="5" fill="#444" stroke="#555"/>
+    <circle cx="920" cy="420" r="8" fill="url(#rubberGradient)" stroke="#444"/>
+  </g>
+
+  <!-- Rear lower control arm -->
+  <g data-component-id="lower-control-arm-rear-lh">
+    <path d="M 830" y1="470" x2="870 480 Q 910 490, 930 485" stroke="url(#metalGradient)" stroke-width="7" fill="none"/>
+    <circle cx="830" cy="480" r="5" fill="#444" stroke="#555"/>
+    <circle cx="930" cy="485" r="10" fill="url(#rubberGradient)" stroke="#444"/>
+  </g>
+
+  <!-- Rear trailing arm / lateral link -->
+  <g data-component-id="trailing-arm-lh">
+    <path d="M 780 485 L 850 480" stroke="url(#metalGradient)" stroke-width="6" fill="none"/>
+    <circle cx="780" cy="485" r="10" fill="url(#rubberGradient)" stroke="#444"/>
+  </g>
+
+  <!-- Rear wheel hub -->
+  <g data-component-id="rear-wheel-hub-lh">
+    <circle cx="850" cy="470" r="22" fill="#444" stroke="#555"/>
+    <circle cx="850" cy="470" r="10" fill="#333"/>
+    <circle cx="842" cy="462" r="3" fill="#555"/>
+    <circle cx="858" cy="462" r="3" fill="#555"/>
+    <circle cx="842" cy="478" r="3" fill="#555"/>
+    <circle cx="858" cy="478" r="3" fill="#555"/>
+  </g>
+
+  <!-- Rear stabilizer bar -->
+  <g data-component-id="rear-stabilizer-bar">
+    <path d="M 800 500 Q 850 505, 900 500" stroke="#666" stroke-width="5" fill="none"/>
+    <line x1="810" y1="500" x2="810" y2="480" stroke="#555" stroke-width="3"/>
+    <line x1="890" y1="500" x2="890" y2="480" stroke="#555" stroke-width="3"/>
+  </g>
+
+  <!-- SUBFRAME -->
+  <g data-component-id="front-subframe" opacity="0.6">
+    <rect x="170" y="540" width="260" height="25" rx="3" fill="#3a3a3a" stroke="#555"/>
+  </g>
+
+  <g data-component-id="rear-subframe" opacity="0.6">
+    <rect x="770" y="510" width="180" height="20" rx="3" fill="#3a3a3a" stroke="#555"/>
+  </g>
+
+  <!-- Labels -->
+  <g font-family="Inter, sans-serif" font-size="9" fill="#777">
+    <text x="260" y="330">Strut Tower</text>
+    <text x="160" y="475">Control Arm</text>
+    <text x="220" y="540">Sway Bar</text>
+    <text x="280" y="458">Steering Rack</text>
+    <text x="540" y="280">Steering Wheel</text>
+    <text x="340" y="365">PS Pump</text>
+    <text x="850" y="370">Rear Strut</text>
+    <text x="820" y="520">Rear Links</text>
+  </g>
+
+  <!-- Alignment specs annotation -->
+  <g font-family="Inter, sans-serif" font-size="7" fill="#888">
+    <text x="280" y="515">Toe: 0°±0.08°</text>
+    <text x="280" y="525">Camber: -0.58°±0.75°</text>
+  </g>
+</svg>

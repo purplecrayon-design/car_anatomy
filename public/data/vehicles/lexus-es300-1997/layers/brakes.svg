@@ -1,0 +1,226 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="rotorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#666"/>
+      <stop offset="50%" stop-color="#888"/>
+      <stop offset="100%" stop-color="#555"/>
+    </linearGradient>
+    <linearGradient id="caliperGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#555"/>
+      <stop offset="100%" stop-color="#333"/>
+    </linearGradient>
+    <linearGradient id="brakeLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#444"/>
+      <stop offset="100%" stop-color="#333"/>
+    </linearGradient>
+    <linearGradient id="fluidGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#DDAA44"/>
+      <stop offset="100%" stop-color="#AA7722"/>
+    </linearGradient>
+  </defs>
+
+  <!-- FRONT BRAKES (Ventilated Disc) -->
+
+  <!-- Front rotor - Left -->
+  <g data-component-id="front-rotor-lh">
+    <circle cx="260" cy="480" r="50" fill="url(#rotorGradient)" stroke="#555" stroke-width="2"/>
+    <!-- Ventilation slots -->
+    <circle cx="260" cy="480" r="40" fill="none" stroke="#555" stroke-width="1"/>
+    <circle cx="260" cy="480" r="30" fill="none" stroke="#555" stroke-width="1"/>
+    <!-- Hub center -->
+    <circle cx="260" cy="480" r="20" fill="#444" stroke="#555"/>
+    <!-- Wheel studs -->
+    <circle cx="252" cy="468" r="3" fill="#555"/>
+    <circle cx="268" cy="468" r="3" fill="#555"/>
+    <circle cx="252" cy="492" r="3" fill="#555"/>
+    <circle cx="268" cy="492" r="3" fill="#555"/>
+    <circle cx="248" cy="480" r="3" fill="#555"/>
+    <!-- Cooling vanes (partial) -->
+    <g stroke="#666" stroke-width="0.5">
+      <line x1="230" y1="480" x2="290" y2="480"/>
+      <line x1="240" y1="460" x2="280" y2="500"/>
+      <line x1="240" y1="500" x2="280" y2="460"/>
+    </g>
+  </g>
+
+  <!-- Front caliper - Left -->
+  <g data-component-id="front-caliper-lh">
+    <rect x="220" y="450" width="35" height="60" rx="5" fill="url(#caliperGradient)" stroke="#444"/>
+    <!-- Bleeder screw -->
+    <circle cx="230" cy="458" r="4" fill="#555" stroke="#666"/>
+    <!-- Caliper bridge -->
+    <rect x="225" y="470" width="25" height="20" fill="#444"/>
+    <!-- Piston area -->
+    <rect x="250" y="460" width="10" height="40" fill="#3a3a3a"/>
+  </g>
+
+  <!-- Front brake pads - Left -->
+  <g data-component-id="front-brake-pads-lh">
+    <rect x="252" y="455" width="5" height="50" fill="#8B7355" stroke="#666"/>
+    <rect x="257" y="455" width="5" height="50" fill="#8B7355" stroke="#666"/>
+  </g>
+
+  <!-- Front rotor - Right (partial) -->
+  <g data-component-id="front-rotor-rh">
+    <circle cx="360" cy="480" r="50" fill="url(#rotorGradient)" stroke="#555" stroke-width="2"/>
+    <circle cx="360" cy="480" r="40" fill="none" stroke="#555" stroke-width="1"/>
+    <circle cx="360" cy="480" r="30" fill="none" stroke="#555" stroke-width="1"/>
+    <circle cx="360" cy="480" r="20" fill="#444" stroke="#555"/>
+  </g>
+
+  <!-- REAR BRAKES (Solid Disc) -->
+
+  <!-- Rear rotor - Left -->
+  <g data-component-id="rear-rotor-lh">
+    <circle cx="850" cy="470" r="40" fill="url(#rotorGradient)" stroke="#555" stroke-width="2"/>
+    <circle cx="850" cy="470" r="30" fill="none" stroke="#555" stroke-width="1"/>
+    <circle cx="850" cy="470" r="15" fill="#444" stroke="#555"/>
+    <!-- Wheel studs -->
+    <circle cx="843" cy="460" r="2.5" fill="#555"/>
+    <circle cx="857" cy="460" r="2.5" fill="#555"/>
+    <circle cx="843" cy="480" r="2.5" fill="#555"/>
+    <circle cx="857" cy="480" r="2.5" fill="#555"/>
+  </g>
+
+  <!-- Rear caliper - Left -->
+  <g data-component-id="rear-caliper-lh">
+    <rect x="815" y="448" width="28" height="45" rx="4" fill="url(#caliperGradient)" stroke="#444"/>
+    <circle cx="823" cy="455" r="3" fill="#555" stroke="#666"/>
+    <rect x="838" y="455" width="8" height="30" fill="#3a3a3a"/>
+  </g>
+
+  <!-- Rear brake pads - Left -->
+  <g data-component-id="rear-brake-pads-lh">
+    <rect x="840" y="452" width="4" height="36" fill="#8B7355" stroke="#666"/>
+  </g>
+
+  <!-- BRAKE HYDRAULIC SYSTEM -->
+
+  <!-- Brake master cylinder -->
+  <g data-component-id="brake-master-cylinder">
+    <rect x="420" y="330" width="80" height="30" rx="5" fill="#555" stroke="#666"/>
+    <ellipse cx="420" cy="345" rx="10" ry="15" fill="#555" stroke="#666"/>
+    <ellipse cx="500" cy="345" rx="8" ry="12" fill="#666" stroke="#777"/>
+    <!-- Primary/secondary chambers -->
+    <line x1="450" y1="340" x2="450" y2="350" stroke="#444" stroke-width="2"/>
+    <line x1="470" y1="340" x2="470" y2="350" stroke="#444" stroke-width="2"/>
+  </g>
+
+  <!-- Brake fluid reservoir -->
+  <g data-component-id="brake-fluid-reservoir">
+    <rect x="440" y="300" width="50" height="30" rx="3" fill="#888" fill-opacity="0.5" stroke="#666"/>
+    <rect x="445" y="310" width="40" height="15" fill="url(#fluidGradient)" fill-opacity="0.6"/>
+    <!-- Cap -->
+    <rect x="455" y="295" width="20" height="8" rx="2" fill="#555"/>
+  </g>
+
+  <!-- Brake booster -->
+  <g data-component-id="brake-booster">
+    <circle cx="380" cy="345" r="35" fill="#3a3a3a" stroke="#555"/>
+    <circle cx="380" cy="345" r="25" fill="#444" stroke="#555"/>
+    <circle cx="380" cy="345" r="8" fill="#333"/>
+    <!-- Pushrod -->
+    <line x1="415" y1="345" x2="420" y2="345" stroke="#666" stroke-width="4"/>
+  </g>
+
+  <!-- Brake pedal (schematic) -->
+  <g data-component-id="brake-pedal">
+    <rect x="330" y="300" width="15" height="80" rx="2" fill="#555" stroke="#666"/>
+    <ellipse cx="337" cy="375" rx="10" ry="8" fill="#444" stroke="#555"/>
+  </g>
+
+  <!-- ABS hydraulic unit -->
+  <g data-component-id="abs-hydraulic-unit">
+    <rect x="520" y="390" width="60" height="50" rx="5" fill="#444" stroke="#555"/>
+    <rect x="525" y="395" width="50" height="40" fill="#333"/>
+    <!-- Solenoid valves -->
+    <circle cx="535" cy="405" r="5" fill="#555"/>
+    <circle cx="550" cy="405" r="5" fill="#555"/>
+    <circle cx="565" cy="405" r="5" fill="#555"/>
+    <circle cx="535" cy="425" r="5" fill="#555"/>
+    <circle cx="550" cy="425" r="5" fill="#555"/>
+    <circle cx="565" cy="425" r="5" fill="#555"/>
+  </g>
+
+  <!-- ABS ECU -->
+  <g data-component-id="abs-ecu">
+    <rect x="590" y="400" width="40" height="30" rx="3" fill="#333" stroke="#444"/>
+    <text x="610" y="418" font-family="Inter, sans-serif" font-size="6" fill="#666" text-anchor="middle">ABS</text>
+  </g>
+
+  <!-- Brake lines from master cylinder to ABS unit -->
+  <g stroke="url(#brakeLineGradient)" stroke-width="3" fill="none">
+    <path d="M 500 350 Q 510 370, 520 395" data-component-id="brake-line-mc-to-abs-1"/>
+    <path d="M 490 360 Q 510 380, 530 400" data-component-id="brake-line-mc-to-abs-2"/>
+  </g>
+
+  <!-- Brake lines from ABS to calipers -->
+  <g stroke="url(#brakeLineGradient)" stroke-width="2.5" fill="none">
+    <!-- Front left -->
+    <path d="M 520 420 Q 450 450, 350 470 Q 300 475, 255 470" data-component-id="brake-line-front-lh"/>
+    <!-- Front right -->
+    <path d="M 540 430 Q 480 460, 400 475 Q 380 478, 360 475" data-component-id="brake-line-front-rh"/>
+    <!-- Rear left -->
+    <path d="M 560 430 Q 650 450, 750 460 Q 800 465, 820 465" data-component-id="brake-line-rear-lh"/>
+    <!-- Rear right -->
+    <path d="M 570 420 Q 680 440, 780 455 Q 830 460, 870 460" data-component-id="brake-line-rear-rh"/>
+  </g>
+
+  <!-- Flexible brake hoses -->
+  <g stroke="#333" stroke-width="3" fill="none" stroke-dasharray="4,2">
+    <path d="M 255 470 Q 240 465, 235 460" data-component-id="flex-hose-front-lh"/>
+    <path d="M 820 465 Q 825 460, 830 455" data-component-id="flex-hose-rear-lh"/>
+  </g>
+
+  <!-- ABS wheel speed sensors -->
+  <g fill="#555" stroke="#666">
+    <rect x="280" y="500" width="15" height="8" rx="1" data-component-id="abs-sensor-front-lh"/>
+    <rect x="375" y="500" width="15" height="8" rx="1" data-component-id="abs-sensor-front-rh"/>
+    <rect x="865" y="490" width="12" height="7" rx="1" data-component-id="abs-sensor-rear-lh"/>
+  </g>
+
+  <!-- Sensor tone rings (on rotors) -->
+  <g fill="none" stroke="#777" stroke-width="1" stroke-dasharray="2,1">
+    <circle cx="260" cy="480" r="25" data-component-id="tone-ring-front-lh"/>
+    <circle cx="850" cy="470" r="22" data-component-id="tone-ring-rear-lh"/>
+  </g>
+
+  <!-- Parking brake cable -->
+  <g stroke="#555" stroke-width="2" fill="none">
+    <path d="M 600 480 Q 700 490, 800 480 L 830 475" data-component-id="parking-brake-cable-lh"/>
+    <path d="M 600 485 Q 700 495, 800 485 L 870 480" data-component-id="parking-brake-cable-rh"/>
+  </g>
+
+  <!-- Parking brake equalizer -->
+  <g data-component-id="parking-brake-equalizer">
+    <rect x="590" y="478" width="20" height="12" rx="2" fill="#555" stroke="#666"/>
+  </g>
+
+  <!-- Parking brake handle (schematic) -->
+  <g data-component-id="parking-brake-handle">
+    <rect x="560" y="400" width="15" height="60" rx="2" fill="#555" stroke="#666"/>
+    <circle cx="567" cy="405" r="5" fill="#666"/>
+  </g>
+
+  <!-- Proportioning valve -->
+  <g data-component-id="proportioning-valve">
+    <rect x="640" y="440" width="25" height="15" rx="2" fill="#555" stroke="#666"/>
+    <circle cx="652" cy="447" r="4" fill="#444"/>
+  </g>
+
+  <!-- Labels -->
+  <g font-family="Inter, sans-serif" font-size="9" fill="#777">
+    <text x="240" y="420">Front Disc</text>
+    <text x="835" y="415">Rear Disc</text>
+    <text x="350" y="320">Booster</text>
+    <text x="430" y="295">Master Cyl</text>
+    <text x="525" y="385">ABS Unit</text>
+    <text x="555" y="395">Parking</text>
+  </g>
+
+  <!-- Brake specs -->
+  <g font-family="Inter, sans-serif" font-size="7" fill="#888">
+    <text x="260" y="545">Front: 275mm Vented</text>
+    <text x="830" y="525">Rear: 269mm Solid</text>
+  </g>
+</svg>

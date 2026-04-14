@@ -1,0 +1,224 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="intakeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#555"/>
+      <stop offset="100%" stop-color="#3a3a3a"/>
+    </linearGradient>
+    <linearGradient id="exhaustGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B4513"/>
+      <stop offset="50%" stop-color="#A0522D"/>
+      <stop offset="100%" stop-color="#8B4513"/>
+    </linearGradient>
+    <linearGradient id="manifoldHeat" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#CC4444"/>
+      <stop offset="100%" stop-color="#993333"/>
+    </linearGradient>
+    <linearGradient id="catGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#666"/>
+      <stop offset="100%" stop-color="#444"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Air filter box -->
+  <g data-component-id="air-filter-box">
+    <rect x="180" y="300" width="60" height="45" rx="5" fill="#3a3a3a" stroke="#555"/>
+    <rect x="185" y="305" width="50" height="35" fill="#2a2a2a"/>
+    <!-- Filter element -->
+    <rect x="188" y="310" width="44" height="25" fill="#D4A574" stroke="#8B7355"/>
+  </g>
+
+  <!-- Air intake duct -->
+  <path d="M 240 322 Q 270 320, 290 330 Q 310 340, 320 355"
+        stroke="#444" stroke-width="12" fill="none" stroke-linecap="round"
+        data-component-id="air-intake-duct"/>
+
+  <!-- MAF sensor housing -->
+  <g data-component-id="maf-sensor-housing">
+    <rect x="265" y="315" width="25" height="20" rx="3" fill="#444" stroke="#555"/>
+    <circle cx="277" cy="325" r="6" fill="#333"/>
+  </g>
+
+  <!-- Throttle body -->
+  <g data-component-id="throttle-body">
+    <ellipse cx="340" cy="360" rx="20" ry="15" fill="url(#intakeGradient)" stroke="#666"/>
+    <ellipse cx="340" cy="360" rx="12" ry="8" fill="#333"/>
+    <!-- Throttle plate -->
+    <line x1="330" y1="360" x2="350" y2="360" stroke="#555" stroke-width="2"/>
+  </g>
+
+  <!-- Intake manifold plenum -->
+  <g data-component-id="intake-manifold-plenum">
+    <path d="M 320 345 Q 280 340, 260 360 Q 240 380, 260 400 Q 280 420, 360 420 Q 400 420, 400 380 Q 400 350, 360 345 Z"
+          fill="url(#intakeGradient)" stroke="#555" stroke-width="1.5"/>
+    <!-- Plenum ribs -->
+    <path d="M 280 365 Q 320 360, 360 365" stroke="#666" fill="none"/>
+    <path d="M 280 385 Q 320 390, 360 385" stroke="#666" fill="none"/>
+  </g>
+
+  <!-- Intake runners (6 cylinders) -->
+  <g fill="url(#intakeGradient)" stroke="#555">
+    <!-- Front bank runners (1, 3, 5) -->
+    <path d="M 280 420 L 280 445 Q 280 455, 290 455 L 310 455 Q 320 455, 320 445 L 320 430" data-component-id="intake-runner-1"/>
+    <path d="M 310 420 L 310 450 Q 310 460, 320 460 L 340 460 Q 350 460, 350 450 L 350 435" data-component-id="intake-runner-3"/>
+    <path d="M 340 420 L 340 455 Q 340 465, 350 465 L 370 465 Q 380 465, 380 455 L 380 440" data-component-id="intake-runner-5"/>
+
+    <!-- Rear bank runners (2, 4, 6) -->
+    <path d="M 280 345 L 280 320 Q 280 310, 290 310 L 310 310 Q 320 310, 320 320 L 320 340" data-component-id="intake-runner-2"/>
+    <path d="M 310 345 L 310 315 Q 310 305, 320 305 L 340 305 Q 350 305, 350 315 L 350 340" data-component-id="intake-runner-4"/>
+    <path d="M 340 345 L 340 310 Q 340 300, 350 300 L 370 300 Q 380 300, 380 310 L 380 335" data-component-id="intake-runner-6"/>
+  </g>
+
+  <!-- Idle Air Control Valve -->
+  <g data-component-id="iac-valve">
+    <circle cx="370" cy="350" r="10" fill="#444" stroke="#555"/>
+    <circle cx="370" cy="350" r="5" fill="#333"/>
+  </g>
+
+  <!-- PCV valve -->
+  <g data-component-id="pcv-valve">
+    <rect x="390" y="370" width="15" height="10" rx="2" fill="#444" stroke="#555"/>
+    <circle cx="397" cy="375" r="3" fill="#333"/>
+  </g>
+
+  <!-- Exhaust manifolds -->
+  <!-- Front bank exhaust manifold -->
+  <g data-component-id="exhaust-manifold-front">
+    <path d="M 280 470 Q 260 480, 240 500 Q 220 520, 200 530"
+          stroke="url(#manifoldHeat)" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M 320 475 Q 280 490, 250 510 Q 230 525, 200 535"
+          stroke="url(#manifoldHeat)" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M 360 480 Q 300 500, 260 520 Q 230 535, 200 540"
+          stroke="url(#manifoldHeat)" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <!-- Collector -->
+    <ellipse cx="195" cy="535" rx="15" ry="20" fill="#993333" stroke="#772222"/>
+  </g>
+
+  <!-- Rear bank exhaust manifold -->
+  <g data-component-id="exhaust-manifold-rear">
+    <path d="M 290 290 Q 310 280, 330 270 Q 350 260, 360 250"
+          stroke="url(#manifoldHeat)" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M 330 290 Q 350 275, 370 265 Q 385 255, 395 245"
+          stroke="url(#manifoldHeat)" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M 370 285 Q 390 270, 410 260 Q 425 250, 430 240"
+          stroke="url(#manifoldHeat)" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <!-- Collector -->
+    <ellipse cx="395" cy="245" rx="20" ry="12" fill="#993333" stroke="#772222"/>
+  </g>
+
+  <!-- Front catalytic converter -->
+  <g data-component-id="catalytic-converter-front">
+    <ellipse cx="180" cy="560" rx="25" ry="12" fill="url(#catGradient)" stroke="#555"/>
+    <rect x="155" y="555" width="50" height="15" rx="3" fill="url(#catGradient)" stroke="#555"/>
+    <ellipse cx="180" cy="570" rx="25" ry="12" fill="url(#catGradient)" stroke="#555"/>
+    <!-- Heat shield lines -->
+    <path d="M 160 560 L 200 560 M 160 570 L 200 570" stroke="#777" stroke-width="0.5"/>
+  </g>
+
+  <!-- Rear catalytic converter -->
+  <g data-component-id="catalytic-converter-rear">
+    <ellipse cx="430" cy="220" rx="25" ry="10" fill="url(#catGradient)" stroke="#555"/>
+    <rect x="405" y="215" width="50" height="12" rx="3" fill="url(#catGradient)" stroke="#555"/>
+  </g>
+
+  <!-- Front pipe (Y-pipe collector) -->
+  <path d="M 180 580 Q 220 600, 300 610 Q 400 620, 500 600 Q 520 595, 540 590"
+        stroke="url(#exhaustGradient)" stroke-width="8" fill="none"
+        data-component-id="front-pipe"/>
+
+  <!-- Rear collector pipe -->
+  <path d="M 430 232 Q 460 260, 480 300 Q 500 350, 520 400 Q 535 450, 540 520 Q 542 560, 540 590"
+        stroke="url(#exhaustGradient)" stroke-width="8" fill="none"
+        data-component-id="rear-collector-pipe"/>
+
+  <!-- Main catalytic converter (under floor) -->
+  <g data-component-id="main-catalytic-converter">
+    <rect x="520" y="580" width="80" height="25" rx="5" fill="url(#catGradient)" stroke="#555"/>
+    <line x1="530" y1="590" x2="590" y2="590" stroke="#777" stroke-width="0.5"/>
+    <line x1="530" y1="595" x2="590" y2="595" stroke="#777" stroke-width="0.5"/>
+  </g>
+
+  <!-- Intermediate pipe -->
+  <path d="M 600 592 Q 650 590, 700 585 Q 720 583, 740 580"
+        stroke="url(#exhaustGradient)" stroke-width="8" fill="none"
+        data-component-id="intermediate-pipe"/>
+
+  <!-- Resonator -->
+  <g data-component-id="resonator">
+    <rect x="740" y="570" width="50" height="20" rx="5" fill="#444" stroke="#555"/>
+    <ellipse cx="740" cy="580" rx="8" ry="10" fill="#444" stroke="#555"/>
+    <ellipse cx="790" cy="580" rx="8" ry="10" fill="#444" stroke="#555"/>
+  </g>
+
+  <!-- Rear pipe -->
+  <path d="M 790 580 Q 830 578, 870 580 Q 900 582, 920 585"
+        stroke="url(#exhaustGradient)" stroke-width="8" fill="none"
+        data-component-id="rear-pipe"/>
+
+  <!-- Muffler -->
+  <g data-component-id="muffler">
+    <rect x="920" y="565" width="80" height="35" rx="8" fill="#3a3a3a" stroke="#555"/>
+    <ellipse cx="920" cy="582" rx="10" ry="17" fill="#3a3a3a" stroke="#555"/>
+    <ellipse cx="1000" cy="582" rx="10" ry="17" fill="#3a3a3a" stroke="#555"/>
+    <!-- Internal baffles -->
+    <line x1="950" y1="570" x2="950" y2="595" stroke="#555"/>
+    <line x1="970" y1="570" x2="970" y2="595" stroke="#555"/>
+  </g>
+
+  <!-- Tailpipe -->
+  <path d="M 1000 582 Q 1020 582, 1040 580 L 1080 578"
+        stroke="#555" stroke-width="6" fill="none"
+        data-component-id="tailpipe"/>
+
+  <!-- Exhaust tip -->
+  <g data-component-id="exhaust-tip">
+    <ellipse cx="1085" cy="578" rx="8" ry="6" fill="#666" stroke="#777"/>
+    <ellipse cx="1090" cy="578" rx="6" ry="5" fill="#333"/>
+  </g>
+
+  <!-- O2 sensors -->
+  <g fill="#555" stroke="#666">
+    <ellipse cx="175" cy="545" rx="5" ry="8" data-component-id="o2-sensor-b1s1"/>
+    <ellipse cx="185" cy="580" rx="5" ry="8" data-component-id="o2-sensor-b1s2"/>
+    <ellipse cx="420" cy="210" rx="5" ry="8" data-component-id="o2-sensor-b2s1"/>
+    <ellipse cx="600" cy="595" rx="5" ry="8" data-component-id="o2-sensor-b2s2"/>
+  </g>
+
+  <!-- EGR valve (1MZ-FE has EGR) -->
+  <g data-component-id="egr-valve">
+    <circle cx="410" cy="380" r="12" fill="#444" stroke="#555"/>
+    <circle cx="410" cy="380" r="6" fill="#333"/>
+    <rect x="415" y="372" width="10" height="16" fill="#555"/>
+  </g>
+
+  <!-- EGR pipe -->
+  <path d="M 395 385 Q 350 400, 320 420 Q 300 435, 290 450"
+        stroke="#666" stroke-width="4" fill="none"
+        data-component-id="egr-pipe"/>
+
+  <!-- Exhaust hangers -->
+  <g fill="#555" stroke="#666">
+    <ellipse cx="620" cy="610" rx="8" ry="5" data-component-id="exhaust-hanger-1"/>
+    <ellipse cx="760" cy="605" rx="8" ry="5" data-component-id="exhaust-hanger-2"/>
+    <ellipse cx="880" cy="608" rx="8" ry="5" data-component-id="exhaust-hanger-3"/>
+    <ellipse cx="980" cy="610" rx="8" ry="5" data-component-id="exhaust-hanger-4"/>
+  </g>
+
+  <!-- Heat shields -->
+  <g fill="none" stroke="#888" stroke-width="1" stroke-dasharray="4,2">
+    <path d="M 150 540 Q 180 530, 210 545" data-component-id="heat-shield-cat-front"/>
+    <path d="M 505 570 Q 560 565, 615 575" data-component-id="heat-shield-main-cat"/>
+    <path d="M 905 555 Q 960 550, 1015 558" data-component-id="heat-shield-muffler"/>
+  </g>
+
+  <!-- Labels -->
+  <g font-family="Inter, sans-serif" font-size="9" fill="#777">
+    <text x="185" y="295">Air Filter</text>
+    <text x="330" y="340">Throttle</text>
+    <text x="280" y="410">Intake Plenum</text>
+    <text x="150" y="530">Cat Front</text>
+    <text x="420" cy="210">Cat Rear</text>
+    <text x="540" y="570">Main Cat</text>
+    <text x="745" y="565">Resonator</text>
+    <text x="940" y="560">Muffler</text>
+  </g>
+</svg>

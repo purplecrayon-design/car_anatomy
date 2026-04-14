@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="radiatorGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3a3a3a"/>
+      <stop offset="100%" stop-color="#2a2a2a"/>
+    </linearGradient>
+    <linearGradient id="coolantHot" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#CC4444"/>
+      <stop offset="50%" stop-color="#DD5555"/>
+      <stop offset="100%" stop-color="#CC4444"/>
+    </linearGradient>
+    <linearGradient id="coolantCold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4466AA"/>
+      <stop offset="50%" stop-color="#5577BB"/>
+      <stop offset="100%" stop-color="#4466AA"/>
+    </linearGradient>
+    <linearGradient id="aluminumGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#888"/>
+      <stop offset="100%" stop-color="#666"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Radiator -->
+  <g data-component-id="radiator">
+    <rect x="160" y="320" width="20" height="160" rx="3" fill="url(#radiatorGradient)" stroke="#444"/>
+    <!-- Radiator fins -->
+    <g stroke="#3a3a3a" stroke-width="0.5">
+      <line x1="165" y1="330" x2="175" y2="330"/>
+      <line x1="165" y1="340" x2="175" y2="340"/>
+      <line x1="165" y1="350" x2="175" y2="350"/>
+      <line x1="165" y1="360" x2="175" y2="360"/>
+      <line x1="165" y1="370" x2="175" y2="370"/>
+      <line x1="165" y1="380" x2="175" y2="380"/>
+      <line x1="165" y1="390" x2="175" y2="390"/>
+      <line x1="165" y1="400" x2="175" y2="400"/>
+      <line x1="165" y1="410" x2="175" y2="410"/>
+      <line x1="165" y1="420" x2="175" y2="420"/>
+      <line x1="165" y1="430" x2="175" y2="430"/>
+      <line x1="165" y1="440" x2="175" y2="440"/>
+      <line x1="165" y1="450" x2="175" y2="450"/>
+      <line x1="165" y1="460" x2="175" y2="460"/>
+      <line x1="165" y1="470" x2="175" y2="470"/>
+    </g>
+    <!-- Upper tank -->
+    <rect x="155" y="310" width="30" height="15" rx="2" fill="#444" stroke="#555"/>
+    <!-- Lower tank -->
+    <rect x="155" y="475" width="30" height="15" rx="2" fill="#444" stroke="#555"/>
+  </g>
+
+  <!-- Radiator cap / pressure cap -->
+  <g data-component-id="radiator-cap">
+    <circle cx="170" cy="310" r="8" fill="#555" stroke="#666"/>
+    <circle cx="170" cy="310" r="4" fill="#444"/>
+  </g>
+
+  <!-- Coolant reservoir / overflow tank -->
+  <g data-component-id="coolant-reservoir">
+    <rect x="130" y="280" width="30" height="50" rx="3" fill="#888" fill-opacity="0.3" stroke="#666"/>
+    <rect x="133" y="300" width="24" height="25" fill="#77AA77" fill-opacity="0.4"/>
+    <rect x="140" y="275" width="10" height="8" fill="#555"/>
+  </g>
+
+  <!-- Overflow hose -->
+  <path d="M 155 310 Q 150 295, 145 290" stroke="#555" stroke-width="2" fill="none" data-component-id="overflow-hose"/>
+
+  <!-- Upper radiator hose (hot coolant out of engine) -->
+  <path d="M 185 325 Q 220 320, 260 340 Q 300 360, 320 380"
+        stroke="url(#coolantHot)" stroke-width="8" fill="none" stroke-linecap="round"
+        data-component-id="upper-radiator-hose"/>
+
+  <!-- Lower radiator hose (cold coolant to water pump) -->
+  <path d="M 185 475 Q 240 480, 300 460 Q 340 445, 360 430"
+        stroke="url(#coolantCold)" stroke-width="8" fill="none" stroke-linecap="round"
+        data-component-id="lower-radiator-hose"/>
+
+  <!-- Water pump -->
+  <g data-component-id="water-pump">
+    <circle cx="380" cy="420" r="25" fill="url(#aluminumGradient)" stroke="#555"/>
+    <circle cx="380" cy="420" r="15" fill="#555" stroke="#666"/>
+    <circle cx="380" cy="420" r="8" fill="#444"/>
+    <!-- Pulley -->
+    <circle cx="380" cy="420" r="22" fill="none" stroke="#666" stroke-width="3"/>
+  </g>
+
+  <!-- Thermostat housing -->
+  <g data-component-id="thermostat-housing">
+    <ellipse cx="320" cy="380" rx="18" ry="12" fill="url(#aluminumGradient)" stroke="#555"/>
+    <ellipse cx="320" cy="380" rx="10" ry="6" fill="#555"/>
+  </g>
+
+  <!-- Thermostat (inside housing) -->
+  <circle cx="320" cy="380" r="6" fill="#444" stroke="#555" data-component-id="thermostat"/>
+
+  <!-- Engine block coolant passages (simplified representation) -->
+  <g data-component-id="engine-coolant-jacket">
+    <rect x="280" y="340" width="100" height="80" rx="5" fill="none" stroke="#666" stroke-width="2" stroke-dasharray="5,3"/>
+    <!-- Internal passages -->
+    <path d="M 290 360 L 290 400 M 320 350 L 320 410 M 350 360 L 350 400" stroke="#777" stroke-width="1" stroke-dasharray="3,2"/>
+  </g>
+
+  <!-- Heater core (inside cabin) -->
+  <g data-component-id="heater-core">
+    <rect x="550" y="350" width="40" height="30" rx="3" fill="#444" stroke="#555"/>
+    <!-- Heater core tubes -->
+    <line x1="555" y1="355" x2="555" y2="375" stroke="#555"/>
+    <line x1="565" y1="355" x2="565" y2="375" stroke="#555"/>
+    <line x1="575" y1="355" x2="575" y2="375" stroke="#555"/>
+    <line x1="585" y1="355" x2="585" y2="375" stroke="#555"/>
+  </g>
+
+  <!-- Heater hoses -->
+  <g stroke-width="5" fill="none" stroke-linecap="round">
+    <!-- Hot coolant to heater core -->
+    <path d="M 350 370 Q 400 360, 450 355 Q 500 350, 550 360" stroke="url(#coolantHot)" data-component-id="heater-hose-inlet"/>
+    <!-- Return from heater core -->
+    <path d="M 550 375 Q 480 390, 420 400 Q 390 410, 380 415" stroke="url(#coolantCold)" data-component-id="heater-hose-outlet"/>
+  </g>
+
+  <!-- Heater control valve -->
+  <g data-component-id="heater-control-valve">
+    <rect x="480" y="350" width="20" height="15" rx="2" fill="#555" stroke="#666"/>
+    <circle cx="490" cy="357" r="4" fill="#444"/>
+  </g>
+
+  <!-- Cooling fan (electric, dual) -->
+  <g data-component-id="cooling-fan-1">
+    <circle cx="145" cy="380" r="35" fill="none" stroke="#555" stroke-width="2"/>
+    <!-- Fan blades -->
+    <path d="M 145 380 L 145 350 M 145 380 L 175 380 M 145 380 L 145 410 M 145 380 L 115 380" stroke="#666" stroke-width="3"/>
+    <path d="M 145 380 L 165 360 M 145 380 L 165 400 M 145 380 L 125 400 M 145 380 L 125 360" stroke="#666" stroke-width="2"/>
+    <circle cx="145" cy="380" r="8" fill="#444" stroke="#555"/>
+  </g>
+
+  <!-- Fan shroud -->
+  <rect x="105" y="340" width="80" height="80" rx="5" fill="none" stroke="#555" stroke-width="1" stroke-dasharray="4,2" data-component-id="fan-shroud"/>
+
+  <!-- Fan motor -->
+  <g data-component-id="cooling-fan-motor">
+    <circle cx="145" cy="380" r="12" fill="#3a3a3a" stroke="#555"/>
+  </g>
+
+  <!-- Temperature sensor (ECT) -->
+  <g data-component-id="coolant-temp-sensor">
+    <circle cx="290" cy="390" r="6" fill="#4477AA" stroke="#555"/>
+    <rect x="282" y="395" width="16" height="8" fill="#555"/>
+  </g>
+
+  <!-- Bypass hose -->
+  <path d="M 340 395 Q 360 395, 370 405" stroke="#666" stroke-width="4" fill="none" data-component-id="bypass-hose"/>
+
+  <!-- Transmission cooler lines (to radiator) -->
+  <g stroke="#666" stroke-width="3" fill="none">
+    <path d="M 170 440 Q 200 450, 250 460 Q 400 480, 500 470" data-component-id="trans-cooler-line-inlet"/>
+    <path d="M 170 450 Q 200 465, 250 475 Q 400 495, 500 485" data-component-id="trans-cooler-line-outlet"/>
+  </g>
+
+  <!-- Hose clamps -->
+  <g fill="none" stroke="#777" stroke-width="1.5">
+    <circle cx="195" cy="325" r="6" data-component-id="hose-clamp-1"/>
+    <circle cx="195" cy="475" r="6" data-component-id="hose-clamp-2"/>
+    <circle cx="310" cy="378" r="5" data-component-id="hose-clamp-3"/>
+    <circle cx="365" cy="428" r="5" data-component-id="hose-clamp-4"/>
+  </g>
+
+  <!-- Drain petcock -->
+  <g data-component-id="radiator-drain">
+    <rect x="165" y="490" width="10" height="8" fill="#555"/>
+    <circle cx="170" cy="498" r="3" fill="#444"/>
+  </g>
+
+  <!-- Labels -->
+  <g font-family="Inter, sans-serif" font-size="9" fill="#777">
+    <text x="155" y="308">Radiator</text>
+    <text x="115" y="275">Reservoir</text>
+    <text x="375" y="455">Water Pump</text>
+    <text x="295" y="370">Thermostat</text>
+    <text x="555" y="345">Heater Core</text>
+    <text x="120" y="335">Fans</text>
+  </g>
+
+  <!-- Temperature specs -->
+  <g font-family="Inter, sans-serif" font-size="7" fill="#888">
+    <text x="320" y="395">Opens 180°F</text>
+    <text x="140" y="430">Fan On: 199°F</text>
+  </g>
+
+  <!-- Coolant flow direction arrows -->
+  <g fill="#666">
+    <polygon points="240,335 250,340 240,345" data-component-id="flow-arrow-1"/>
+    <polygon points="250,470 240,475 250,480" data-component-id="flow-arrow-2"/>
+    <polygon points="510,355 520,360 510,365" data-component-id="flow-arrow-3"/>
+  </g>
+</svg>

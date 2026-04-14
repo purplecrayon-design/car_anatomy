@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="steelGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5a5a5a"/>
+      <stop offset="100%" stop-color="#3a3a3a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Main unibody frame rails -->
+  <g stroke="#444" stroke-width="1" fill="url(#steelGradient)">
+    <!-- Front subframe -->
+    <rect x="200" y="480" width="180" height="25" rx="3" data-component-id="front-subframe"/>
+
+    <!-- Front frame rails -->
+    <rect x="220" y="440" width="30" height="80" rx="2" data-component-id="frame-rail-front-lh"/>
+    <rect x="350" y="440" width="30" height="80" rx="2" data-component-id="frame-rail-front-rh"/>
+
+    <!-- Firewall -->
+    <rect x="400" y="380" width="15" height="140" rx="2" data-component-id="firewall"/>
+
+    <!-- Floor pan -->
+    <rect x="415" y="500" width="370" height="20" rx="2" data-component-id="floor-pan"/>
+
+    <!-- Rocker panels -->
+    <rect x="415" y="480" width="370" height="15" rx="2" data-component-id="rocker-panel-lh"/>
+
+    <!-- Center tunnel -->
+    <rect x="580" y="485" width="40" height="35" rx="3" data-component-id="center-tunnel"/>
+
+    <!-- Rear frame rails -->
+    <rect x="785" y="460" width="130" height="25" rx="2" data-component-id="rear-frame-rail-lh"/>
+
+    <!-- Rear subframe -->
+    <rect x="800" y="490" width="120" height="20" rx="3" data-component-id="rear-subframe"/>
+
+    <!-- A-pillar -->
+    <path d="M 430 300 L 445 380 L 455 380 L 445 300 Z" data-component-id="a-pillar-lh"/>
+
+    <!-- B-pillar (hidden in ES300 design but structural) -->
+    <rect x="595" y="300" width="12" height="100" rx="1" data-component-id="b-pillar-lh" opacity="0.7"/>
+
+    <!-- C-pillar -->
+    <path d="M 785 310 L 800 400 L 812 400 L 800 310 Z" data-component-id="c-pillar-lh"/>
+
+    <!-- Roof rail -->
+    <rect x="450" y="270" width="340" height="12" rx="2" data-component-id="roof-rail-lh"/>
+
+    <!-- Trunk floor -->
+    <rect x="820" y="480" width="100" height="15" rx="2" data-component-id="trunk-floor"/>
+
+    <!-- Shock towers -->
+    <circle cx="340" cy="420" r="25" data-component-id="shock-tower-front-lh"/>
+    <circle cx="840" cy="450" r="20" data-component-id="shock-tower-rear-lh"/>
+  </g>
+
+  <!-- Structural reinforcements -->
+  <g stroke="#555" stroke-width="2" fill="none">
+    <path d="M 250 480 L 400 440" data-component-id="front-crossmember"/>
+    <path d="M 415 510 L 785 510" data-component-id="floor-crossmember-1"/>
+    <path d="M 500 510 L 500 480" data-component-id="seat-crossmember"/>
+    <path d="M 700 510 L 700 480" data-component-id="rear-seat-crossmember"/>
+  </g>
+
+  <!-- Labels -->
+  <g font-family="Inter, sans-serif" font-size="9" fill="#888">
+    <text x="270" y="475">Front Subframe</text>
+    <text x="560" y="475">Floor Pan</text>
+    <text x="850" y="475">Rear Subframe</text>
+  </g>
+</svg>

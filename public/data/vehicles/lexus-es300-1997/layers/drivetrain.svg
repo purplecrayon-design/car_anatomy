@@ -1,0 +1,235 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="transGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#555"/>
+      <stop offset="100%" stop-color="#333"/>
+    </linearGradient>
+    <linearGradient id="axleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#444"/>
+      <stop offset="50%" stop-color="#555"/>
+      <stop offset="100%" stop-color="#444"/>
+    </linearGradient>
+    <linearGradient id="flywheelGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#666"/>
+      <stop offset="100%" stop-color="#444"/>
+    </linearGradient>
+  </defs>
+
+  <!-- TRANSAXLE (FWD - combined transmission and differential) -->
+  <g data-component-id="transaxle">
+    <!-- Main housing -->
+    <path d="M 380 400 Q 360 380, 360 420 L 360 500 Q 360 530, 390 530 L 500 530 Q 530 530, 530 500 L 530 420 Q 530 380, 500 400 Z"
+          fill="url(#transGradient)" stroke="#444" stroke-width="2"/>
+
+    <!-- Bell housing (connects to engine) -->
+    <path d="M 300 420 Q 280 400, 280 440 L 280 480 Q 280 510, 310 510 L 360 510 L 360 420 Z"
+          fill="#444" stroke="#555" stroke-width="1.5"/>
+
+    <!-- Differential bulge -->
+    <ellipse cx="380" cy="520" rx="35" ry="25" fill="#3a3a3a" stroke="#555"/>
+
+    <!-- Oil pan -->
+    <rect x="380" y="535" width="120" height="20" rx="3" fill="#333" stroke="#444"/>
+  </g>
+
+  <!-- TORQUE CONVERTER (automatic transmission) -->
+  <g data-component-id="torque-converter">
+    <ellipse cx="310" cy="460" rx="35" ry="30" fill="url(#flywheelGradient)" stroke="#555"/>
+    <ellipse cx="310" cy="460" rx="25" ry="20" fill="#444"/>
+    <ellipse cx="310" cy="460" rx="15" ry="10" fill="#333"/>
+    <!-- Stator -->
+    <ellipse cx="310" cy="460" rx="8" ry="5" fill="#222"/>
+  </g>
+
+  <!-- FLYWHEEL/FLEXPLATE -->
+  <g data-component-id="flexplate">
+    <circle cx="280" cy="460" r="30" fill="url(#flywheelGradient)" stroke="#555"/>
+    <!-- Ring gear teeth -->
+    <circle cx="280" cy="460" r="28" fill="none" stroke="#777" stroke-width="2" stroke-dasharray="2,1"/>
+    <circle cx="280" cy="460" r="15" fill="#333"/>
+    <!-- Bolt holes -->
+    <circle cx="270" cy="448" r="2" fill="#222"/>
+    <circle cx="290" cy="448" r="2" fill="#222"/>
+    <circle cx="270" cy="472" r="2" fill="#222"/>
+    <circle cx="290" cy="472" r="2" fill="#222"/>
+  </g>
+
+  <!-- LEFT DRIVE AXLE (CV AXLE) -->
+  <g data-component-id="drive-axle-lh">
+    <!-- Inner CV joint -->
+    <ellipse cx="360" cy="520" rx="15" ry="12" fill="#555" stroke="#666" data-component-id="cv-joint-inner-lh"/>
+
+    <!-- Axle shaft -->
+    <rect x="200" y="515" width="160" height="10" rx="2" fill="url(#axleGradient)" stroke="#555"/>
+
+    <!-- Outer CV joint -->
+    <ellipse cx="200" cy="520" rx="18" ry="15" fill="#555" stroke="#666" data-component-id="cv-joint-outer-lh"/>
+
+    <!-- CV boots -->
+    <path d="M 345 512 Q 330 510, 330 520 Q 330 530, 345 528" fill="#222" stroke="#333" data-component-id="cv-boot-inner-lh"/>
+    <path d="M 218 512 Q 230 508, 230 520 Q 230 532, 218 528" fill="#222" stroke="#333" data-component-id="cv-boot-outer-lh"/>
+  </g>
+
+  <!-- RIGHT DRIVE AXLE -->
+  <g data-component-id="drive-axle-rh">
+    <!-- Inner CV joint -->
+    <ellipse cx="530" cy="480" rx="15" ry="12" fill="#555" stroke="#666" data-component-id="cv-joint-inner-rh"/>
+
+    <!-- Intermediate shaft (longer right side typical for transverse FWD) -->
+    <rect x="530" y="475" width="100" height="10" rx="2" fill="url(#axleGradient)" stroke="#555"/>
+
+    <!-- Bearing support -->
+    <g data-component-id="intermediate-shaft-bearing">
+      <circle cx="580" cy="480" r="12" fill="#444" stroke="#555"/>
+      <circle cx="580" cy="480" r="6" fill="#333"/>
+    </g>
+
+    <!-- Outer section -->
+    <rect x="630" y="475" width="80" height="10" rx="2" fill="url(#axleGradient)" stroke="#555"/>
+
+    <!-- Outer CV joint -->
+    <ellipse cx="710" cy="480" rx="18" ry="15" fill="#555" stroke="#666" data-component-id="cv-joint-outer-rh"/>
+
+    <!-- CV boots -->
+    <path d="M 545 472 Q 555 468, 555 480 Q 555 492, 545 488" fill="#222" stroke="#333" data-component-id="cv-boot-inner-rh"/>
+    <path d="M 695 472 Q 685 468, 685 480 Q 685 492, 695 488" fill="#222" stroke="#333" data-component-id="cv-boot-outer-rh"/>
+  </g>
+
+  <!-- WHEEL HUBS -->
+  <g data-component-id="wheel-hub-lh">
+    <circle cx="180" cy="520" r="30" fill="#444" stroke="#555"/>
+    <circle cx="180" cy="520" r="20" fill="#333"/>
+    <circle cx="180" cy="520" r="10" fill="#222"/>
+    <!-- Wheel studs -->
+    <circle cx="170" cy="505" r="3" fill="#555"/>
+    <circle cx="190" cy="505" r="3" fill="#555"/>
+    <circle cx="170" cy="535" r="3" fill="#555"/>
+    <circle cx="190" cy="535" r="3" fill="#555"/>
+    <circle cx="162" cy="520" r="3" fill="#555"/>
+  </g>
+
+  <g data-component-id="wheel-hub-rh">
+    <circle cx="730" cy="480" r="30" fill="#444" stroke="#555"/>
+    <circle cx="730" cy="480" r="20" fill="#333"/>
+    <circle cx="730" cy="480" r="10" fill="#222"/>
+    <!-- Wheel studs -->
+    <circle cx="720" cy="465" r="3" fill="#555"/>
+    <circle cx="740" cy="465" r="3" fill="#555"/>
+    <circle cx="720" cy="495" r="3" fill="#555"/>
+    <circle cx="740" cy="495" r="3" fill="#555"/>
+  </g>
+
+  <!-- TRANSMISSION INTERNALS (simplified cutaway) -->
+  <g opacity="0.7">
+    <!-- Planetary gearsets -->
+    <circle cx="420" cy="470" r="20" fill="none" stroke="#666" stroke-width="2" data-component-id="planetary-front"/>
+    <circle cx="420" cy="470" r="12" fill="none" stroke="#777" stroke-width="1.5"/>
+    <circle cx="420" cy="470" r="5" fill="#555"/>
+
+    <circle cx="470" cy="470" r="18" fill="none" stroke="#666" stroke-width="2" data-component-id="planetary-rear"/>
+    <circle cx="470" cy="470" r="10" fill="none" stroke="#777" stroke-width="1.5"/>
+    <circle cx="470" cy="470" r="4" fill="#555"/>
+
+    <!-- Clutch packs -->
+    <rect x="395" y="430" width="50" height="8" rx="2" fill="#555" stroke="#666" data-component-id="clutch-pack-c1"/>
+    <rect x="395" y="505" width="50" height="8" rx="2" fill="#555" stroke="#666" data-component-id="clutch-pack-c2"/>
+  </g>
+
+  <!-- VALVE BODY -->
+  <g data-component-id="valve-body">
+    <rect x="390" y="540" width="100" height="15" rx="2" fill="#444" stroke="#555"/>
+    <g fill="#333">
+      <rect x="400" y="543" width="8" height="9" rx="1"/>
+      <rect x="415" y="543" width="8" height="9" rx="1"/>
+      <rect x="430" y="543" width="8" height="9" rx="1"/>
+      <rect x="445" y="543" width="8" height="9" rx="1"/>
+      <rect x="460" y="543" width="8" height="9" rx="1"/>
+      <rect x="475" y="543" width="8" height="9" rx="1"/>
+    </g>
+  </g>
+
+  <!-- TRANSMISSION CONTROL MODULE -->
+  <g data-component-id="transmission-ecu">
+    <rect x="540" y="420" width="40" height="25" rx="3" fill="#333" stroke="#444"/>
+    <rect x="545" y="425" width="30" height="15" fill="#222"/>
+    <text x="560" y="435" font-family="Inter, sans-serif" font-size="5" fill="#666" text-anchor="middle">TCM</text>
+  </g>
+
+  <!-- SHIFT SOLENOIDS -->
+  <g fill="#555" stroke="#666">
+    <rect x="500" y="500" width="12" height="18" rx="2" data-component-id="shift-solenoid-1"/>
+    <rect x="515" y="500" width="12" height="18" rx="2" data-component-id="shift-solenoid-2"/>
+  </g>
+
+  <!-- SPEED SENSORS -->
+  <g fill="#555" stroke="#666">
+    <!-- Input speed sensor -->
+    <rect x="355" y="425" width="10" height="15" rx="1" data-component-id="input-speed-sensor"/>
+    <!-- Output speed sensor -->
+    <rect x="520" y="495" width="10" height="15" rx="1" data-component-id="output-speed-sensor"/>
+  </g>
+
+  <!-- TRANSMISSION OIL COOLER LINES -->
+  <g stroke="#555" stroke-width="3" fill="none">
+    <path d="M 450 535 Q 400 560, 300 570 Q 200 575, 170 555" data-component-id="trans-cooler-line-out"/>
+    <path d="M 470 535 Q 420 565, 320 575 Q 220 580, 180 560" data-component-id="trans-cooler-line-in"/>
+  </g>
+
+  <!-- SHIFT CABLE/LINKAGE -->
+  <g data-component-id="shift-linkage">
+    <path d="M 450 400 Q 480 380, 520 370 Q 560 360, 600 365"
+          stroke="#555" stroke-width="4" fill="none"/>
+    <circle cx="600" cy="365" r="8" fill="#444" stroke="#555"/>
+  </g>
+
+  <!-- TRANSMISSION MOUNT -->
+  <g data-component-id="trans-mount">
+    <rect x="440" y="555" width="40" height="20" rx="3" fill="#222" stroke="#444"/>
+    <rect x="448" y="560" width="24" height="10" fill="#1a1a1a"/>
+  </g>
+
+  <!-- ENGINE MOUNTS (for context) -->
+  <g fill="#222" stroke="#444">
+    <rect x="250" y="380" width="30" height="25" rx="3" data-component-id="engine-mount-front"/>
+    <rect x="250" y="520" width="30" height="25" rx="3" data-component-id="engine-mount-rear"/>
+  </g>
+
+  <!-- DIFFERENTIAL (integrated in transaxle) -->
+  <g data-component-id="differential" opacity="0.8">
+    <circle cx="380" cy="520" r="25" fill="none" stroke="#666" stroke-width="2"/>
+    <!-- Ring gear -->
+    <circle cx="380" cy="520" r="22" fill="none" stroke="#777" stroke-width="1" stroke-dasharray="3,1"/>
+    <!-- Spider gears -->
+    <circle cx="375" cy="515" r="5" fill="#555"/>
+    <circle cx="385" cy="525" r="5" fill="#555"/>
+  </g>
+
+  <!-- ATF DIPSTICK -->
+  <g data-component-id="atf-dipstick">
+    <rect x="490" y="400" width="5" height="40" fill="#AA0000"/>
+    <rect x="488" y="395" width="9" height="8" rx="1" fill="#880000"/>
+  </g>
+
+  <!-- FILL PLUG -->
+  <g data-component-id="trans-fill-plug">
+    <circle cx="430" cy="415" r="6" fill="#444" stroke="#555"/>
+    <rect x="426" y="412" width="8" height="6" fill="#333"/>
+  </g>
+
+  <!-- Labels -->
+  <g font-family="Inter, sans-serif" font-size="9" fill="#777">
+    <text x="400" y="395">A541E Transaxle</text>
+    <text x="285" y="435">Torque Converter</text>
+    <text x="250" y="510">CV Axle LH</text>
+    <text x="620" y="465">CV Axle RH</text>
+    <text x="370" y="570">Differential</text>
+    <text x="145" y="510">Hub LH</text>
+    <text x="700" y="465">Hub RH</text>
+  </g>
+
+  <!-- Gear ratios annotation -->
+  <g font-family="Inter, sans-serif" font-size="7" fill="#888">
+    <text x="540" y="450">4-Speed Auto</text>
+    <text x="540" y="460">Final: 3.93:1</text>
+  </g>
+</svg>

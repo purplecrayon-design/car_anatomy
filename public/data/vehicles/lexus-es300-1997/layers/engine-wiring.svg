@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <!-- Toyota wire color coding -->
+    <linearGradient id="wireB" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2255AA"/>
+      <stop offset="100%" stop-color="#1a4488"/>
+    </linearGradient>
+    <linearGradient id="wireR" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#CC3333"/>
+      <stop offset="100%" stop-color="#AA2222"/>
+    </linearGradient>
+    <linearGradient id="wireG" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#339933"/>
+      <stop offset="100%" stop-color="#227722"/>
+    </linearGradient>
+    <linearGradient id="wireY" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#CCAA33"/>
+      <stop offset="100%" stop-color="#AA8822"/>
+    </linearGradient>
+    <linearGradient id="wireW" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EEEEEE"/>
+      <stop offset="100%" stop-color="#CCCCCC"/>
+    </linearGradient>
+    <linearGradient id="wireBk" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#333333"/>
+      <stop offset="100%" stop-color="#1a1a1a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ECU (Engine Control Unit) -->
+  <g data-component-id="ecu-1mz">
+    <rect x="620" y="400" width="60" height="40" rx="3" fill="#2a2a2a" stroke="#444"/>
+    <rect x="625" y="405" width="50" height="10" fill="#1a1a1a"/>
+    <text x="650" y="430" font-family="Inter, sans-serif" font-size="7" fill="#888" text-anchor="middle">ECU</text>
+  </g>
+
+  <!-- Ignition coils - 1MZ-FE has 6 individual coils (coil-on-plug) -->
+  <g stroke="none">
+    <!-- Front bank coils (1, 3, 5) -->
+    <rect x="280" y="340" width="18" height="30" rx="2" fill="#444" data-component-id="ignition-coil-1"/>
+    <rect x="310" y="340" width="18" height="30" rx="2" fill="#444" data-component-id="ignition-coil-3"/>
+    <rect x="340" y="340" width="18" height="30" rx="2" fill="#444" data-component-id="ignition-coil-5"/>
+
+    <!-- Rear bank coils (2, 4, 6) -->
+    <rect x="280" y="380" width="18" height="30" rx="2" fill="#444" data-component-id="ignition-coil-2"/>
+    <rect x="310" y="380" width="18" height="30" rx="2" fill="#444" data-component-id="ignition-coil-4"/>
+    <rect x="340" y="380" width="18" height="30" rx="2" fill="#444" data-component-id="ignition-coil-6"/>
+  </g>
+
+  <!-- Ignition coil wiring -->
+  <g stroke-width="2" fill="none" stroke-linecap="round">
+    <!-- Coil power feeds (IGF signal - Yellow/Green) -->
+    <path d="M 620 410 Q 550 400, 480 380 Q 420 360, 358 355" stroke="url(#wireY)" data-component-id="igf-signal-front"/>
+    <path d="M 620 420 Q 550 420, 480 410 Q 420 400, 358 395" stroke="url(#wireY)" data-component-id="igf-signal-rear"/>
+
+    <!-- IGT signals (Ignition timing - Blue/Yellow) -->
+    <path d="M 620 415 Q 500 380, 298 355" stroke="url(#wireB)" data-component-id="igt1-signal"/>
+    <path d="M 620 415 Q 500 380, 328 355" stroke="url(#wireB)" data-component-id="igt3-signal"/>
+    <path d="M 620 415 Q 500 380, 358 355" stroke="url(#wireB)" data-component-id="igt5-signal"/>
+    <path d="M 620 425 Q 500 400, 298 395" stroke="url(#wireB)" data-component-id="igt2-signal"/>
+    <path d="M 620 425 Q 500 400, 328 395" stroke="url(#wireB)" data-component-id="igt4-signal"/>
+    <path d="M 620 425 Q 500 400, 358 395" stroke="url(#wireB)" data-component-id="igt6-signal"/>
+  </g>
+
+  <!-- Injectors -->
+  <g stroke="none">
+    <!-- Front bank injectors -->
+    <rect x="260" y="345" width="12" height="20" rx="1" fill="#555" data-component-id="injector-1"/>
+    <rect x="260" y="375" width="12" height="20" rx="1" fill="#555" data-component-id="injector-3"/>
+    <rect x="260" y="405" width="12" height="20" rx="1" fill="#555" data-component-id="injector-5"/>
+
+    <!-- Rear bank injectors -->
+    <rect x="365" y="345" width="12" height="20" rx="1" fill="#555" data-component-id="injector-2"/>
+    <rect x="365" y="375" width="12" height="20" rx="1" fill="#555" data-component-id="injector-4"/>
+    <rect x="365" y="405" width="12" height="20" rx="1" fill="#555" data-component-id="injector-6"/>
+  </g>
+
+  <!-- Injector wiring -->
+  <g stroke-width="1.5" fill="none" stroke-linecap="round">
+    <path d="M 620 430 Q 500 430, 400 420 Q 380 410, 377 405" stroke="url(#wireR)" data-component-id="injector-harness-rear"/>
+    <path d="M 620 432 Q 480 440, 380 430 Q 300 420, 272 405" stroke="url(#wireR)" data-component-id="injector-harness-front"/>
+  </g>
+
+  <!-- Sensors -->
+  <g>
+    <!-- Camshaft position sensors (VVT-i wasn't on 1997, but has cam sensors) -->
+    <circle cx="240" cy="360" r="8" fill="#3a3a3a" stroke="#555" data-component-id="camshaft-sensor-front"/>
+    <circle cx="390" cy="360" r="8" fill="#3a3a3a" stroke="#555" data-component-id="camshaft-sensor-rear"/>
+
+    <!-- Crankshaft position sensor -->
+    <circle cx="320" cy="460" r="10" fill="#3a3a3a" stroke="#555" data-component-id="crankshaft-position-sensor"/>
+
+    <!-- Knock sensors -->
+    <circle cx="290" cy="420" r="7" fill="#3a3a3a" stroke="#555" data-component-id="knock-sensor-1"/>
+    <circle cx="350" cy="420" r="7" fill="#3a3a3a" stroke="#555" data-component-id="knock-sensor-2"/>
+
+    <!-- Coolant temp sensor -->
+    <circle cx="250" cy="390" r="6" fill="#4477AA" stroke="#555" data-component-id="ect-sensor"/>
+
+    <!-- MAF sensor -->
+    <rect x="220" y="320" width="25" height="15" rx="2" fill="#3a3a3a" stroke="#555" data-component-id="maf-sensor"/>
+
+    <!-- Throttle position sensor -->
+    <circle cx="260" cy="310" r="8" fill="#3a3a3a" stroke="#555" data-component-id="tps-sensor"/>
+
+    <!-- Oxygen sensors -->
+    <ellipse cx="200" cy="450" rx="6" ry="10" fill="#555" stroke="#666" data-component-id="o2-sensor-front-upstream"/>
+    <ellipse cx="180" cy="480" rx="6" ry="10" fill="#555" stroke="#666" data-component-id="o2-sensor-front-downstream"/>
+    <ellipse cx="420" cy="450" rx="6" ry="10" fill="#555" stroke="#666" data-component-id="o2-sensor-rear-upstream"/>
+    <ellipse cx="440" cy="480" rx="6" ry="10" fill="#555" stroke="#666" data-component-id="o2-sensor-rear-downstream"/>
+  </g>
+
+  <!-- Sensor wiring harness -->
+  <g stroke-width="1.5" fill="none" stroke-linecap="round">
+    <!-- Cam sensor signals -->
+    <path d="M 240 360 Q 280 340, 400 360 Q 500 380, 620 405" stroke="url(#wireW)" data-component-id="cam-sensor-signal-front"/>
+    <path d="M 390 360 Q 450 370, 550 390 Q 600 400, 620 408" stroke="url(#wireW)" data-component-id="cam-sensor-signal-rear"/>
+
+    <!-- Crank sensor signal -->
+    <path d="M 320 460 Q 400 460, 500 440 Q 580 425, 620 418" stroke="url(#wireW)" data-component-id="crank-sensor-signal"/>
+
+    <!-- Knock sensor signals -->
+    <path d="M 290 420 Q 350 420, 500 415 Q 580 412, 620 412" stroke="url(#wireB)" data-component-id="knock-sensor-1-signal"/>
+    <path d="M 350 420 Q 400 418, 500 413 Q 580 410, 620 414" stroke="url(#wireB)" data-component-id="knock-sensor-2-signal"/>
+
+    <!-- ECT signal -->
+    <path d="M 250 390 Q 350 385, 500 395 Q 580 402, 620 407" stroke="url(#wireG)" data-component-id="ect-signal"/>
+
+    <!-- MAF signal -->
+    <path d="M 245 327 Q 350 320, 500 370 Q 580 395, 620 403" stroke="url(#wireW)" data-component-id="maf-signal"/>
+
+    <!-- TPS signal -->
+    <path d="M 260 310 Q 350 305, 500 365 Q 580 390, 620 400" stroke="url(#wireG)" data-component-id="tps-signal"/>
+
+    <!-- O2 sensor signals -->
+    <path d="M 200 450 Q 300 440, 500 425 Q 580 420, 620 422" stroke="url(#wireW)" data-component-id="o2-front-up-signal"/>
+    <path d="M 180 480 Q 300 470, 500 445 Q 580 435, 620 428" stroke="url(#wireW)" data-component-id="o2-front-down-signal"/>
+    <path d="M 420 450 Q 480 440, 550 430 Q 600 425, 620 424" stroke="url(#wireW)" data-component-id="o2-rear-up-signal"/>
+    <path d="M 440 480 Q 500 465, 560 445 Q 600 438, 620 432" stroke="url(#wireW)" data-component-id="o2-rear-down-signal"/>
+  </g>
+
+  <!-- Ground points -->
+  <g fill="#1a1a1a" stroke="#666" stroke-width="1">
+    <circle cx="230" cy="470" r="5" data-component-id="engine-ground-1"/>
+    <circle cx="380" cy="470" r="5" data-component-id="engine-ground-2"/>
+    <circle cx="300" cy="490" r="5" data-component-id="engine-ground-3"/>
+  </g>
+
+  <!-- Ground wires -->
+  <g stroke="url(#wireBk)" stroke-width="2" fill="none">
+    <path d="M 230 470 L 300 490" data-component-id="ground-strap-1"/>
+    <path d="M 380 470 L 300 490" data-component-id="ground-strap-2"/>
+    <path d="M 300 490 Q 400 500, 600 485 L 620 435" data-component-id="ecu-ground"/>
+  </g>
+
+  <!-- Connectors -->
+  <g fill="#444" stroke="#333" stroke-width="1">
+    <!-- Main engine harness connector -->
+    <rect x="450" y="390" width="20" height="12" rx="2" data-component-id="engine-harness-connector-e1"/>
+    <rect x="450" y="410" width="20" height="12" rx="2" data-component-id="engine-harness-connector-e2"/>
+
+    <!-- Sensor sub-harness connectors -->
+    <rect x="400" y="350" width="15" height="10" rx="1" data-component-id="sensor-connector-s1"/>
+    <rect x="400" y="430" width="15" height="10" rx="1" data-component-id="sensor-connector-s2"/>
+  </g>
+
+  <!-- Labels -->
+  <g font-family="Inter, sans-serif" font-size="8" fill="#777">
+    <text x="285" y="335">Coils 1-3-5</text>
+    <text x="285" y="420">Coils 2-4-6</text>
+    <text x="620" y="395">ECU</text>
+    <text x="320" y="480">CKP</text>
+    <text x="220" y="310">MAF</text>
+    <text x="270" y="305">TPS</text>
+    <text x="155" y="455">O2 F/U</text>
+    <text x="430" y="455">O2 R/U</text>
+  </g>
+</svg>

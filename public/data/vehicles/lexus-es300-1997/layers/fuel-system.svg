@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="fuelTankGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4a4a4a"/>
+      <stop offset="100%" stop-color="#2a2a2a"/>
+    </linearGradient>
+    <linearGradient id="fuelLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#555"/>
+      <stop offset="100%" stop-color="#444"/>
+    </linearGradient>
+    <linearGradient id="returnLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#666"/>
+      <stop offset="100%" stop-color="#555"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fuel tank -->
+  <g data-component-id="fuel-tank">
+    <path d="M 800 500 Q 780 490, 780 510 L 780 560 Q 780 580, 800 580 L 920 580 Q 940 580, 940 560 L 940 510 Q 940 490, 920 500 Z"
+          fill="url(#fuelTankGradient)" stroke="#333" stroke-width="2"/>
+    <!-- Internal baffles -->
+    <line x1="830" y1="510" x2="830" y2="570" stroke="#3a3a3a" stroke-width="1"/>
+    <line x1="870" y1="510" x2="870" y2="570" stroke="#3a3a3a" stroke-width="1"/>
+    <line x1="910" y1="510" x2="910" y2="570" stroke="#3a3a3a" stroke-width="1"/>
+  </g>
+
+  <!-- Fuel pump assembly (in-tank) -->
+  <g data-component-id="fuel-pump-assembly">
+    <rect x="840" y="520" width="40" height="50" rx="3" fill="#3a3a3a" stroke="#555"/>
+    <circle cx="860" cy="535" r="12" fill="#2a2a2a" stroke="#444"/>
+    <rect x="850" y="550" width="20" height="15" fill="#333" stroke="#444"/>
+  </g>
+
+  <!-- Fuel pump sender unit -->
+  <g data-component-id="fuel-level-sender">
+    <rect x="885" y="525" width="25" height="8" fill="#555" stroke="#666"/>
+    <line x1="910" y1="529" x2="930" y2="560" stroke="#777" stroke-width="1"/>
+    <circle cx="930" cy="560" r="4" fill="#888"/>
+  </g>
+
+  <!-- Fuel filter (inline, under car) -->
+  <g data-component-id="fuel-filter">
+    <rect x="700" y="510" width="50" height="25" rx="5" fill="#444" stroke="#555" stroke-width="1.5"/>
+    <rect x="695" y="517" width="10" height="11" fill="#555"/>
+    <rect x="745" y="517" width="10" height="11" fill="#555"/>
+  </g>
+
+  <!-- Fuel lines -->
+  <g stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Supply line from tank to filter -->
+    <path d="M 840 530 L 800 520 Q 770 515, 755 517" stroke="url(#fuelLineGradient)" data-component-id="fuel-line-tank-to-filter"/>
+
+    <!-- Supply line from filter to fuel rail -->
+    <path d="M 695 522 Q 600 510, 500 480 Q 400 450, 350 430 L 280 420" stroke="url(#fuelLineGradient)" data-component-id="fuel-line-filter-to-rail"/>
+
+    <!-- Return line from pressure regulator -->
+    <path d="M 380 440 Q 500 460, 600 480 Q 700 500, 780 530 L 840 545" stroke="url(#returnLineGradient)" stroke-width="3" data-component-id="fuel-return-line"/>
+  </g>
+
+  <!-- Fuel rail (front bank) -->
+  <g data-component-id="fuel-rail-front">
+    <rect x="260" y="380" width="120" height="12" rx="3" fill="#555" stroke="#666" stroke-width="1"/>
+    <!-- Injector ports -->
+    <circle cx="280" cy="395" r="5" fill="#444"/>
+    <circle cx="320" cy="395" r="5" fill="#444"/>
+    <circle cx="360" cy="395" r="5" fill="#444"/>
+  </g>
+
+  <!-- Fuel rail (rear bank) -->
+  <g data-component-id="fuel-rail-rear">
+    <rect x="260" y="420" width="120" height="12" rx="3" fill="#555" stroke="#666" stroke-width="1"/>
+    <!-- Injector ports -->
+    <circle cx="280" cy="423" r="5" fill="#444"/>
+    <circle cx="320" cy="423" r="5" fill="#444"/>
+    <circle cx="360" cy="423" r="5" fill="#444"/>
+  </g>
+
+  <!-- Fuel rail crossover pipe -->
+  <path d="M 260 392 Q 240 400, 240 420 Q 240 430, 260 428" stroke="#555" stroke-width="4" fill="none" data-component-id="fuel-rail-crossover"/>
+
+  <!-- Fuel injectors -->
+  <g fill="#3a3a3a" stroke="#555">
+    <!-- Front bank -->
+    <rect x="275" y="395" width="10" height="18" rx="1" data-component-id="fuel-injector-1"/>
+    <rect x="315" y="395" width="10" height="18" rx="1" data-component-id="fuel-injector-3"/>
+    <rect x="355" y="395" width="10" height="18" rx="1" data-component-id="fuel-injector-5"/>
+    <!-- Rear bank -->
+    <rect x="275" y="435" width="10" height="18" rx="1" data-component-id="fuel-injector-2"/>
+    <rect x="315" y="435" width="10" height="18" rx="1" data-component-id="fuel-injector-4"/>
+    <rect x="355" y="435" width="10" height="18" rx="1" data-component-id="fuel-injector-6"/>
+  </g>
+
+  <!-- Fuel pressure regulator -->
+  <g data-component-id="fuel-pressure-regulator">
+    <circle cx="390" cy="430" r="15" fill="#444" stroke="#555"/>
+    <circle cx="390" cy="430" r="8" fill="#333"/>
+    <rect x="385" y="445" width="10" height="8" fill="#555"/>
+  </g>
+
+  <!-- Fuel pulsation damper -->
+  <g data-component-id="fuel-pulsation-damper">
+    <circle cx="250" cy="400" r="12" fill="#444" stroke="#555"/>
+    <circle cx="250" cy="400" r="6" fill="#333"/>
+  </g>
+
+  <!-- EVAP system components -->
+  <!-- Charcoal canister -->
+  <g data-component-id="charcoal-canister">
+    <rect x="750" y="440" width="60" height="35" rx="4" fill="#3a3a3a" stroke="#555"/>
+    <rect x="755" y="445" width="50" height="25" fill="#2a2a2a"/>
+    <text x="780" y="461" font-family="Inter, sans-serif" font-size="6" fill="#666" text-anchor="middle">EVAP</text>
+  </g>
+
+  <!-- EVAP lines -->
+  <g stroke="#666" stroke-width="2" fill="none" stroke-dasharray="4,2">
+    <!-- Tank vent to canister -->
+    <path d="M 920 505 Q 920 470, 880 460 Q 840 450, 810 445" data-component-id="evap-tank-vent"/>
+
+    <!-- Canister purge to intake -->
+    <path d="M 750 455 Q 650 440, 550 420 Q 450 400, 380 380" data-component-id="evap-purge-line"/>
+  </g>
+
+  <!-- Purge VSV (vacuum switching valve) -->
+  <g data-component-id="evap-purge-vsv">
+    <rect x="550" y="400" width="25" height="20" rx="2" fill="#444" stroke="#555"/>
+    <circle cx="562" cy="410" r="5" fill="#333"/>
+  </g>
+
+  <!-- Fuel filler neck -->
+  <g data-component-id="fuel-filler-neck">
+    <path d="M 940 540 Q 960 530, 980 500 Q 1000 470, 1020 450" stroke="#555" stroke-width="6" fill="none"/>
+    <circle cx="1020" cy="445" r="12" fill="#444" stroke="#555"/>
+  </g>
+
+  <!-- Fuel cap -->
+  <g data-component-id="fuel-cap">
+    <circle cx="1020" cy="445" r="10" fill="#333" stroke="#444"/>
+    <circle cx="1020" cy="445" r="5" fill="#2a2a2a"/>
+  </g>
+
+  <!-- Fuel tank mounting straps -->
+  <g stroke="#555" stroke-width="3" fill="none">
+    <path d="M 810 490 Q 810 480, 820 475 Q 860 465, 900 475 Q 910 480, 910 490" data-component-id="tank-strap-front"/>
+    <path d="M 810 590 Q 810 600, 820 605 Q 860 615, 900 605 Q 910 600, 910 590" data-component-id="tank-strap-rear"/>
+  </g>
+
+  <!-- Labels -->
+  <g font-family="Inter, sans-serif" font-size="9" fill="#777">
+    <text x="860" y="595">Fuel Tank (18.5 gal)</text>
+    <text x="700" y="505">Fuel Filter</text>
+    <text x="280" y="375">Fuel Rails</text>
+    <text x="860" y="510">Pump</text>
+    <text x="390" y="465">Regulator</text>
+    <text x="1030" y="445">Filler</text>
+  </g>
+
+  <!-- Fuel pressure specs annotation -->
+  <g font-family="Inter, sans-serif" font-size="7" fill="#888">
+    <text x="410" y="420">38-44 psi</text>
+  </g>
+</svg>

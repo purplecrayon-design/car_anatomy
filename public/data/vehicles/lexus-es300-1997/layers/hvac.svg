@@ -1,0 +1,267 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="ductGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#444"/>
+      <stop offset="100%" stop-color="#333"/>
+    </linearGradient>
+    <linearGradient id="coldAir" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4488CC"/>
+      <stop offset="100%" stop-color="#3366AA"/>
+    </linearGradient>
+    <linearGradient id="hotAir" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#CC6644"/>
+      <stop offset="100%" stop-color="#AA4422"/>
+    </linearGradient>
+    <linearGradient id="compressorGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#555"/>
+      <stop offset="100%" stop-color="#333"/>
+    </linearGradient>
+  </defs>
+
+  <!-- A/C COMPRESSOR -->
+  <g data-component-id="ac-compressor">
+    <ellipse cx="300" cy="440" rx="30" ry="25" fill="url(#compressorGradient)" stroke="#555"/>
+    <ellipse cx="300" cy="440" rx="20" ry="15" fill="#444"/>
+    <!-- Clutch pulley -->
+    <circle cx="300" cy="440" r="18" fill="none" stroke="#666" stroke-width="3"/>
+    <circle cx="300" cy="440" r="8" fill="#333"/>
+    <!-- Ports -->
+    <circle cx="325" cy="430" r="4" fill="#555" stroke="#666"/>
+    <circle cx="325" cy="450" r="4" fill="#555" stroke="#666"/>
+  </g>
+
+  <!-- CONDENSER (in front of radiator) -->
+  <g data-component-id="ac-condenser">
+    <rect x="140" y="340" width="15" height="120" rx="2" fill="#444" stroke="#555"/>
+    <!-- Condenser fins -->
+    <g stroke="#555" stroke-width="0.5">
+      <line x1="143" y1="350" x2="152" y2="350"/>
+      <line x1="143" y1="360" x2="152" y2="360"/>
+      <line x1="143" y1="370" x2="152" y2="370"/>
+      <line x1="143" y1="380" x2="152" y2="380"/>
+      <line x1="143" y1="390" x2="152" y2="390"/>
+      <line x1="143" y1="400" x2="152" y2="400"/>
+      <line x1="143" y1="410" x2="152" y2="410"/>
+      <line x1="143" y1="420" x2="152" y2="420"/>
+      <line x1="143" y1="430" x2="152" y2="430"/>
+      <line x1="143" y1="440" x2="152" y2="440"/>
+      <line x1="143" y1="450" x2="152" y2="450"/>
+    </g>
+    <!-- Inlet/outlet -->
+    <circle cx="147" cy="345" r="4" fill="#555"/>
+    <circle cx="147" cy="455" r="4" fill="#555"/>
+  </g>
+
+  <!-- RECEIVER/DRYER -->
+  <g data-component-id="receiver-dryer">
+    <rect x="165" y="380" width="20" height="50" rx="5" fill="#444" stroke="#555"/>
+    <circle cx="175" cy="385" r="5" fill="#555"/>
+    <rect x="170" y="395" width="10" height="30" fill="#333"/>
+  </g>
+
+  <!-- EXPANSION VALVE -->
+  <g data-component-id="expansion-valve">
+    <rect x="490" y="360" width="20" height="25" rx="3" fill="#555" stroke="#666"/>
+    <circle cx="500" cy="372" r="6" fill="#444"/>
+  </g>
+
+  <!-- EVAPORATOR (inside HVAC case) -->
+  <g data-component-id="evaporator">
+    <rect x="520" y="340" width="60" height="80" rx="5" fill="url(#coldAir)" fill-opacity="0.4" stroke="#4488CC"/>
+    <!-- Evaporator fins -->
+    <g stroke="#5599CC" stroke-width="0.5">
+      <line x1="525" y1="350" x2="575" y2="350"/>
+      <line x1="525" y1="360" x2="575" y2="360"/>
+      <line x1="525" y1="370" x2="575" y2="370"/>
+      <line x1="525" y1="380" x2="575" y2="380"/>
+      <line x1="525" y1="390" x2="575" y2="390"/>
+      <line x1="525" y1="400" x2="575" y2="400"/>
+      <line x1="525" y1="410" x2="575" y2="410"/>
+    </g>
+  </g>
+
+  <!-- HEATER CORE (inside HVAC case) -->
+  <g data-component-id="heater-core-hvac">
+    <rect x="590" y="340" width="40" height="80" rx="5" fill="url(#hotAir)" fill-opacity="0.4" stroke="#CC6644"/>
+    <!-- Heater core tubes -->
+    <g stroke="#DD7755" stroke-width="0.5">
+      <line x1="595" y1="350" x2="625" y2="350"/>
+      <line x1="595" y1="360" x2="625" y2="360"/>
+      <line x1="595" y1="370" x2="625" y2="370"/>
+      <line x1="595" y1="380" x2="625" y2="380"/>
+      <line x1="595" y1="390" x2="625" y2="390"/>
+      <line x1="595" y1="400" x2="625" y2="400"/>
+      <line x1="595" y1="410" x2="625" y2="410"/>
+    </g>
+  </g>
+
+  <!-- HVAC CASE/HOUSING -->
+  <g data-component-id="hvac-case">
+    <rect x="505" y="320" width="140" height="120" rx="8" fill="none" stroke="#555" stroke-width="2" stroke-dasharray="5,3"/>
+  </g>
+
+  <!-- BLOWER MOTOR -->
+  <g data-component-id="blower-motor">
+    <circle cx="480" cy="380" r="30" fill="#444" stroke="#555"/>
+    <circle cx="480" cy="380" r="20" fill="#333"/>
+    <!-- Fan blades -->
+    <g stroke="#555" stroke-width="2">
+      <line x1="480" y1="360" x2="480" y2="400"/>
+      <line x1="460" y1="380" x2="500" y2="380"/>
+      <line x1="465" y1="365" x2="495" y2="395"/>
+      <line x1="495" y1="365" x2="465" y2="395"/>
+    </g>
+    <circle cx="480" cy="380" r="8" fill="#222"/>
+  </g>
+
+  <!-- BLOWER RESISTOR -->
+  <g data-component-id="blower-resistor">
+    <rect x="445" y="420" width="25" height="15" rx="2" fill="#555" stroke="#666"/>
+    <g fill="#444">
+      <rect x="450" y="423" width="3" height="9"/>
+      <rect x="456" y="423" width="3" height="9"/>
+      <rect x="462" y="423" width="3" height="9"/>
+    </g>
+  </g>
+
+  <!-- REFRIGERANT LINES -->
+  <g stroke-width="4" fill="none" stroke-linecap="round">
+    <!-- High pressure (liquid) - Compressor to Condenser -->
+    <path d="M 325 430 Q 280 400, 220 380 Q 180 365, 155 360"
+          stroke="url(#hotAir)" data-component-id="ac-line-high-pressure-1"/>
+
+    <!-- High pressure - Condenser to Receiver/Dryer -->
+    <path d="M 155 450 Q 160 420, 165 405"
+          stroke="url(#hotAir)" data-component-id="ac-line-high-pressure-2"/>
+
+    <!-- High pressure - Receiver/Dryer to Expansion Valve -->
+    <path d="M 185 400 Q 280 390, 380 375 Q 440 368, 490 370"
+          stroke="url(#hotAir)" data-component-id="ac-line-high-pressure-3"/>
+
+    <!-- Low pressure (gas) - Expansion Valve to Evaporator -->
+    <path d="M 510 372 L 520 372"
+          stroke="url(#coldAir)" stroke-width="5" data-component-id="ac-line-low-pressure-1"/>
+
+    <!-- Low pressure - Evaporator to Compressor -->
+    <path d="M 520 400 Q 450 420, 380 440 Q 340 450, 330 445"
+          stroke="url(#coldAir)" stroke-width="5" data-component-id="ac-line-low-pressure-2"/>
+  </g>
+
+  <!-- AIR DUCTS -->
+  <g fill="url(#ductGradient)" stroke="#555">
+    <!-- Defroster duct -->
+    <path d="M 580 320 Q 580 300, 600 290 Q 620 280, 650 275 L 750 270 Q 770 268, 780 280"
+          stroke-width="12" fill="none" data-component-id="defroster-duct"/>
+
+    <!-- Center vent duct -->
+    <rect x="560" y="340" width="30" height="15" rx="3" data-component-id="center-duct"/>
+
+    <!-- Side vent ducts -->
+    <path d="M 505 360 Q 480 350, 460 355 L 440 360"
+          stroke-width="10" fill="none" data-component-id="side-duct-lh"/>
+    <path d="M 645 360 Q 680 350, 710 355 L 740 360"
+          stroke-width="10" fill="none" data-component-id="side-duct-rh"/>
+
+    <!-- Floor ducts -->
+    <path d="M 550 420 Q 530 450, 500 470 L 480 490"
+          stroke-width="10" fill="none" data-component-id="floor-duct-lh"/>
+    <path d="M 600 420 Q 650 450, 700 470 L 730 490"
+          stroke-width="10" fill="none" data-component-id="floor-duct-rh"/>
+
+    <!-- Rear floor duct -->
+    <path d="M 575 430 Q 620 480, 680 510 L 750 530"
+          stroke-width="8" fill="none" data-component-id="rear-floor-duct"/>
+  </g>
+
+  <!-- AIR VENTS -->
+  <g fill="#333" stroke="#444">
+    <!-- Center vents -->
+    <rect x="570" y="330" width="25" height="15" rx="2" data-component-id="center-vent-lh"/>
+    <rect x="600" y="330" width="25" height="15" rx="2" data-component-id="center-vent-rh"/>
+
+    <!-- Side vents -->
+    <rect x="435" y="355" width="20" height="12" rx="2" data-component-id="side-vent-lh"/>
+    <rect x="745" y="355" width="20" height="12" rx="2" data-component-id="side-vent-rh"/>
+
+    <!-- Defroster outlets -->
+    <rect x="680" y="270" width="50" height="8" rx="2" data-component-id="defroster-outlet-lh"/>
+    <rect x="740" y="268" width="50" height="8" rx="2" data-component-id="defroster-outlet-rh"/>
+  </g>
+
+  <!-- BLEND DOOR ACTUATORS -->
+  <g fill="#555" stroke="#666">
+    <rect x="630" y="380" width="18" height="15" rx="2" data-component-id="blend-door-actuator"/>
+    <rect x="555" y="420" width="15" height="12" rx="2" data-component-id="mode-door-actuator"/>
+  </g>
+
+  <!-- CABIN AIR FILTER (if equipped - 1997 may not have) -->
+  <g data-component-id="cabin-air-filter">
+    <rect x="450" y="340" width="30" height="40" rx="2" fill="#D4A574" stroke="#8B7355"/>
+    <g stroke="#8B7355" stroke-width="0.5">
+      <line x1="455" y1="350" x2="475" y2="350"/>
+      <line x1="455" y1="360" x2="475" y2="360"/>
+      <line x1="455" y1="370" x2="475" y2="370"/>
+    </g>
+  </g>
+
+  <!-- FRESH AIR INTAKE -->
+  <g data-component-id="fresh-air-intake">
+    <path d="M 420 290 Q 440 300, 450 320 L 450 340"
+          stroke="#555" stroke-width="8" fill="none"/>
+    <rect x="405" y="280" width="30" height="15" rx="2" fill="#444" stroke="#555"/>
+  </g>
+
+  <!-- RECIRCULATION DOOR -->
+  <g data-component-id="recirc-door-actuator">
+    <rect x="425" y="320" width="15" height="12" rx="2" fill="#555" stroke="#666"/>
+  </g>
+
+  <!-- A/C PRESSURE SENSORS -->
+  <g fill="#555" stroke="#666">
+    <circle cx="155" cy="430" r="5" data-component-id="ac-pressure-sensor-high"/>
+    <circle cx="350" cy="455" r="5" data-component-id="ac-pressure-sensor-low"/>
+  </g>
+
+  <!-- THERMISTOR (evaporator temp) -->
+  <g data-component-id="evaporator-thermistor">
+    <rect x="545" y="385" width="10" height="8" rx="1" fill="#555" stroke="#666"/>
+  </g>
+
+  <!-- A/C CLUTCH RELAY -->
+  <g data-component-id="ac-clutch-relay">
+    <rect x="340" y="480" width="20" height="15" rx="2" fill="#444" stroke="#555"/>
+  </g>
+
+  <!-- CLIMATE CONTROL PANEL -->
+  <g data-component-id="climate-control-panel">
+    <rect x="580" y="430" width="80" height="35" rx="3" fill="#222" stroke="#333"/>
+    <!-- Display -->
+    <rect x="590" y="435" width="30" height="12" fill="#1a1a1a"/>
+    <text x="605" y="444" font-family="Inter, sans-serif" font-size="6" fill="#44AA88" text-anchor="middle">72°F</text>
+    <!-- Buttons -->
+    <circle cx="635" cy="442" r="5" fill="#444"/>
+    <circle cx="650" cy="442" r="5" fill="#444"/>
+    <!-- Fan speed -->
+    <rect x="590" y="452" width="60" height="8" rx="2" fill="#333"/>
+  </g>
+
+  <!-- Labels -->
+  <g font-family="Inter, sans-serif" font-size="9" fill="#777">
+    <text x="275" y="480">A/C Compressor</text>
+    <text x="120" y="335">Condenser</text>
+    <text x="165" y="445">Dryer</text>
+    <text x="480" y="330">Blower</text>
+    <text x="530" y="435">Evaporator</text>
+    <text x="595" y="435">Heater Core</text>
+    <text x="490" y="355">Exp Valve</text>
+    <text x="680" y="265">Defroster</text>
+    <text x="580" y="475">Climate Control</text>
+  </g>
+
+  <!-- Airflow arrows -->
+  <g fill="#666">
+    <polygon points="575,355 580,350 580,360"/>
+    <polygon points="480,455 485,450 485,460"/>
+    <polygon points="730,455 735,450 735,460"/>
+  </g>
+</svg>
