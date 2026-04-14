@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { VehicleCanvas } from './components/VehicleCanvas';
 import { LayerControls } from './components/LayerControls';
 import { InfoPanel } from './components/InfoPanel';
+import { Notepad } from './components/Notepad';
 import { SplashScreen } from './components/shared/SplashScreen';
 import { ErrorBoundary } from './components/shared/ErrorBoundary';
 import './styles/global.css';
@@ -23,16 +24,17 @@ function AppContent() {
   }
 
   return (
-    <div className="flex h-screen bg-[#F8F6F0]">
-      {/* Left sidebar - Layer controls */}
+    <div className="flex h-screen bg-[#F8F6F0] overflow-hidden">
+      {/* Left sidebar */}
       <LayerControls />
 
-      {/* Main canvas */}
-      <main className="flex-1 overflow-hidden">
+      {/* Main canvas area */}
+      <main className="flex-1 relative overflow-hidden">
         <VehicleCanvas />
+        <Notepad />
       </main>
 
-      {/* Right sidebar - Info panel */}
+      {/* Right info panel */}
       <InfoPanel />
     </div>
   );

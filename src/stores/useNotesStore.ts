@@ -42,7 +42,7 @@ export const useNotesStore = create<NotesState>()(
 
       addNote: (componentId, vehicleId, text, tags) => {
         const note: Note = {
-          id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+          id: crypto.randomUUID(),
           componentId,
           vehicleId,
           text,

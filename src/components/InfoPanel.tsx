@@ -116,9 +116,9 @@ export function InfoPanel() {
 
         {/* Shared badge */}
         {selectedComponent.shared && (
-          <div className="mt-3 px-3 py-2 bg-amber-50 border border-amber-200 rounded-lg">
-            <p className="text-xs text-amber-800">
-              Shared with 1997 Toyota Camry (1MZ-FE)
+          <div className="mt-3 px-3 py-2 bg-amber-100 text-amber-800 rounded-2xl">
+            <p className="text-xs">
+              Also fits 1997 Toyota Camry (identical/similar). Consider both when replacing.
             </p>
           </div>
         )}
@@ -150,18 +150,18 @@ export function InfoPanel() {
       </div>
 
       {/* Tabs */}
-      <nav className="flex border-b border-gray-100">
+      <nav className="flex border-b text-xs font-medium">
         {TABS.map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`flex-1 px-4 py-3 text-xs font-medium uppercase tracking-wide transition-colors ${
+            className={`flex-1 py-3 transition-colors ${
               activeTab === tab
-                ? 'text-blue-600 border-b-2 border-blue-600 -mb-px'
+                ? 'border-b-2 border-emerald-600 text-emerald-600'
                 : 'text-gray-500 hover:text-gray-700'
             }`}
           >
-            {tab}
+            {tab.toUpperCase()}
           </button>
         ))}
       </nav>

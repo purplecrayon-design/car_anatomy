@@ -21,10 +21,10 @@ export function LayerControls() {
 
   const {
     activeLayers,
-    layerOpacity,
+    globalOpacity,
     is3D,
     toggleLayer,
-    setOpacity,
+    setGlobalOpacity,
     toggleAll,
     isolateLayer,
     toggle3D,
@@ -77,14 +77,17 @@ export function LayerControls() {
 
       {/* Global Opacity */}
       <div className="px-4 py-3 border-b border-[#1e2937]">
-        <div className="text-xs text-gray-400 mb-2">Global Opacity</div>
+        <div className="flex justify-between text-xs text-gray-400 mb-2">
+          <span>Global Opacity</span>
+          <span>{globalOpacity}%</span>
+        </div>
         <input
           type="range"
           min="0"
-          max="1"
-          step="0.01"
-          value={layerOpacity.global ?? 1}
-          onChange={(e) => setOpacity(parseFloat(e.target.value))}
+          max="100"
+          step="1"
+          value={globalOpacity}
+          onChange={(e) => setGlobalOpacity(parseInt(e.target.value))}
           className="w-full accent-emerald-500"
         />
       </div>
