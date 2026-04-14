@@ -1,0 +1,129 @@
+{
+  "id": "lexus-es300-1997",
+  "name": "1997 Lexus ES300",
+  "make": "Lexus",
+  "model": "ES300",
+  "year": 1997,
+  "generation": "XV20",
+  "engine": {
+    "code": "1MZ-FE",
+    "displacement": "3.0L",
+    "configuration": "V6",
+    "power": "194 hp @ 5,200 rpm",
+    "torque": "209 lb-ft @ 4,400 rpm"
+  },
+  "transmission": "U140E 4-speed automatic",
+  "drivetrain": "FWD",
+  "dimensions": {
+    "length": 4840,
+    "width": 1790,
+    "height": 1400,
+    "wheelbase": 2672
+  },
+  "colors": {
+    "051": "Diamond White Pearl",
+    "202": "Black Onyx",
+    "1C0": "Cashmere Beige Metallic",
+    "4P2": "Venetian Red Pearl"
+  },
+  "defaultColor": "051",
+  "silhouette": "silhouette-side.svg",
+  "layers": [
+    {
+      "id": "chassis",
+      "name": "Chassis & Body Structure",
+      "file": "chassis.svg",
+      "description": "Main vehicle skeleton, frame rails, floor pan, firewall, pillars, doors, hood, trunk",
+      "shared": true,
+      "defaultVisible": false
+    },
+    {
+      "id": "engine-mechanical",
+      "name": "Engine Mechanical (1MZ-FE)",
+      "file": "engine-mechanical.svg",
+      "description": "Full 1MZ-FE cutaway engine block, heads, pistons, cams, valves, crankshaft, timing belt",
+      "shared": true,
+      "defaultVisible": true
+    },
+    {
+      "id": "engine-wiring",
+      "name": "Engine Bay Wiring",
+      "file": "engine-wiring.svg",
+      "description": "All wiring inside engine bay - ECU, sensors, coils, injectors, alternator harness",
+      "shared": true,
+      "defaultVisible": false
+    },
+    {
+      "id": "full-wiring",
+      "name": "Full Vehicle Wiring",
+      "file": "full-wiring.svg",
+      "description": "Complete body & chassis wiring harnesses color-coded by system",
+      "shared": false,
+      "defaultVisible": true
+    },
+    {
+      "id": "fuel-system",
+      "name": "Fuel System",
+      "file": "fuel-system.svg",
+      "description": "Fuel tank, lines, pump, filter, rail, injectors, EVAP canister",
+      "shared": true,
+      "defaultVisible": false
+    },
+    {
+      "id": "cooling-system",
+      "name": "Cooling System",
+      "file": "cooling-system.svg",
+      "description": "Radiator, water pump, hoses, thermostat, reservoir, fan, heater core",
+      "shared": true,
+      "defaultVisible": false
+    },
+    {
+      "id": "intake-exhaust",
+      "name": "Intake & Exhaust",
+      "file": "intake-exhaust.svg",
+      "description": "Intake manifold, throttle body, air filter, EGR, exhaust manifolds, catalytic converters",
+      "shared": true,
+      "defaultVisible": false
+    },
+    {
+      "id": "suspension-steering",
+      "name": "Suspension & Steering",
+      "file": "suspension-steering.svg",
+      "description": "Front & rear suspension, struts, control arms, sway bars, steering rack & column",
+      "shared": false,
+      "defaultVisible": false
+    },
+    {
+      "id": "brakes",
+      "name": "Brake System",
+      "file": "brakes.svg",
+      "description": "Master cylinder, ABS unit, calipers, rotors, lines, parking brake",
+      "shared": true,
+      "defaultVisible": false
+    },
+    {
+      "id": "body-electrical",
+      "name": "Body Electrical",
+      "file": "body-electrical.svg",
+      "description": "Lights, switches, power windows, mirrors, door locks, interior lighting",
+      "shared": false,
+      "defaultVisible": false
+    },
+    {
+      "id": "hvac",
+      "name": "HVAC & Climate Control",
+      "file": "hvac.svg",
+      "description": "Heater core, A/C compressor, evaporator, blower motor, control panel",
+      "shared": true,
+      "defaultVisible": false
+    },
+    {
+      "id": "drivetrain",
+      "name": "Drivetrain & Transmission",
+      "file": "drivetrain.svg",
+      "description": "Automatic transmission (U140E), torque converter, axles, differential",
+      "shared": true,
+      "defaultVisible": false
+    }
+  ]
+}

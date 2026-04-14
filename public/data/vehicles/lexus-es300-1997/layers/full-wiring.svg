@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <!-- Wire colors based on Toyota color coding -->
+    <linearGradient id="wireRed" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#CC3333"/>
+      <stop offset="100%" stop-color="#AA2222"/>
+    </linearGradient>
+    <linearGradient id="wireBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3366CC"/>
+      <stop offset="100%" stop-color="#2255AA"/>
+    </linearGradient>
+    <linearGradient id="wireGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#339933"/>
+      <stop offset="100%" stop-color="#227722"/>
+    </linearGradient>
+    <linearGradient id="wireYellow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#CCAA33"/>
+      <stop offset="100%" stop-color="#AA8822"/>
+    </linearGradient>
+    <linearGradient id="wireBlack" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#333333"/>
+      <stop offset="100%" stop-color="#1a1a1a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Main harness backbone -->
+  <g stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- Engine harness - from ECU to engine bay -->
+    <path
+      d="M 650 420 Q 600 400, 500 380 Q 400 360, 300 380"
+      stroke="url(#wireBlack)"
+      stroke-width="8"
+      data-component-id="engine-harness-main"
+    />
+
+    <!-- Power distribution - Battery to fuse box -->
+    <path
+      d="M 250 450 L 250 400 Q 260 350, 320 340"
+      stroke="url(#wireRed)"
+      stroke-width="5"
+      data-component-id="power-main"
+    />
+
+    <!-- Alternator charging circuit -->
+    <path
+      d="M 200 400 Q 220 420, 250 430"
+      stroke="url(#wireRed)"
+      stroke-width="3"
+      data-component-id="alternator-circuit"
+    />
+
+    <!-- Ground distribution -->
+    <path
+      d="M 320 470 L 400 480 Q 500 490, 600 480 L 800 470"
+      stroke="url(#wireBlack)"
+      stroke-width="4"
+      data-component-id="ground-harness"
+    />
+
+    <!-- Headlight circuit - left -->
+    <path
+      d="M 320 340 Q 280 350, 240 380 L 220 420"
+      stroke="url(#wireYellow)"
+      stroke-width="2"
+      data-component-id="headlight-circuit-lh"
+    />
+
+    <!-- Taillight circuit -->
+    <path
+      d="M 650 420 Q 750 400, 850 420 L 920 440"
+      stroke="url(#wireGreen)"
+      stroke-width="2"
+      data-component-id="taillight-circuit"
+    />
+
+    <!-- Fuel pump circuit -->
+    <path
+      d="M 650 420 Q 700 450, 780 480 L 870 500"
+      stroke="url(#wireBlue)"
+      stroke-width="2"
+      data-component-id="fuel-pump-circuit"
+    />
+
+    <!-- Starter circuit -->
+    <path
+      d="M 320 380 Q 360 400, 400 440"
+      stroke="url(#wireRed)"
+      stroke-width="3"
+      data-component-id="starter-circuit"
+    />
+
+    <!-- ECU sensor harness -->
+    <path
+      d="M 650 420 Q 600 440, 550 430 Q 480 420, 420 400"
+      stroke="url(#wireBlue)"
+      stroke-width="3"
+      data-component-id="sensor-harness"
+    />
+
+    <!-- Body harness - doors -->
+    <path
+      d="M 500 420 L 500 380 Q 510 360, 530 350"
+      stroke="url(#wireGreen)"
+      stroke-width="2"
+      data-component-id="door-harness-lh"
+    />
+    <path
+      d="M 700 420 L 700 380 Q 710 360, 730 350"
+      stroke="url(#wireGreen)"
+      stroke-width="2"
+      data-component-id="door-harness-rh"
+    />
+
+  </g>
+
+  <!-- Connectors and junction points -->
+  <g fill="#444" stroke="#222" stroke-width="1">
+    <!-- ECU connector -->
+    <rect x="640" y="410" width="30" height="20" rx="2" data-component-id="ecu-connector"/>
+
+    <!-- Fuse box -->
+    <rect x="300" y="330" width="50" height="30" rx="3" data-component-id="fuse-box-engine"/>
+
+    <!-- Ground points -->
+    <circle cx="320" cy="480" r="6" fill="#1a1a1a" stroke="#666" data-component-id="ground-point-1"/>
+    <circle cx="600" cy="490" r="6" fill="#1a1a1a" stroke="#666" data-component-id="ground-point-2"/>
+    <circle cx="850" cy="475" r="6" fill="#1a1a1a" stroke="#666" data-component-id="ground-point-3"/>
+
+    <!-- Inline connectors -->
+    <circle cx="400" cy="370" r="5" fill="#555" data-component-id="connector-c1"/>
+    <circle cx="550" cy="385" r="5" fill="#555" data-component-id="connector-c2"/>
+    <circle cx="750" cy="410" r="5" fill="#555" data-component-id="connector-c3"/>
+  </g>
+
+  <!-- Wire labels -->
+  <g font-family="Inter, sans-serif" font-size="9" fill="#666">
+    <text x="260" y="395">B+ (Red)</text>
+    <text x="400" y="360">ECU</text>
+    <text x="220" y="480">GND</text>
+    <text x="890" y="515">Fuel Pump</text>
+  </g>
+</svg>

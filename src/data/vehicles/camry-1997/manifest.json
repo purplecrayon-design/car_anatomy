@@ -1,0 +1,116 @@
+{
+  "id": "toyota-camry-1997",
+  "name": "1997 Toyota Camry",
+  "make": "Toyota",
+  "model": "Camry",
+  "year": 1997,
+  "generation": "XV20",
+  "engine": {
+    "code": "1MZ-FE",
+    "displacement": "3.0L",
+    "configuration": "V6",
+    "power": "194 hp @ 5,200 rpm",
+    "torque": "209 lb-ft @ 4,400 rpm"
+  },
+  "transmission": "U140E 4-speed automatic",
+  "drivetrain": "FWD",
+  "dimensions": {
+    "length": 4815,
+    "width": 1785,
+    "height": 1415,
+    "wheelbase": 2670
+  },
+  "colors": {
+    "040": "Super White II",
+    "202": "Black",
+    "4M9": "Cashmere Beige Metallic"
+  },
+  "defaultColor": "040",
+  "silhouette": "silhouette-side.svg",
+  "layers": [
+    {
+      "id": "chassis",
+      "name": "Chassis & Body Structure",
+      "file": "chassis.svg",
+      "shared": true,
+      "defaultVisible": false
+    },
+    {
+      "id": "engine-mechanical",
+      "name": "Engine Mechanical (1MZ-FE)",
+      "file": "engine-mechanical.svg",
+      "shared": true,
+      "defaultVisible": true
+    },
+    {
+      "id": "engine-wiring",
+      "name": "Engine Bay Wiring",
+      "file": "engine-wiring.svg",
+      "shared": true,
+      "defaultVisible": false
+    },
+    {
+      "id": "full-wiring",
+      "name": "Full Vehicle Wiring",
+      "file": "full-wiring.svg",
+      "shared": false,
+      "defaultVisible": true
+    },
+    {
+      "id": "fuel-system",
+      "name": "Fuel System",
+      "file": "fuel-system.svg",
+      "shared": true,
+      "defaultVisible": false
+    },
+    {
+      "id": "cooling-system",
+      "name": "Cooling System",
+      "file": "cooling-system.svg",
+      "shared": true,
+      "defaultVisible": false
+    },
+    {
+      "id": "intake-exhaust",
+      "name": "Intake & Exhaust",
+      "file": "intake-exhaust.svg",
+      "shared": true,
+      "defaultVisible": false
+    },
+    {
+      "id": "suspension-steering",
+      "name": "Suspension & Steering",
+      "file": "suspension-steering.svg",
+      "shared": false,
+      "defaultVisible": false
+    },
+    {
+      "id": "brakes",
+      "name": "Brake System",
+      "file": "brakes.svg",
+      "shared": true,
+      "defaultVisible": false
+    },
+    {
+      "id": "body-electrical",
+      "name": "Body Electrical",
+      "file": "body-electrical.svg",
+      "shared": false,
+      "defaultVisible": false
+    },
+    {
+      "id": "hvac",
+      "name": "HVAC & Climate Control",
+      "file": "hvac.svg",
+      "shared": true,
+      "defaultVisible": false
+    },
+    {
+      "id": "drivetrain",
+      "name": "Drivetrain & Transmission",
+      "file": "drivetrain.svg",
+      "shared": true,
+      "defaultVisible": false
+    }
+  ]
+}

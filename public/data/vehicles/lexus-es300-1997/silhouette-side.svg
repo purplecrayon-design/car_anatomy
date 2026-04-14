@@ -1,0 +1,328 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <!-- Body gradient - Diamond White Pearl 051 -->
+    <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FAFAFA"/>
+      <stop offset="30%" stop-color="#F5F5F5"/>
+      <stop offset="70%" stop-color="#E8E8E8"/>
+      <stop offset="100%" stop-color="#D4D4D4"/>
+    </linearGradient>
+
+    <!-- Glass gradient -->
+    <linearGradient id="glassGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2e" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#0f0f1a" stop-opacity="0.85"/>
+    </linearGradient>
+
+    <!-- Chrome gradient -->
+    <linearGradient id="chromeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E8E8E8"/>
+      <stop offset="50%" stop-color="#B8B8B8"/>
+      <stop offset="100%" stop-color="#888888"/>
+    </linearGradient>
+
+    <!-- Wheel gradient -->
+    <radialGradient id="wheelGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4a4a4a"/>
+      <stop offset="60%" stop-color="#2a2a2a"/>
+      <stop offset="100%" stop-color="#1a1a1a"/>
+    </radialGradient>
+
+    <!-- Tire gradient -->
+    <radialGradient id="tireGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3a3a3a"/>
+      <stop offset="100%" stop-color="#1a1a1a"/>
+    </radialGradient>
+
+    <!-- Shadow -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Ground shadow -->
+  <ellipse cx="600" cy="620" rx="380" ry="25" fill="#000" opacity="0.08"/>
+
+  <!-- Main body group -->
+  <g filter="url(#shadow)">
+    <!-- Lower body / rocker panel -->
+    <path
+      d="M 180 520
+         L 180 480
+         Q 180 460, 200 450
+         L 280 440
+         L 920 440
+         Q 980 440, 1000 460
+         L 1020 520
+         Z"
+      fill="url(#bodyGradient)"
+      stroke="#C0C0C0"
+      stroke-width="0.5"
+      data-component-id="rocker-panel"
+    />
+
+    <!-- Main body shell - XV20 profile -->
+    <path
+      d="M 200 450
+         L 220 380
+         Q 240 340, 300 320
+         L 400 305
+         Q 450 295, 520 290
+         L 600 288
+         Q 700 290, 780 300
+         L 860 315
+         Q 920 330, 960 360
+         L 1000 420
+         Q 1010 440, 1000 460
+         L 200 450
+         Z"
+      fill="url(#bodyGradient)"
+      stroke="#C0C0C0"
+      stroke-width="0.5"
+      data-component-id="body-shell"
+    />
+
+    <!-- Hood - sculpted with two subtle creases -->
+    <path
+      d="M 200 400
+         Q 210 360, 240 340
+         L 400 310
+         Q 440 305, 500 305
+         L 500 400
+         Z"
+      fill="url(#bodyGradient)"
+      stroke="#C0C0C0"
+      stroke-width="0.5"
+      data-component-id="hood"
+    />
+
+    <!-- Hood crease lines -->
+    <path d="M 260 360 Q 340 340, 420 335" fill="none" stroke="#D8D8D8" stroke-width="1"/>
+    <path d="M 280 380 Q 360 360, 440 355" fill="none" stroke="#D8D8D8" stroke-width="1"/>
+
+    <!-- Trunk / decklid -->
+    <path
+      d="M 800 320
+         Q 860 330, 920 360
+         L 980 420
+         Q 990 440, 980 455
+         L 800 450
+         Q 790 430, 800 410
+         Z"
+      fill="url(#bodyGradient)"
+      stroke="#C0C0C0"
+      stroke-width="0.5"
+      data-component-id="trunk"
+    />
+
+    <!-- Roof -->
+    <path
+      d="M 420 295
+         Q 480 270, 580 265
+         L 700 268
+         Q 760 275, 800 295
+         L 800 310
+         L 420 305
+         Z"
+      fill="url(#bodyGradient)"
+      stroke="#C0C0C0"
+      stroke-width="0.5"
+      data-component-id="roof"
+    />
+
+    <!-- Greenhouse / Windows -->
+    <!-- Windshield -->
+    <path
+      d="M 420 305
+         Q 450 275, 510 268
+         L 560 265
+         Q 480 290, 430 320
+         Z"
+      fill="url(#glassGradient)"
+      stroke="#333"
+      stroke-width="1"
+      data-component-id="windshield"
+    />
+
+    <!-- Side windows - frameless door look -->
+    <path
+      d="M 440 320
+         L 500 275
+         L 680 275
+         Q 720 280, 750 300
+         L 750 350
+         Q 720 360, 680 365
+         L 500 365
+         Q 460 355, 440 335
+         Z"
+      fill="url(#glassGradient)"
+      stroke="#333"
+      stroke-width="1"
+      data-component-id="side-windows"
+    />
+
+    <!-- Rear window -->
+    <path
+      d="M 760 300
+         Q 790 285, 800 295
+         L 800 330
+         Q 780 340, 760 345
+         Z"
+      fill="url(#glassGradient)"
+      stroke="#333"
+      stroke-width="1"
+      data-component-id="rear-window"
+    />
+
+    <!-- Chrome trim - window surround -->
+    <path
+      d="M 435 320 L 500 275 L 800 295"
+      fill="none"
+      stroke="url(#chromeGradient)"
+      stroke-width="2"
+    />
+
+    <!-- Door division line (subtle) -->
+    <line x1="590" y1="360" x2="600" y2="450" stroke="#B8B8B8" stroke-width="0.5"/>
+
+    <!-- Door handles - chrome -->
+    <rect x="520" y="385" width="35" height="8" rx="2" fill="url(#chromeGradient)" data-component-id="door-handle-front"/>
+    <rect x="680" y="385" width="35" height="8" rx="2" fill="url(#chromeGradient)" data-component-id="door-handle-rear"/>
+
+    <!-- Side mirror -->
+    <ellipse cx="430" cy="340" rx="18" ry="12" fill="#2a2a2a" stroke="url(#chromeGradient)" stroke-width="1" data-component-id="side-mirror"/>
+
+    <!-- Front bumper -->
+    <path
+      d="M 180 480
+         Q 160 490, 155 510
+         L 160 530
+         Q 165 545, 190 550
+         L 280 550
+         L 280 520
+         L 200 520
+         Q 185 515, 180 500
+         Z"
+      fill="#3a3a3a"
+      data-component-id="front-bumper"
+    />
+
+    <!-- Headlight - sharp clear-lens multi-reflector -->
+    <path
+      d="M 200 400
+         Q 190 420, 185 440
+         L 185 470
+         Q 190 480, 210 485
+         L 280 485
+         L 280 400
+         Q 250 395, 220 398
+         Z"
+      fill="#FAFAFA"
+      stroke="#888"
+      stroke-width="1"
+      data-component-id="headlight-lh"
+    />
+    <!-- Headlight internal details -->
+    <ellipse cx="230" cy="440" rx="20" ry="18" fill="none" stroke="#CCC" stroke-width="1"/>
+    <ellipse cx="230" cy="440" rx="12" ry="10" fill="#E8E8E8"/>
+    <circle cx="260" cy="450" r="8" fill="#E8E8E8"/>
+
+    <!-- Front grille - horizontal 3-slat chrome -->
+    <rect x="280" y="450" width="100" height="35" rx="3" fill="#1a1a1a" data-component-id="front-grille"/>
+    <line x1="285" y1="460" x2="375" y2="460" stroke="url(#chromeGradient)" stroke-width="2"/>
+    <line x1="285" y1="468" x2="375" y2="468" stroke="url(#chromeGradient)" stroke-width="2"/>
+    <line x1="285" y1="476" x2="375" y2="476" stroke="url(#chromeGradient)" stroke-width="2"/>
+
+    <!-- Lexus emblem on hood -->
+    <ellipse cx="350" cy="340" rx="15" ry="12" fill="url(#chromeGradient)" stroke="#888" stroke-width="0.5"/>
+    <text x="350" y="344" text-anchor="middle" font-size="10" font-family="Arial" fill="#666">L</text>
+
+    <!-- Fog lights -->
+    <ellipse cx="200" cy="540" rx="15" ry="10" fill="#FAFAFA" stroke="#888" stroke-width="1" data-component-id="fog-light-lh"/>
+
+    <!-- Rear bumper -->
+    <path
+      d="M 920 520
+         L 1020 520
+         Q 1040 530, 1045 550
+         L 1040 570
+         Q 1030 585, 1000 590
+         L 900 590
+         L 900 550
+         Q 910 530, 920 520
+         Z"
+      fill="#3a3a3a"
+      data-component-id="rear-bumper"
+    />
+
+    <!-- Tail light -->
+    <path
+      d="M 940 420
+         Q 970 430, 990 450
+         L 1000 480
+         Q 995 500, 980 510
+         L 920 510
+         L 920 440
+         Q 930 425, 940 420
+         Z"
+      fill="#cc2020"
+      stroke="#880000"
+      stroke-width="1"
+      data-component-id="taillight-lh"
+    />
+    <!-- Tail light details -->
+    <path d="M 950 450 Q 970 460, 980 480" fill="none" stroke="#ff4040" stroke-width="2" opacity="0.6"/>
+
+    <!-- Exhaust tip -->
+    <ellipse cx="940" cy="575" rx="12" ry="8" fill="url(#chromeGradient)" stroke="#666" stroke-width="1" data-component-id="exhaust"/>
+  </g>
+
+  <!-- Front wheel assembly -->
+  <g data-component-id="front-wheel-assembly">
+    <!-- Tire -->
+    <circle cx="340" cy="540" r="65" fill="url(#tireGradient)" stroke="#1a1a1a" stroke-width="3"/>
+    <!-- Wheel -->
+    <circle cx="340" cy="540" r="45" fill="url(#wheelGradient)" stroke="#666" stroke-width="1"/>
+    <!-- 5-spoke alloy pattern -->
+    <g fill="#888" stroke="#666" stroke-width="0.5">
+      <path d="M 340 500 L 355 525 L 340 520 L 325 525 Z"/>
+      <path d="M 378 520 L 360 530 L 358 520 L 365 510 Z"/>
+      <path d="M 368 565 L 355 545 L 360 540 L 375 545 Z"/>
+      <path d="M 312 565 L 325 545 L 320 540 L 305 545 Z"/>
+      <path d="M 302 520 L 320 530 L 322 520 L 315 510 Z"/>
+    </g>
+    <!-- Center cap -->
+    <circle cx="340" cy="540" r="15" fill="url(#chromeGradient)"/>
+    <circle cx="340" cy="540" r="8" fill="#666"/>
+  </g>
+
+  <!-- Rear wheel assembly -->
+  <g data-component-id="rear-wheel-assembly">
+    <!-- Tire -->
+    <circle cx="840" cy="540" r="65" fill="url(#tireGradient)" stroke="#1a1a1a" stroke-width="3"/>
+    <!-- Wheel -->
+    <circle cx="840" cy="540" r="45" fill="url(#wheelGradient)" stroke="#666" stroke-width="1"/>
+    <!-- 5-spoke alloy pattern -->
+    <g fill="#888" stroke="#666" stroke-width="0.5">
+      <path d="M 840 500 L 855 525 L 840 520 L 825 525 Z"/>
+      <path d="M 878 520 L 860 530 L 858 520 L 865 510 Z"/>
+      <path d="M 868 565 L 855 545 L 860 540 L 875 545 Z"/>
+      <path d="M 812 565 L 825 545 L 820 540 L 805 545 Z"/>
+      <path d="M 802 520 L 820 530 L 822 520 L 815 510 Z"/>
+    </g>
+    <!-- Center cap -->
+    <circle cx="840" cy="540" r="15" fill="url(#chromeGradient)"/>
+    <circle cx="840" cy="540" r="8" fill="#666"/>
+  </g>
+
+  <!-- Character line - body side molding -->
+  <path
+    d="M 280 420 Q 500 415, 700 418 Q 850 422, 920 430"
+    fill="none"
+    stroke="#C8C8C8"
+    stroke-width="1.5"
+  />
+
+  <!-- Fuel door -->
+  <rect x="870" y="400" width="25" height="30" rx="2" fill="url(#bodyGradient)" stroke="#B8B8B8" stroke-width="0.5" data-component-id="fuel-door"/>
+</svg>
