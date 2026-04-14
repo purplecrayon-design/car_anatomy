@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <!-- Suspension & Brakes Layer -->
+  <g fill="#34495E" fill-opacity="0.3" stroke="#34495E" stroke-width="1.5">
+
+    <!-- Front strut -->
+    <rect data-component-id="front-strut" x="260" y="420" width="15" height="60" rx="3"
+          style="cursor: pointer">
+      <title>Front Strut Assembly</title>
+    </rect>
+
+    <!-- Front control arm -->
+    <path data-component-id="front-control-arm" d="M 220 480 L 280 500 L 340 480"
+          fill="none" stroke-width="6" style="cursor: pointer">
+      <title>Front Lower Control Arm</title>
+    </path>
+
+    <!-- Front brake rotor -->
+    <circle data-component-id="front-brake-rotor" cx="280" cy="500" r="45"
+            fill="none" stroke-width="3" style="cursor: pointer">
+      <title>Front Brake Rotor</title>
+    </circle>
+
+    <!-- Front brake caliper -->
+    <rect data-component-id="front-brake-caliper" x="310" y="480" width="25" height="35" rx="4"
+          style="cursor: pointer">
+      <title>Front Brake Caliper</title>
+    </rect>
+
+    <!-- Rear strut -->
+    <rect data-component-id="rear-strut" x="900" y="420" width="15" height="60" rx="3"
+          style="cursor: pointer">
+      <title>Rear Strut Assembly</title>
+    </rect>
+
+    <!-- Rear control arm -->
+    <path data-component-id="rear-control-arm" d="M 860" y="480 L 920 500 L 980 480"
+          fill="none" stroke-width="6" style="cursor: pointer">
+      <title>Rear Lower Control Arm</title>
+    </path>
+
+    <!-- Rear brake rotor -->
+    <circle data-component-id="rear-brake-rotor" cx="920" cy="500" r="40"
+            fill="none" stroke-width="3" style="cursor: pointer">
+      <title>Rear Brake Rotor</title>
+    </circle>
+
+    <!-- Rear brake caliper -->
+    <rect data-component-id="rear-brake-caliper" x="945" y="485" width="20" height="30" rx="4"
+          style="cursor: pointer">
+      <title>Rear Brake Caliper</title>
+    </rect>
+
+    <!-- Brake master cylinder -->
+    <rect data-component-id="brake-master-cylinder" x="380" y="340" width="40" height="20" rx="4"
+          style="cursor: pointer">
+      <title>Brake Master Cylinder</title>
+    </rect>
+
+    <!-- Brake lines -->
+    <path data-component-id="brake-lines" d="M 400 360 L 400 450 Q 400 500 350 500 M 400 450 Q 400 500 600 500 L 900 500"
+          fill="none" stroke-width="2" stroke-dasharray="4,2" style="cursor: pointer">
+      <title>Brake Lines</title>
+    </path>
+
+  </g>
+</svg>

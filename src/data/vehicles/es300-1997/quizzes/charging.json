@@ -1,0 +1,42 @@
+[
+  {
+    "id": "q1",
+    "question": "What is the normal battery voltage with the engine off?",
+    "options": ["11.5V", "12.6V", "13.5V", "14.8V"],
+    "correctIndex": 1,
+    "explanation": "A fully charged battery at rest should read approximately 12.6V. Below 12.4V indicates a discharged battery.",
+    "difficulty": "beginner"
+  },
+  {
+    "id": "q2",
+    "question": "What voltage range indicates proper alternator output?",
+    "options": ["11.5-12.5V", "12.6-13.0V", "13.5-14.8V", "15.0-16.0V"],
+    "correctIndex": 2,
+    "explanation": "The alternator should output 13.5-14.8V when the engine is running. Higher voltages can damage batteries and electronics.",
+    "difficulty": "beginner"
+  },
+  {
+    "id": "q3",
+    "question": "The charge warning lamp stays on while driving. What should you check FIRST?",
+    "options": ["Spark plugs", "Drive belt tension", "Fuel injectors", "Oxygen sensor"],
+    "correctIndex": 1,
+    "explanation": "A loose or broken drive belt is the most common cause of charging failure. Always check the simple things first!",
+    "difficulty": "intermediate"
+  },
+  {
+    "id": "q4",
+    "question": "What is the purpose of the S terminal on the alternator?",
+    "options": ["Starter signal", "Battery sense/monitoring", "Speed signal", "Switch input"],
+    "correctIndex": 1,
+    "explanation": "The S (Sense) terminal monitors battery voltage so the alternator can adjust its output to maintain proper charge.",
+    "difficulty": "advanced"
+  },
+  {
+    "id": "q5",
+    "question": "You measure 0.5V drop at ground point E1. What does this indicate?",
+    "options": ["Normal operation", "High resistance/bad ground", "Shorted wire", "Good alternator"],
+    "correctIndex": 1,
+    "explanation": "Any voltage drop over 0.1V at a ground point indicates high resistance from corrosion, loose connection, or damaged wire.",
+    "difficulty": "intermediate"
+  }
+]

@@ -1,0 +1,8 @@
+[
+  { "id": "ECU_B", "label": "ECU-B", "rating": "10A", "location": "engine_jb", "systems": ["charging", "engine-control", "starting"] },
+  { "id": "EFI", "label": "EFI", "rating": "15A", "location": "engine_jb", "systems": ["engine-control", "starting"] },
+  { "id": "GAUGE", "label": "GAUGE", "rating": "10A", "location": "cabin_fb", "systems": ["charging", "engine-control", "headlight", "taillight"] },
+  { "id": "AM2", "label": "AM2", "rating": "30A", "location": "engine_jb", "systems": ["charging", "engine-control", "starting"] },
+  { "id": "ALT", "label": "ALT", "rating": "100A", "location": "engine_jb", "systems": ["charging"] },
+  { "id": "DOME", "label": "DOME", "rating": "7.5A", "location": "engine_jb", "systems": ["lighting"] }
+]

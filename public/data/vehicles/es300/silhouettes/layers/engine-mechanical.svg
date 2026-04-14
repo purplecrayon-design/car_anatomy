@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <!-- Engine Mechanical Layer - 1MZ-FE V6 -->
+  <g fill="#E74C3C" fill-opacity="0.3" stroke="#E74C3C" stroke-width="1.5">
+
+    <!-- Engine block -->
+    <rect data-component-id="engine-block" x="200" y="350" width="180" height="120" rx="8"
+          style="cursor: pointer">
+      <title>1MZ-FE Engine Block</title>
+    </rect>
+
+    <!-- Cylinder head -->
+    <rect data-component-id="cylinder-head" x="210" y="320" width="160" height="40" rx="4"
+          style="cursor: pointer">
+      <title>Cylinder Head</title>
+    </rect>
+
+    <!-- Intake manifold -->
+    <path data-component-id="intake-manifold" d="M 230 320 Q 280 280 330 320"
+          fill="none" stroke-width="12" style="cursor: pointer">
+      <title>Intake Manifold</title>
+    </path>
+
+    <!-- Exhaust manifold -->
+    <path data-component-id="exhaust-manifold" d="M 200 420 Q 160 450 150 500"
+          fill="none" stroke-width="10" style="cursor: pointer">
+      <title>Exhaust Manifold</title>
+    </path>
+
+    <!-- Alternator -->
+    <circle data-component-id="alternator" cx="220" cy="450" r="25"
+            style="cursor: pointer">
+      <title>Alternator</title>
+    </circle>
+
+    <!-- Starter motor -->
+    <ellipse data-component-id="starter-motor" cx="350" cy="460" rx="30" ry="20"
+             style="cursor: pointer">
+      <title>Starter Motor</title>
+    </ellipse>
+
+    <!-- Water pump -->
+    <circle data-component-id="water-pump" cx="180" cy="400" r="20"
+            style="cursor: pointer">
+      <title>Water Pump</title>
+    </circle>
+
+    <!-- Oil pan -->
+    <rect data-component-id="oil-pan" x="210" y="470" width="160" height="30" rx="4"
+          style="cursor: pointer">
+      <title>Oil Pan</title>
+    </rect>
+
+    <!-- Timing belt cover -->
+    <rect data-component-id="timing-belt" x="175" y="340" width="25" height="100" rx="4"
+          style="cursor: pointer">
+      <title>Timing Belt</title>
+    </rect>
+
+    <!-- Crankshaft pulley -->
+    <circle data-component-id="crankshaft-pulley" cx="185" cy="470" r="18"
+            style="cursor: pointer">
+      <title>Crankshaft Pulley</title>
+    </circle>
+
+  </g>
+
+  <!-- Labels (optional, can be toggled) -->
+  <g fill="#E74C3C" font-size="8" font-family="monospace" opacity="0.7">
+    <text x="290" y="415">1MZ-FE</text>
+  </g>
+</svg>

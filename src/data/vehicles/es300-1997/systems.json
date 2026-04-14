@@ -1,0 +1,9 @@
+[
+  { "id": "charging", "label": "Charging System", "category": "engine", "color": "#56B4E9", "pages": [64] },
+  { "id": "starting", "label": "Starting / Ignition", "category": "engine", "color": "#E69F00", "pages": [68, 69] },
+  { "id": "power-source", "label": "Power Source", "category": "engine", "color": "#D55E00", "pages": [56, 57, 58] },
+  { "id": "engine-control", "label": "Engine Control (1MZ-FE)", "category": "engine", "color": "#CC79A7", "pages": [70, 71, 72, 73] },
+  { "id": "headlight", "label": "Headlight", "category": "lighting", "color": "#F0E442", "pages": [100, 101] },
+  { "id": "taillight", "label": "Taillight", "category": "lighting", "color": "#F0E442", "pages": [108] },
+  { "id": "horn", "label": "Horn", "category": "comfort", "color": "#009E73", "pages": [160] }
+]

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <!-- Base vehicle silhouette - 1997 Lexus ES300 side view placeholder -->
+  <g fill="none" stroke="#2a2a3a" stroke-width="2">
+    <!-- Body outline -->
+    <path d="M 150 500
+             Q 150 400 200 380
+             L 350 380
+             Q 400 300 500 280
+             L 700 280
+             Q 800 280 850 350
+             L 1000 350
+             Q 1050 350 1050 400
+             L 1050 500
+             Q 1050 520 1000 520
+             L 200 520
+             Q 150 520 150 500 Z"
+          fill="#1a1a24" />
+
+    <!-- Roof -->
+    <path d="M 400 280 Q 450 200 600 180 Q 750 180 800 280"
+          stroke="#3a3a4a" />
+
+    <!-- Windows -->
+    <path d="M 420 280 L 450 210 L 600 195 L 750 210 L 780 280 Z"
+          fill="#0d0d14" stroke="#3a3a4a" />
+
+    <!-- Front wheel well -->
+    <circle cx="280" cy="500" r="70" fill="#0d0d14" stroke="#3a3a4a" />
+    <circle cx="280" cy="500" r="50" fill="#1a1a24" stroke="#4a4a5a" />
+
+    <!-- Rear wheel well -->
+    <circle cx="920" cy="500" r="70" fill="#0d0d14" stroke="#3a3a4a" />
+    <circle cx="920" cy="500" r="50" fill="#1a1a24" stroke="#4a4a5a" />
+
+    <!-- Headlight -->
+    <ellipse cx="170" cy="420" rx="25" ry="20" fill="#2a2a3a" stroke="#4a4a5a" />
+
+    <!-- Taillight -->
+    <rect x="1020" y="400" width="20" height="40" rx="3" fill="#3a1a1a" stroke="#5a3a3a" />
+
+    <!-- Door line -->
+    <line x1="550" y1="280" x2="550" y2="480" stroke="#2a2a3a" />
+
+    <!-- Hood line -->
+    <line x1="380" y1="350" x2="200" y2="400" stroke="#2a2a3a" />
+  </g>
+
+  <!-- Grid reference -->
+  <text x="600" y="700" fill="#3a3a4a" font-size="12" text-anchor="middle" font-family="monospace">
+    1997 Lexus ES300 - Side View
+  </text>
+</svg>

@@ -1,0 +1,14 @@
+{
+  "B": { "hex": "#222222", "name": "Black" },
+  "BR": { "hex": "#92400e", "name": "Brown" },
+  "G": { "hex": "#22c55e", "name": "Green" },
+  "GR": { "hex": "#6b7280", "name": "Gray" },
+  "L": { "hex": "#3b82f6", "name": "Blue" },
+  "LG": { "hex": "#86efac", "name": "Light Green" },
+  "O": { "hex": "#f97316", "name": "Orange" },
+  "P": { "hex": "#ec4899", "name": "Pink" },
+  "R": { "hex": "#ef4444", "name": "Red" },
+  "V": { "hex": "#8b5cf6", "name": "Violet" },
+  "W": { "hex": "#d1d5db", "name": "White" },
+  "Y": { "hex": "#eab308", "name": "Yellow" }
+}

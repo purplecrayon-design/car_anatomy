@@ -1,0 +1,38 @@
+[
+  {
+    "nodeId": "battery",
+    "title": "Battery",
+    "text": "The battery is the heart of the electrical system. It stores energy as chemical potential and provides 12.6V DC when the engine is off. It also acts as a voltage stabilizer when the engine is running.",
+    "difficulty": "beginner"
+  },
+  {
+    "nodeId": "alternator",
+    "title": "Alternator",
+    "text": "The alternator generates AC power from engine rotation, then converts it to DC via internal diodes. It outputs 13.5-14.8V to charge the battery and power all electrical systems while the engine runs.",
+    "difficulty": "beginner"
+  },
+  {
+    "nodeId": "fusible-link-alt",
+    "title": "Fusible Link",
+    "text": "This high-current protection device protects the alternator output circuit. Unlike regular fuses, fusible links are designed for very high current applications and are typically 4.0mm gauge wire.",
+    "difficulty": "intermediate"
+  },
+  {
+    "nodeId": "charge-indicator",
+    "title": "Charge Warning Lamp",
+    "text": "This dashboard indicator lights when the charging system isn't working. It completes the alternator's field circuit - if it stays on while driving, the alternator may have failed.",
+    "difficulty": "beginner"
+  },
+  {
+    "nodeId": "ecu-ecm",
+    "title": "Engine Control Module",
+    "text": "The ECM monitors and controls alternator output via the S (sense) terminal. It can adjust field current for optimal charging based on battery state and electrical load.",
+    "difficulty": "advanced"
+  },
+  {
+    "nodeId": "ground-e1",
+    "title": "Engine Ground",
+    "text": "Ground point E1 provides the return path for the charging circuit. A bad ground here can cause charging problems, dim lights, and erratic ECM behavior. Always check ground connections first!",
+    "difficulty": "intermediate"
+  }
+]

@@ -1,0 +1,251 @@
+{
+  "nodes": [
+    {
+      "id": "battery",
+      "type": "power_source",
+      "label": "Battery",
+      "toyotaCode": "B1",
+      "position": { "x": 120, "y": 300 },
+      "diagramPage": 64,
+      "system": ["charging", "starting", "power-source"],
+      "physicalLocation": "Engine compartment, right side",
+      "expectedVoltage": "12.6V (key off)",
+      "education": {
+        "purpose": "Stores electrical energy and provides power when engine is off",
+        "failureModes": ["Dead cells", "Sulfation", "Low electrolyte"],
+        "testProcedure": { "tool": "Multimeter", "steps": ["Set to DC voltage", "Connect to battery terminals", "Should read 12.4-12.7V with engine off"] }
+      }
+    },
+    {
+      "id": "alternator",
+      "type": "actuator",
+      "label": "Alternator",
+      "toyotaCode": "G",
+      "position": { "x": 380, "y": 200 },
+      "diagramPage": 64,
+      "system": ["charging"],
+      "physicalLocation": "Front of engine, belt-driven",
+      "expectedVoltage": "13.5-14.8V (engine running)",
+      "pins": "B+, S, L, F",
+      "education": {
+        "purpose": "Generates AC power and converts to DC to charge battery and power electrical systems",
+        "failureModes": ["Worn brushes", "Bad diodes", "Belt slip"],
+        "testProcedure": { "tool": "Multimeter", "steps": ["Start engine", "Measure at B+ terminal", "Should read 13.5-14.8V"] }
+      }
+    },
+    {
+      "id": "fusible-link-alt",
+      "type": "fuse",
+      "label": "FL ALT",
+      "toyotaCode": "FL-ALT",
+      "position": { "x": 250, "y": 200 },
+      "diagramPage": 64,
+      "system": ["charging"],
+      "physicalLocation": "Engine junction block",
+      "education": {
+        "purpose": "Protects alternator output circuit from short circuits",
+        "failureModes": ["Open circuit due to overcurrent"],
+        "testProcedure": { "tool": "Multimeter", "steps": ["Check continuity", "Should have near-zero resistance"] }
+      }
+    },
+    {
+      "id": "charge-indicator",
+      "type": "actuator",
+      "label": "CHG Lamp",
+      "toyotaCode": "W1",
+      "position": { "x": 520, "y": 300 },
+      "diagramPage": 64,
+      "system": ["charging"],
+      "physicalLocation": "Instrument cluster",
+      "education": {
+        "purpose": "Indicates charging system status - lights when not charging",
+        "failureModes": ["Burned out bulb", "Open circuit"],
+        "testProcedure": { "tool": "Visual", "steps": ["Turn key to ON (not start)", "Light should illuminate", "Start engine - light should turn off"] }
+      }
+    },
+    {
+      "id": "ecu-ecm",
+      "type": "ecu",
+      "label": "ECM",
+      "toyotaCode": "E1",
+      "position": { "x": 600, "y": 200 },
+      "diagramPage": 64,
+      "system": ["charging", "engine-control"],
+      "physicalLocation": "Behind glove box",
+      "pins": "Multiple",
+      "education": {
+        "purpose": "Controls alternator field current for optimal charging",
+        "failureModes": ["Software fault", "Connection issues"],
+        "testProcedure": { "tool": "Scan tool", "steps": ["Connect OBD-II scanner", "Check for charging system DTCs"] }
+      }
+    },
+    {
+      "id": "ig-fuse",
+      "type": "fuse",
+      "label": "IG 7.5A",
+      "toyotaCode": "IG",
+      "position": { "x": 380, "y": 380 },
+      "diagramPage": 64,
+      "system": ["charging", "power-source"],
+      "physicalLocation": "Cabin fuse box",
+      "education": {
+        "purpose": "Protects ignition circuit that powers charge indicator",
+        "failureModes": ["Open circuit"],
+        "testProcedure": { "tool": "Visual/Multimeter", "steps": ["Inspect fuse", "Check continuity"] }
+      }
+    },
+    {
+      "id": "ignition-switch",
+      "type": "switch",
+      "label": "IGN SW",
+      "toyotaCode": "SW1",
+      "position": { "x": 250, "y": 380 },
+      "diagramPage": 64,
+      "system": ["charging", "starting", "power-source"],
+      "physicalLocation": "Steering column",
+      "education": {
+        "purpose": "Controls power distribution based on key position",
+        "failureModes": ["Worn contacts", "Broken key cylinder"],
+        "testProcedure": { "tool": "Multimeter", "steps": ["Test continuity between terminals in each key position"] }
+      }
+    },
+    {
+      "id": "ground-e1",
+      "type": "ground",
+      "label": "E1",
+      "toyotaCode": "E1",
+      "position": { "x": 700, "y": 400 },
+      "diagramPage": 64,
+      "system": ["charging", "engine-control"],
+      "physicalLocation": "Engine block, rear",
+      "education": {
+        "purpose": "Primary engine ground point",
+        "failureModes": ["Corrosion", "Loose connection"],
+        "testProcedure": { "tool": "Multimeter", "steps": ["Measure voltage drop from ground point to battery negative", "Should be less than 0.1V"] }
+      }
+    },
+    {
+      "id": "splice-s1",
+      "type": "splice",
+      "label": "S1",
+      "toyotaCode": "S1",
+      "position": { "x": 520, "y": 200 },
+      "diagramPage": 64,
+      "system": ["charging"],
+      "education": {
+        "purpose": "Junction point for alternator sense circuit"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "w1-batt-fl",
+      "source": "battery",
+      "target": "fusible-link-alt",
+      "primaryColor": "W",
+      "colorLabel": "W",
+      "gauge": "4.0",
+      "circuitId": "CHG-1",
+      "diagramPage": 64,
+      "controlPoints": { "cx": 185, "cy": 250 }
+    },
+    {
+      "id": "w2-fl-alt",
+      "source": "fusible-link-alt",
+      "target": "alternator",
+      "primaryColor": "W",
+      "colorLabel": "W",
+      "gauge": "4.0",
+      "circuitId": "CHG-1",
+      "sourcePin": "OUT",
+      "targetPin": "B+",
+      "diagramPage": 64,
+      "controlPoints": { "cx": 315, "cy": 200 }
+    },
+    {
+      "id": "w3-alt-splice",
+      "source": "alternator",
+      "target": "splice-s1",
+      "primaryColor": "W",
+      "colorLabel": "W",
+      "gauge": "0.85",
+      "circuitId": "CHG-2",
+      "sourcePin": "S",
+      "diagramPage": 64,
+      "controlPoints": { "cx": 450, "cy": 200 }
+    },
+    {
+      "id": "w4-splice-ecm",
+      "source": "splice-s1",
+      "target": "ecu-ecm",
+      "primaryColor": "W",
+      "colorLabel": "W",
+      "gauge": "0.5",
+      "circuitId": "CHG-2",
+      "targetPin": "S",
+      "diagramPage": 64,
+      "controlPoints": { "cx": 560, "cy": 200 }
+    },
+    {
+      "id": "w5-alt-lamp",
+      "source": "alternator",
+      "target": "charge-indicator",
+      "primaryColor": "L",
+      "colorLabel": "L",
+      "gauge": "0.5",
+      "circuitId": "CHG-3",
+      "sourcePin": "L",
+      "diagramPage": 64,
+      "controlPoints": { "cx": 450, "cy": 250 }
+    },
+    {
+      "id": "w6-ign-fuse",
+      "source": "ignition-switch",
+      "target": "ig-fuse",
+      "primaryColor": "B",
+      "stripeColor": "W",
+      "colorLabel": "B-W",
+      "gauge": "0.85",
+      "circuitId": "IG-1",
+      "sourcePin": "IG1",
+      "diagramPage": 64,
+      "controlPoints": { "cx": 315, "cy": 380 }
+    },
+    {
+      "id": "w7-fuse-lamp",
+      "source": "ig-fuse",
+      "target": "charge-indicator",
+      "primaryColor": "B",
+      "stripeColor": "R",
+      "colorLabel": "B-R",
+      "gauge": "0.5",
+      "circuitId": "IG-2",
+      "diagramPage": 64,
+      "controlPoints": { "cx": 450, "cy": 340 }
+    },
+    {
+      "id": "w8-ecm-ground",
+      "source": "ecu-ecm",
+      "target": "ground-e1",
+      "primaryColor": "BR",
+      "colorLabel": "BR",
+      "gauge": "0.5",
+      "circuitId": "GND-1",
+      "sourcePin": "E1",
+      "diagramPage": 64,
+      "controlPoints": { "cx": 650, "cy": 300 }
+    },
+    {
+      "id": "w9-batt-ign",
+      "source": "battery",
+      "target": "ignition-switch",
+      "primaryColor": "W",
+      "colorLabel": "W",
+      "gauge": "2.0",
+      "circuitId": "PWR-1",
+      "targetPin": "B+",
+      "diagramPage": 64,
+      "controlPoints": { "cx": 185, "cy": 340 }
+    }
+  ]
+}

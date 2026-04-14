@@ -1,0 +1,9 @@
+@media print {
+  body { background: white; color: black; }
+  header, footer, aside { display: none !important; }
+  main { position: static !important; width: 100% !important; height: auto !important; }
+  svg { width: 100% !important; height: auto !important; }
+  .wire.dimmed { opacity: 0.3 !important; }
+  .node-label { fill: #333 !important; }
+  @page { margin: 1cm; size: landscape; }
+}

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <!-- Intake/Exhaust Layer -->
+  <g fill="#9B59B6" fill-opacity="0.3" stroke="#9B59B6" stroke-width="1.5">
+
+    <!-- Air filter box -->
+    <rect data-component-id="air-filter" x="350" y="300" width="50" height="35" rx="6"
+          style="cursor: pointer">
+      <title>Air Filter Box</title>
+    </rect>
+
+    <!-- Intake tube -->
+    <path data-component-id="intake-tube" d="M 350 320 Q 300 330 280 340"
+          fill="none" stroke-width="10" style="cursor: pointer">
+      <title>Intake Tube</title>
+    </path>
+
+    <!-- Throttle body -->
+    <circle data-component-id="throttle-body" cx="270" cy="340" r="15"
+            style="cursor: pointer">
+      <title>Throttle Body</title>
+    </circle>
+
+    <!-- Exhaust manifold -->
+    <path data-component-id="exhaust-manifold" d="M 200 450 Q 180 480 160 520"
+          fill="none" stroke-width="8" style="cursor: pointer">
+      <title>Exhaust Manifold</title>
+    </path>
+
+    <!-- Catalytic converter -->
+    <ellipse data-component-id="catalytic-converter" cx="200" cy="550" rx="40" ry="15"
+             style="cursor: pointer">
+      <title>Catalytic Converter</title>
+    </ellipse>
+
+    <!-- Exhaust pipe -->
+    <path data-component-id="exhaust-pipe" d="M 240 550 L 500 560 L 900 560 L 1050 540"
+          fill="none" stroke-width="6" style="cursor: pointer">
+      <title>Exhaust Pipe</title>
+    </path>
+
+    <!-- Muffler -->
+    <rect data-component-id="muffler" x="750" y="540" width="80" height="30" rx="8"
+          style="cursor: pointer">
+      <title>Muffler</title>
+    </rect>
+
+    <!-- EGR valve -->
+    <circle data-component-id="egr-valve" cx="320" cy="360" r="10"
+            style="cursor: pointer">
+      <title>EGR Valve</title>
+    </circle>
+
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+[
+  { "code": "EA", "location": "Left side of engine block", "systems": ["engine-control"] },
+  { "code": "EB", "location": "Left radiator side support", "systems": ["engine-control"] },
+  { "code": "EC", "location": "Surge tank RH", "systems": ["charging", "engine-control"] },
+  { "code": "IA", "location": "Lower finish panel (driver)", "systems": ["charging", "headlight"] },
+  { "code": "IB", "location": "Lower finish panel (driver)", "systems": ["charging", "taillight"] },
+  { "code": "IC", "location": "Cowl left", "systems": ["headlight", "taillight"] },
+  { "code": "IG", "location": "Instrument panel brace LH", "systems": ["engine-control"] }
+]

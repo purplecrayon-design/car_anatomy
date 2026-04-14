@@ -1,0 +1,315 @@
+{
+  "version": "1.0",
+  "vehicle": "es300-1997",
+  "components": {
+    "engine-block": {
+      "id": "engine-block",
+      "label": "1MZ-FE Engine Block",
+      "systems": ["engine-mechanical"],
+      "manual": {
+        "pdf": "1mz-fe V6.pdf",
+        "page": 12,
+        "excerpt": "The 1MZ-FE is a 3.0L V6 engine producing 194 hp. The aluminum block features cast iron cylinder liners and a 60-degree V angle."
+      },
+      "torque": [
+        { "name": "Main bearing cap bolts", "nm": 61, "kgfcm": 620, "ftlbf": 45 },
+        { "name": "Connecting rod cap bolts", "nm": 25, "kgfcm": 255, "ftlbf": 18 }
+      ],
+      "obd": null,
+      "shared": true
+    },
+    "cylinder-head": {
+      "id": "cylinder-head",
+      "label": "Cylinder Head",
+      "systems": ["engine-mechanical"],
+      "manual": {
+        "pdf": "1mz-fe V6.pdf",
+        "page": 45,
+        "excerpt": "Aluminum cylinder heads with pentroof combustion chambers. Each head contains 12 valves (2 intake, 2 exhaust per cylinder) operated by dual overhead camshafts."
+      },
+      "torque": [
+        { "name": "Head bolts (Step 1)", "nm": 49, "kgfcm": 500, "ftlbf": 36 },
+        { "name": "Head bolts (Step 2)", "nm": 0, "kgfcm": 0, "ftlbf": 0, "note": "+90° turn" },
+        { "name": "Head bolts (Step 3)", "nm": 0, "kgfcm": 0, "ftlbf": 0, "note": "+90° turn" }
+      ],
+      "obd": null,
+      "shared": true
+    },
+    "alternator": {
+      "id": "alternator",
+      "label": "Alternator",
+      "systems": ["engine-mechanical", "body-electrical"],
+      "manual": {
+        "pdf": "1mz-fe V6.pdf",
+        "page": 127,
+        "excerpt": "Denso 100A alternator provides electrical power to charge the battery and power vehicle systems. Located on the front right of the engine, driven by serpentine belt."
+      },
+      "wiring": {
+        "pdf": "Wiring Diagram.pdf",
+        "page": 64,
+        "circuit": "charging"
+      },
+      "torque": [
+        { "name": "Mounting bolts", "nm": 56, "kgfcm": 570, "ftlbf": 41 },
+        { "name": "Adjusting bolt", "nm": 13, "kgfcm": 130, "ftlbf": 9 }
+      ],
+      "obd": {
+        "pids": ["B+_VOLTAGE"],
+        "expectedRange": "13.5-14.8V (engine running)",
+        "redFlags": ["Below 12V indicates charging system failure", "Above 15V indicates regulator failure"]
+      },
+      "shared": true
+    },
+    "starter-motor": {
+      "id": "starter-motor",
+      "label": "Starter Motor",
+      "systems": ["engine-mechanical", "body-electrical"],
+      "manual": {
+        "pdf": "1mz-fe V6.pdf",
+        "page": 135,
+        "excerpt": "Denso 1.4kW starter motor engages flywheel ring gear to crank engine. Located on transmission bellhousing, passenger side."
+      },
+      "wiring": {
+        "pdf": "Wiring Diagram.pdf",
+        "page": 68,
+        "circuit": "starting"
+      },
+      "torque": [
+        { "name": "Mounting bolts", "nm": 37, "kgfcm": 380, "ftlbf": 27 }
+      ],
+      "obd": null,
+      "shared": true
+    },
+    "water-pump": {
+      "id": "water-pump",
+      "label": "Water Pump",
+      "systems": ["cooling-system"],
+      "manual": {
+        "pdf": "1mz-fe V6.pdf",
+        "page": 89,
+        "excerpt": "Centrifugal water pump driven by timing belt. Circulates coolant through engine block, heads, radiator, and heater core."
+      },
+      "torque": [
+        { "name": "Water pump bolts", "nm": 10, "kgfcm": 100, "ftlbf": 7 }
+      ],
+      "obd": null,
+      "shared": true
+    },
+    "thermostat": {
+      "id": "thermostat",
+      "label": "Thermostat",
+      "systems": ["cooling-system"],
+      "manual": {
+        "pdf": "1mz-fe V6.pdf",
+        "page": 92,
+        "excerpt": "82°C (180°F) wax-pellet thermostat regulates coolant flow. Opens progressively between 80-95°C to maintain optimal operating temperature."
+      },
+      "torque": [
+        { "name": "Housing bolts", "nm": 10, "kgfcm": 100, "ftlbf": 7 }
+      ],
+      "obd": {
+        "pids": ["ECT"],
+        "expectedRange": "80-95°C (operating)",
+        "redFlags": ["Stuck open: slow warmup, poor fuel economy", "Stuck closed: overheating"]
+      },
+      "shared": true
+    },
+    "radiator": {
+      "id": "radiator",
+      "label": "Radiator",
+      "systems": ["cooling-system"],
+      "manual": {
+        "pdf": "Haynes Manual.pdf",
+        "page": 34,
+        "excerpt": "Cross-flow aluminum radiator with plastic tanks. Capacity approximately 2.5L. Includes transmission cooler in lower tank (automatic transmission models)."
+      },
+      "torque": null,
+      "obd": null,
+      "shared": false
+    },
+    "throttle-body": {
+      "id": "throttle-body",
+      "label": "Throttle Body",
+      "systems": ["intake-exhaust"],
+      "manual": {
+        "pdf": "1mz-fe V6.pdf",
+        "page": 58,
+        "excerpt": "Cable-operated throttle body with integrated Idle Air Control (IAC) valve. Throttle Position Sensor (TPS) provides ECU feedback."
+      },
+      "torque": [
+        { "name": "Throttle body bolts", "nm": 10, "kgfcm": 100, "ftlbf": 7 }
+      ],
+      "obd": {
+        "pids": ["TPS", "IAC"],
+        "expectedRange": "TPS: 0.5V closed, 4.5V WOT",
+        "redFlags": ["Erratic TPS signal causes rough idle", "IAC stuck causes stalling"]
+      },
+      "shared": true
+    },
+    "catalytic-converter": {
+      "id": "catalytic-converter",
+      "label": "Catalytic Converter",
+      "systems": ["intake-exhaust"],
+      "manual": {
+        "pdf": "Haynes Manual.pdf",
+        "page": 156,
+        "excerpt": "Three-way catalytic converter reduces HC, CO, and NOx emissions. Front O2 sensor monitors air/fuel ratio, rear sensor monitors catalyst efficiency."
+      },
+      "torque": [
+        { "name": "Flange bolts", "nm": 62, "kgfcm": 630, "ftlbf": 46 }
+      ],
+      "obd": {
+        "pids": ["O2S11", "O2S12"],
+        "expectedRange": "Front O2: 0.1-0.9V oscillating; Rear O2: steady ~0.6V",
+        "redFlags": ["P0420: Catalyst efficiency below threshold"]
+      },
+      "shared": true
+    },
+    "fuel-pump": {
+      "id": "fuel-pump",
+      "label": "Fuel Pump",
+      "systems": ["fuel-system"],
+      "manual": {
+        "pdf": "Haynes Manual.pdf",
+        "page": 112,
+        "excerpt": "Electric fuel pump located inside fuel tank. Delivers fuel at 40-47 psi through fuel filter to fuel rail. Controlled by ECU via fuel pump relay."
+      },
+      "wiring": {
+        "pdf": "Wiring Diagram.pdf",
+        "page": 85,
+        "circuit": "fuel"
+      },
+      "torque": null,
+      "obd": {
+        "pids": ["FP_STATUS"],
+        "expectedRange": "40-47 psi at idle",
+        "redFlags": ["Low pressure causes lean condition", "No prime indicates relay or pump failure"]
+      },
+      "shared": true
+    },
+    "fuel-rail": {
+      "id": "fuel-rail",
+      "label": "Fuel Rail",
+      "systems": ["fuel-system"],
+      "manual": {
+        "pdf": "1mz-fe V6.pdf",
+        "page": 65,
+        "excerpt": "Aluminum fuel rail distributes pressurized fuel to injectors. Includes fuel pressure regulator (38-44 psi) and service port for pressure testing."
+      },
+      "torque": [
+        { "name": "Rail mounting bolts", "nm": 10, "kgfcm": 100, "ftlbf": 7 }
+      ],
+      "obd": null,
+      "shared": true
+    },
+    "ecu": {
+      "id": "ecu",
+      "label": "Engine Control Unit (ECU)",
+      "systems": ["wiring-harnesses"],
+      "manual": {
+        "pdf": "Wiring Diagram.pdf",
+        "page": 142,
+        "excerpt": "Denso ECU controls fuel injection timing/duration, ignition timing, idle speed, and emission systems. Located behind glove box."
+      },
+      "wiring": {
+        "pdf": "Wiring Diagram.pdf",
+        "page": 142,
+        "circuit": "engine-control"
+      },
+      "torque": null,
+      "obd": {
+        "pids": ["DTC_COUNT", "MIL_STATUS"],
+        "expectedRange": "0 DTCs, MIL off",
+        "redFlags": ["Stored DTCs indicate system faults"]
+      },
+      "shared": true
+    },
+    "battery": {
+      "id": "battery",
+      "label": "Battery",
+      "systems": ["body-electrical"],
+      "manual": {
+        "pdf": "Haynes Manual.pdf",
+        "page": 28,
+        "excerpt": "12V lead-acid battery (Group 24F). Located in engine compartment, driver side. Provides starting power and electrical system backup."
+      },
+      "wiring": {
+        "pdf": "Wiring Diagram.pdf",
+        "page": 61,
+        "circuit": "power"
+      },
+      "torque": [
+        { "name": "Terminal bolts", "nm": 5, "kgfcm": 50, "ftlbf": 4 },
+        { "name": "Hold-down bolt", "nm": 6, "kgfcm": 60, "ftlbf": 4 }
+      ],
+      "obd": null,
+      "shared": false
+    },
+    "headlight-left": {
+      "id": "headlight-left",
+      "label": "Left Headlight",
+      "systems": ["body-electrical"],
+      "manual": {
+        "pdf": "Haynes Manual.pdf",
+        "page": 178,
+        "excerpt": "Composite headlight assembly with replaceable halogen bulbs. Low beam: H7 (55W), High beam: 9005 (65W). Aim adjustment screws on rear of housing."
+      },
+      "wiring": {
+        "pdf": "Wiring Diagram.pdf",
+        "page": 95,
+        "circuit": "lighting"
+      },
+      "torque": null,
+      "obd": null,
+      "shared": false
+    },
+    "front-brake-rotor": {
+      "id": "front-brake-rotor",
+      "label": "Front Brake Rotor",
+      "systems": ["suspension-brakes"],
+      "manual": {
+        "pdf": "Haynes Manual.pdf",
+        "page": 195,
+        "excerpt": "Ventilated front disc rotors. Minimum thickness: 25mm. Maximum runout: 0.05mm. Replace if grooved beyond 0.5mm or at minimum thickness."
+      },
+      "torque": [
+        { "name": "Wheel lug nuts", "nm": 103, "kgfcm": 1050, "ftlbf": 76 }
+      ],
+      "obd": null,
+      "shared": false
+    },
+    "front-brake-caliper": {
+      "id": "front-brake-caliper",
+      "label": "Front Brake Caliper",
+      "systems": ["suspension-brakes"],
+      "manual": {
+        "pdf": "Haynes Manual.pdf",
+        "page": 198,
+        "excerpt": "Single-piston sliding caliper with phenolic piston. Includes integrated parking brake mechanism (rear only)."
+      },
+      "torque": [
+        { "name": "Caliper mounting bolts", "nm": 107, "kgfcm": 1090, "ftlbf": 79 },
+        { "name": "Caliper bracket bolts", "nm": 34, "kgfcm": 350, "ftlbf": 25 },
+        { "name": "Brake hose banjo bolt", "nm": 30, "kgfcm": 305, "ftlbf": 22 }
+      ],
+      "obd": null,
+      "shared": false
+    },
+    "front-strut": {
+      "id": "front-strut",
+      "label": "Front Strut Assembly",
+      "systems": ["suspension-brakes"],
+      "manual": {
+        "pdf": "Haynes Manual.pdf",
+        "page": 210,
+        "excerpt": "MacPherson strut front suspension. Gas-charged damper with coil spring. Strut cartridge is replaceable without removing spring."
+      },
+      "torque": [
+        { "name": "Upper mount nuts", "nm": 59, "kgfcm": 600, "ftlbf": 43 },
+        { "name": "Lower strut bolts", "nm": 211, "kgfcm": 2150, "ftlbf": 156 }
+      ],
+      "obd": null,
+      "shared": false
+    }
+  }
+}

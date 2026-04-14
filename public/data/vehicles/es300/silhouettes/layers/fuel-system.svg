@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <!-- Fuel System Layer -->
+  <g fill="#F39C12" fill-opacity="0.3" stroke="#F39C12" stroke-width="1.5">
+
+    <!-- Fuel tank -->
+    <rect data-component-id="fuel-tank" x="800" y="450" width="150" height="60" rx="8"
+          style="cursor: pointer">
+      <title>Fuel Tank</title>
+    </rect>
+
+    <!-- Fuel pump -->
+    <circle data-component-id="fuel-pump" cx="875" cy="450" r="15"
+            style="cursor: pointer">
+      <title>Fuel Pump</title>
+    </circle>
+
+    <!-- Fuel line -->
+    <path data-component-id="fuel-line" d="M 800 460 L 400 420 L 300 400"
+          fill="none" stroke-width="4" style="cursor: pointer">
+      <title>Fuel Line</title>
+    </path>
+
+    <!-- Fuel rail -->
+    <rect data-component-id="fuel-rail" x="240" y="340" width="120" height="12" rx="4"
+          style="cursor: pointer">
+      <title>Fuel Rail</title>
+    </rect>
+
+    <!-- Injectors -->
+    <circle data-component-id="injector-1" cx="260" cy="360" r="6" style="cursor: pointer">
+      <title>Fuel Injector #1</title>
+    </circle>
+    <circle data-component-id="injector-2" cx="290" cy="360" r="6" style="cursor: pointer">
+      <title>Fuel Injector #2</title>
+    </circle>
+    <circle data-component-id="injector-3" cx="320" cy="360" r="6" style="cursor: pointer">
+      <title>Fuel Injector #3</title>
+    </circle>
+    <circle data-component-id="injector-4" cx="350" cy="360" r="6" style="cursor: pointer">
+      <title>Fuel Injector #4</title>
+    </circle>
+
+    <!-- Fuel filter -->
+    <rect data-component-id="fuel-filter" x="600" y="440" width="30" height="20" rx="4"
+          style="cursor: pointer">
+      <title>Fuel Filter</title>
+    </rect>
+
+  </g>
+</svg>
