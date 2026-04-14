@@ -5,13 +5,13 @@ import { ErrorBoundary } from './components/shared/ErrorBoundary';
 import { LoadingOverlay } from './components/shared/LoadingOverlay';
 import { ToastContainer, useToast, toast } from './components/shared/Toast';
 import { OfflineBanner } from './components/shared/OfflineBanner';
-import { Disclaimer } from './components/shared/Disclaimer';
+import { SplashScreen } from './components/shared/SplashScreen';
 import { useKeyboardNav } from './hooks/useKeyboardNav';
 import { useDiagnosticSession } from './hooks/useDiagnosticSession';
 import { useStore } from './store';
 import { ANATOMY_LAYER_IDS } from './types/anatomy';
 
-const DISCLAIMER_KEY = 'lexwire-disclaimer-accepted';
+const SPLASH_SEEN_KEY = 'car-anatomy-splash-seen';
 
 function AppContent() {
   useKeyboardNav();
@@ -24,20 +24,25 @@ function AppContent() {
   const viewMode = useStore((s) => s.viewMode);
   const { toasts } = useToast();
 
-  // Disclaimer state
-  const [showDisclaimer, setShowDisclaimer] = useState(() => {
-    return !localStorage.getItem(DISCLAIMER_KEY);
+  // Splash screen state - show on first visit per session
+  const [showSplash, setShowSplash] = useState(() => {
+    return !sessionStorage.getItem(SPLASH_SEEN_KEY);
   });
 
-  const handleAcceptDisclaimer = () => {
-    localStorage.setItem(DISCLAIMER_KEY, 'true');
-    setShowDisclaimer(false);
+  const handleSplashComplete = () => {
+    sessionStorage.setItem(SPLASH_SEEN_KEY, 'true');
+    setShowSplash(false);
   };
 
   useEffect(() => {
     // Initialize anatomy layers on mount
     initLayers(ANATOMY_LAYER_IDS);
   }, [initLayers]);
+
+  // Show splash screen first
+  if (showSplash) {
+    return <SplashScreen onComplete={handleSplashComplete} />;
+  }
 
   // Show loading state while hydrating session
   if (!isHydrated) {
@@ -48,9 +53,6 @@ function AppContent() {
     <>
       {/* Offline status banner */}
       <OfflineBanner />
-
-      {/* Safety disclaimer (first-run) */}
-      <Disclaimer isOpen={showDisclaimer} onAccept={handleAcceptDisclaimer} />
 
       {/* Main content - Dashboard or Explorer */}
       {viewMode === 'dashboard' ? <Dashboard /> : <AppShell />}
