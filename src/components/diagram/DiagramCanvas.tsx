@@ -171,8 +171,8 @@ export function DiagramCanvas() {
             <path
               d="M 40 0 L 0 0 0 40"
               fill="none"
-              stroke="#0b0b12"
-              strokeWidth="0.4"
+              stroke="#e0e0e5"
+              strokeWidth="0.5"
             />
           </pattern>
         </defs>

@@ -28,3 +28,6 @@ dev-dist
 
 # Large reference files (PDFs)
 reference_files
+
+# Local Netlify folder
+.netlify

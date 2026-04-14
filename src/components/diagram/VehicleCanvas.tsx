@@ -92,7 +92,7 @@ export function VehicleCanvas() {
         {/* Background grid */}
         <defs>
           <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#0b0b12" strokeWidth="0.4" />
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e0e0e5" strokeWidth="0.5" />
           </pattern>
         </defs>
         <rect
