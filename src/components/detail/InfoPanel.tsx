@@ -13,7 +13,7 @@ type TabId = typeof TABS[number];
 const TAB_LABELS: Record<TabId, string> = {
   manual: 'Manual',
   wiring: 'Wiring',
-  obd: 'OBD',
+  obd: 'OBD-II',
   torque: 'Torque',
   notes: 'Notes',
 };
@@ -31,33 +31,33 @@ export function InfoPanel({ componentId }: Props) {
 
   const data = getComponentData(componentId);
 
-  // If no data found, show basic info
   if (!data) {
     return (
-      <div style={{ padding: 16 }}>
+      <div style={{ padding: 24 }}>
         <div
           style={{
-            padding: 12,
-            background: 'var(--bg-elevated)',
-            borderRadius: 'var(--radius-md)',
+            padding: 24,
+            background: 'var(--bg-surface)',
+            borderRadius: 'var(--radius-lg)',
             border: '1px solid var(--border)',
-            marginBottom: 12,
           }}
         >
-          <h2 style={{ fontSize: 14, fontWeight: 600, margin: 0, color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: 16, fontWeight: 500, color: 'var(--text-primary)', marginBottom: 8 }}>
             {componentId}
           </h2>
-          <p style={{ fontSize: 10, color: 'var(--text-muted)', marginTop: 4 }}>
-            No manual data available for this component.
+          <p style={{ fontSize: 13, color: 'var(--text-muted)' }}>
+            No data available for this component.
           </p>
         </div>
 
-        <StatusSelector
-          componentId={componentId}
-          componentLabel={componentId}
-          status={statuses[componentId] || 'untested'}
-          onStatusChange={setComponentStatus}
-        />
+        <div style={{ marginTop: 16 }}>
+          <StatusSelector
+            componentId={componentId}
+            componentLabel={componentId}
+            status={statuses[componentId] || 'untested'}
+            onStatusChange={setComponentStatus}
+          />
+        </div>
       </div>
     );
   }
@@ -67,44 +67,46 @@ export function InfoPanel({ componentId }: Props) {
       {/* Header */}
       <div
         style={{
-          padding: 12,
-          background: 'var(--bg-elevated)',
+          padding: '20px 24px',
           borderBottom: '1px solid var(--border)',
         }}
       >
-        <h2 style={{ fontSize: 14, fontWeight: 600, margin: 0, color: 'var(--text-primary)' }}>
+        <h2 style={{ fontSize: 18, fontWeight: 500, color: 'var(--text-primary)', marginBottom: 8 }}>
           {data.label}
         </h2>
-        <div style={{ display: 'flex', gap: 4, marginTop: 6, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           {data.systems.map((sys) => (
             <span
               key={sys}
               style={{
-                padding: '2px 6px',
+                padding: '4px 10px',
                 background: 'var(--bg-base)',
-                borderRadius: 'var(--radius-sm)',
-                fontSize: 8,
+                borderRadius: 'var(--radius-full)',
+                fontSize: 11,
+                fontWeight: 500,
                 color: 'var(--text-muted)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
               }}
             >
-              {sys}
+              {sys.replace('-', ' ')}
             </span>
           ))}
         </div>
       </div>
 
-      {/* Shared parts banner */}
+      {/* Shared parts notice */}
       {data.shared && (
         <div
           style={{
-            padding: '8px 12px',
+            padding: '12px 24px',
             background: 'var(--accent)',
-            color: 'var(--bg-base)',
-            fontSize: 9,
+            color: '#FFFFFF',
+            fontSize: 12,
             fontWeight: 500,
           }}
         >
-          Also fits 1997 Toyota Camry (1MZ-FE). Consider both when replacing.
+          Shared with 1997 Toyota Camry (1MZ-FE)
         </div>
       )}
 
@@ -112,10 +114,10 @@ export function InfoPanel({ componentId }: Props) {
       <nav
         style={{
           display: 'flex',
+          padding: '0 24px',
           borderBottom: '1px solid var(--border)',
-          background: 'var(--bg-surface)',
+          gap: 8,
         }}
-        role="tablist"
       >
         {TABS.map((tab) => {
           const isActive = activeTab === tab;
@@ -129,18 +131,15 @@ export function InfoPanel({ componentId }: Props) {
           return (
             <button
               key={tab}
-              role="tab"
-              aria-selected={isActive}
               onClick={() => setActiveTab(tab)}
               style={{
-                flex: 1,
-                padding: '8px 4px',
-                background: isActive ? 'var(--bg-elevated)' : 'transparent',
-                border: 'none',
+                padding: '12px 4px',
+                background: 'transparent',
+                color: isActive ? 'var(--accent)' : hasData ? 'var(--text-secondary)' : 'var(--text-ghost)',
+                fontSize: 13,
+                fontWeight: isActive ? 600 : 400,
                 borderBottom: isActive ? '2px solid var(--accent)' : '2px solid transparent',
-                color: isActive ? 'var(--text-primary)' : hasData ? 'var(--text-muted)' : 'var(--text-ghost)',
-                fontSize: 9,
-                cursor: 'pointer',
+                marginBottom: -1,
                 transition: 'all 0.15s ease',
               }}
             >
@@ -151,7 +150,7 @@ export function InfoPanel({ componentId }: Props) {
       </nav>
 
       {/* Tab content */}
-      <div style={{ flex: 1, overflow: 'auto', padding: 12 }}>
+      <div style={{ flex: 1, overflow: 'auto', padding: 24 }}>
         {activeTab === 'manual' && <ManualTab data={data.manual} />}
         {activeTab === 'wiring' && <WiringTab data={data.wiring} />}
         {activeTab === 'obd' && <OBDTab data={data.obd} />}

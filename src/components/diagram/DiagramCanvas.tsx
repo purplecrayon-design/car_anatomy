@@ -165,23 +165,19 @@ export function DiagramCanvas() {
       >
         <SvgDefs />
 
-        {/* Background grid */}
+        {/* Background - clean gradient */}
         <defs>
-          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path
-              d="M 40 0 L 0 0 0 40"
-              fill="none"
-              stroke="#e0e0e5"
-              strokeWidth="0.5"
-            />
-          </pattern>
+          <linearGradient id="diagramBg" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#F8F6F0" />
+            <stop offset="100%" stopColor="#EDEBE6" />
+          </linearGradient>
         </defs>
         <rect
           x={viewBox.minX}
           y={viewBox.minY}
           width={viewBox.width}
           height={viewBox.height}
-          fill="url(#grid)"
+          fill="url(#diagramBg)"
           onClick={handleCanvasClick}
         />
 

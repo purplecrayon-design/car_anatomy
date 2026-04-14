@@ -8,12 +8,9 @@ export function SplashScreen({ onComplete }: Props) {
   const [phase, setPhase] = useState<'enter' | 'hold' | 'exit'>('enter');
 
   useEffect(() => {
-    // Enter animation
-    const holdTimer = setTimeout(() => setPhase('hold'), 800);
-    // Hold for a moment
-    const exitTimer = setTimeout(() => setPhase('exit'), 2500);
-    // Complete and unmount
-    const completeTimer = setTimeout(onComplete, 3200);
+    const holdTimer = setTimeout(() => setPhase('hold'), 600);
+    const exitTimer = setTimeout(() => setPhase('exit'), 2000);
+    const completeTimer = setTimeout(onComplete, 2600);
 
     return () => {
       clearTimeout(holdTimer);
@@ -32,155 +29,79 @@ export function SplashScreen({ onComplete }: Props) {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#0a0a0f',
+        background: '#F8F6F0',
         opacity: phase === 'exit' ? 0 : 1,
-        transition: 'opacity 0.7s ease-out',
+        transition: 'opacity 0.6s ease-out',
       }}
     >
-      {/* 97' Text */}
+      {/* Year badge */}
       <div
         style={{
-          fontSize: 'clamp(80px, 20vw, 200px)',
-          fontWeight: 700,
-          color: '#fff',
-          fontFamily: 'system-ui, -apple-system, sans-serif',
-          letterSpacing: '-0.02em',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 24,
           opacity: phase === 'enter' ? 0 : 1,
           transform: phase === 'enter' ? 'translateY(20px)' : 'translateY(0)',
-          transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+          transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
-        97'
+        {/* 97 */}
+        <div
+          style={{
+            fontSize: 'clamp(72px, 18vw, 160px)',
+            fontWeight: 300,
+            fontFamily: "'Inter', sans-serif",
+            color: '#111111',
+            letterSpacing: '-0.04em',
+            lineHeight: 1,
+          }}
+        >
+          97
+        </div>
+
+        {/* Lexus ES300 */}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 8,
+          }}
+        >
+          <div
+            style={{
+              fontSize: 'clamp(11px, 2vw, 14px)',
+              fontWeight: 500,
+              fontFamily: "'Inter', sans-serif",
+              color: '#006D8C',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+            }}
+          >
+            Lexus ES300
+          </div>
+          <div
+            style={{
+              width: 40,
+              height: 1,
+              background: '#B8A47E',
+            }}
+          />
+          <div
+            style={{
+              fontSize: 'clamp(10px, 1.5vw, 12px)',
+              fontWeight: 400,
+              fontFamily: "'Inter', sans-serif",
+              color: '#666666',
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+            }}
+          >
+            Vehicle Explorer
+          </div>
+        </div>
       </div>
-
-      {/* Aviator Sunglasses SVG */}
-      <svg
-        viewBox="0 0 200 80"
-        style={{
-          width: 'clamp(150px, 40vw, 300px)',
-          marginTop: 20,
-          opacity: phase === 'enter' ? 0 : 1,
-          transform: phase === 'enter' ? 'translateY(20px) scale(0.9)' : 'translateY(0) scale(1)',
-          transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s',
-        }}
-      >
-        {/* Bridge */}
-        <path
-          d="M 85 35 Q 100 28 115 35"
-          fill="none"
-          stroke="#c9a227"
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
-
-        {/* Left temple arm hint */}
-        <path
-          d="M 15 32 L 35 35"
-          fill="none"
-          stroke="#c9a227"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-        />
-
-        {/* Right temple arm hint */}
-        <path
-          d="M 185 32 L 165 35"
-          fill="none"
-          stroke="#c9a227"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-        />
-
-        {/* Left lens frame */}
-        <ellipse
-          cx="55"
-          cy="45"
-          rx="38"
-          ry="28"
-          fill="none"
-          stroke="#c9a227"
-          strokeWidth="3"
-        />
-
-        {/* Right lens frame */}
-        <ellipse
-          cx="145"
-          cy="45"
-          rx="38"
-          ry="28"
-          fill="none"
-          stroke="#c9a227"
-          strokeWidth="3"
-        />
-
-        {/* Left lens gradient */}
-        <defs>
-          <linearGradient id="lensGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#1a1a2e" stopOpacity="0.9" />
-            <stop offset="50%" stopColor="#2d2d44" stopOpacity="0.85" />
-            <stop offset="100%" stopColor="#1a1a2e" stopOpacity="0.95" />
-          </linearGradient>
-          <linearGradient id="shineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#fff" stopOpacity="0.3" />
-            <stop offset="50%" stopColor="#fff" stopOpacity="0" />
-            <stop offset="100%" stopColor="#fff" stopOpacity="0.1" />
-          </linearGradient>
-        </defs>
-
-        {/* Left lens fill */}
-        <ellipse
-          cx="55"
-          cy="45"
-          rx="35"
-          ry="25"
-          fill="url(#lensGradient)"
-        />
-
-        {/* Right lens fill */}
-        <ellipse
-          cx="145"
-          cy="45"
-          rx="35"
-          ry="25"
-          fill="url(#lensGradient)"
-        />
-
-        {/* Left lens shine */}
-        <ellipse
-          cx="45"
-          cy="38"
-          rx="15"
-          ry="10"
-          fill="url(#shineGradient)"
-          style={{
-            animation: 'shimmer 2s ease-in-out infinite',
-          }}
-        />
-
-        {/* Right lens shine */}
-        <ellipse
-          cx="135"
-          cy="38"
-          rx="15"
-          ry="10"
-          fill="url(#shineGradient)"
-          style={{
-            animation: 'shimmer 2s ease-in-out infinite 0.3s',
-          }}
-        />
-
-        {/* Nose pads */}
-        <ellipse cx="75" cy="58" rx="4" ry="6" fill="#c9a227" />
-        <ellipse cx="125" cy="58" rx="4" ry="6" fill="#c9a227" />
-      </svg>
-
-      {/* Shimmer animation */}
-      <style>{`
-        @keyframes shimmer {
-          0%, 100% { opacity: 0.3; transform: translateX(0); }
-          50% { opacity: 0.6; transform: translateX(3px); }
-        }
-      `}</style>
     </div>
   );
 }

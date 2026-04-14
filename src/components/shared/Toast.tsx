@@ -16,10 +16,10 @@ interface ToastProps {
 }
 
 const TOAST_COLORS: Record<ToastType, { bg: string; border: string; icon: string }> = {
-  success: { bg: '#dcfce7', border: '#22c55e', icon: 'check' },
-  error: { bg: '#fee2e2', border: '#ef4444', icon: '!' },
-  warning: { bg: '#fef3c7', border: '#f59e0b', icon: '!' },
-  info: { bg: '#dbeafe', border: '#3b82f6', icon: 'i' },
+  success: { bg: '#FFFFFF', border: '#2D8659', icon: 'check' },
+  error: { bg: '#FFFFFF', border: '#C4392D', icon: '!' },
+  warning: { bg: '#FFFFFF', border: '#C4841D', icon: '!' },
+  info: { bg: '#FFFFFF', border: '#006D8C', icon: 'i' },
 };
 
 const TOAST_ICONS: Record<ToastType, string> = {
