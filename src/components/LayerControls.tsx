@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useLayersStore } from '@/stores/useLayersStore';
 import { useVehicleStore } from '@/stores/useVehicleStore';
 
@@ -17,7 +18,8 @@ const LAYERS = [
 ] as const;
 
 export function LayerControls() {
-  const { currentVehicle } = useVehicleStore();
+  const { currentVehicle, availableVehicles, setVehicle } = useVehicleStore();
+  const [isVehicleDropdownOpen, setIsVehicleDropdownOpen] = useState(false);
 
   const {
     activeLayers,
@@ -32,54 +34,153 @@ export function LayerControls() {
   } = useLayersStore();
 
   return (
-    <div className="w-72 bg-[#0f172a] border-r border-[#1e2937] h-screen flex flex-col overflow-hidden">
+    <div className="w-72 bg-slate-900 border-r border-slate-800 h-screen flex flex-col overflow-hidden">
+      {/* Vehicle Selector */}
+      <div className="px-4 py-4 border-b border-slate-800">
+        <div className="relative">
+          <button
+            onClick={() => setIsVehicleDropdownOpen(!isVehicleDropdownOpen)}
+            className="w-full flex items-center justify-between px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl hover:border-emerald-500/50 transition-all group"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+                <span className="text-emerald-400 text-xs font-bold">
+                  {currentVehicle.year.toString().slice(-2)}
+                </span>
+              </div>
+              <div className="text-left">
+                <div className="text-white text-sm font-medium">{currentVehicle.make} {currentVehicle.model}</div>
+                <div className="text-slate-500 text-xs">{currentVehicle.engine.code}</div>
+              </div>
+            </div>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#64748b"
+              strokeWidth="2"
+              className={`transition-transform ${isVehicleDropdownOpen ? 'rotate-180' : ''}`}
+            >
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+
+          {/* Dropdown */}
+          {isVehicleDropdownOpen && (
+            <div className="absolute top-full left-0 right-0 mt-2 bg-slate-800 border border-slate-700 rounded-xl shadow-xl overflow-hidden z-50">
+              {availableVehicles.map((vehicle) => (
+                <button
+                  key={vehicle.id}
+                  onClick={() => {
+                    setVehicle(vehicle.id);
+                    setIsVehicleDropdownOpen(false);
+                  }}
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 hover:bg-slate-700 transition-colors ${
+                    vehicle.id === currentVehicle.id ? 'bg-emerald-500/10' : ''
+                  }`}
+                >
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                    vehicle.id === currentVehicle.id ? 'bg-emerald-500/30' : 'bg-slate-700'
+                  }`}>
+                    <span className={`text-xs font-bold ${
+                      vehicle.id === currentVehicle.id ? 'text-emerald-400' : 'text-slate-400'
+                    }`}>
+                      {vehicle.year.toString().slice(-2)}
+                    </span>
+                  </div>
+                  <div className="text-left flex-1">
+                    <div className={`text-sm font-medium ${
+                      vehicle.id === currentVehicle.id ? 'text-emerald-400' : 'text-white'
+                    }`}>
+                      {vehicle.make} {vehicle.model}
+                    </div>
+                    <div className="text-slate-500 text-xs">{vehicle.engine.code}</div>
+                  </div>
+                  {vehicle.id === currentVehicle.id && (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
       {/* Header */}
-      <div className="px-4 py-3 border-b border-[#1e2937] flex items-center justify-between">
+      <div className="px-4 py-3 border-b border-slate-800 flex items-center justify-between">
         <h2 className="text-white font-semibold">Layers</h2>
-        <span className="text-emerald-400 text-xs font-mono">{currentVehicle.name}</span>
+        <span className="text-emerald-400 text-xs font-mono">{activeLayers.length}/12</span>
       </div>
 
       {/* 3D Z-Axis Toggle */}
-      <div className="px-4 py-3 border-b border-[#1e2937]">
-        <label className="flex items-center gap-3 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={is3D}
-            onChange={toggle3D}
-            className="w-5 h-5 accent-emerald-500"
-          />
-          <span className="text-white text-sm">3D Z-Axis View</span>
-        </label>
-        <p className="text-xs text-gray-400 mt-1">Enables full perspective rotation on all layers</p>
+      <div className="px-4 py-3 border-b border-slate-800">
+        <button
+          onClick={toggle3D}
+          className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl transition-all ${
+            is3D
+              ? 'bg-emerald-500/20 border border-emerald-500/50'
+              : 'bg-slate-800 border border-slate-700 hover:border-slate-600'
+          }`}
+        >
+          <div className="flex items-center gap-3">
+            <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+              is3D ? 'bg-emerald-500/30' : 'bg-slate-700'
+            }`}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={is3D ? '#10b981' : '#64748b'} strokeWidth="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <div className="text-left">
+              <div className={`text-sm font-medium ${is3D ? 'text-emerald-400' : 'text-white'}`}>
+                3D Z-Axis View
+              </div>
+              <div className="text-xs text-slate-500">Perspective rotation</div>
+            </div>
+          </div>
+          <div className={`w-10 h-6 rounded-full transition-all relative ${
+            is3D ? 'bg-emerald-500' : 'bg-slate-700'
+          }`}>
+            <div className={`absolute top-1 w-4 h-4 rounded-full bg-white shadow transition-all ${
+              is3D ? 'left-5' : 'left-1'
+            }`} />
+          </div>
+        </button>
       </div>
 
       {/* Global Controls */}
-      <div className="px-4 py-3 border-b border-[#1e2937] flex gap-2">
+      <div className="px-4 py-3 border-b border-slate-800 flex gap-2">
         <button
           onClick={() => toggleAll(true)}
-          className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white text-sm py-2 rounded-lg font-medium"
+          className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white text-sm py-2.5 rounded-xl font-semibold active:scale-95 transition-all"
         >
           All On
         </button>
         <button
           onClick={() => toggleAll(false)}
-          className="flex-1 bg-slate-700 hover:bg-slate-600 text-white text-sm py-2 rounded-lg font-medium"
+          className="flex-1 bg-slate-700 hover:bg-slate-600 text-white text-sm py-2.5 rounded-xl font-semibold active:scale-95 transition-all"
         >
           All Off
         </button>
         <button
           onClick={resetAll}
-          className="px-4 bg-slate-800 hover:bg-slate-700 text-white text-sm rounded-lg"
+          className="px-3 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-sm rounded-xl active:scale-95 transition-all"
+          title="Reset to defaults"
         >
-          Reset
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+          </svg>
         </button>
       </div>
 
       {/* Global Opacity */}
-      <div className="px-4 py-3 border-b border-[#1e2937]">
-        <div className="flex justify-between text-xs text-gray-400 mb-2">
-          <span>Global Opacity</span>
-          <span>{globalOpacity}%</span>
+      <div className="px-4 py-3 border-b border-slate-800">
+        <div className="flex justify-between text-xs mb-2">
+          <span className="text-slate-500 font-medium uppercase tracking-wide">Opacity</span>
+          <span className="text-emerald-400 font-mono">{globalOpacity}%</span>
         </div>
         <input
           type="range"
@@ -88,7 +189,10 @@ export function LayerControls() {
           step="1"
           value={globalOpacity}
           onChange={(e) => setGlobalOpacity(parseInt(e.target.value))}
-          className="w-full accent-emerald-500"
+          className="w-full h-2 bg-slate-700 rounded-full appearance-none cursor-pointer accent-emerald-500"
+          style={{
+            background: `linear-gradient(to right, #10b981 0%, #10b981 ${globalOpacity}%, #334155 ${globalOpacity}%, #334155 100%)`
+          }}
         />
       </div>
 
@@ -100,30 +204,44 @@ export function LayerControls() {
             <div
               key={layer.id}
               onClick={() => toggleLayer(layer.id)}
-              className={`flex items-center gap-3 px-4 py-3 rounded-2xl cursor-pointer transition-colors ${
-                isActive ? 'bg-[#1e2937] text-white' : 'text-gray-400 hover:bg-[#1e2937]'
+              className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer transition-all ${
+                isActive
+                  ? 'bg-slate-800 border border-slate-700'
+                  : 'hover:bg-slate-800/50 border border-transparent'
               }`}
             >
-              <input
-                type="checkbox"
-                checked={isActive}
-                onChange={(e) => {
-                  e.stopPropagation();
-                  toggleLayer(layer.id);
-                }}
-                className="w-4 h-4 accent-emerald-500"
-              />
-              <span className="text-sm flex-1">{layer.label}</span>
+              {/* Checkbox */}
+              <div className={`w-5 h-5 rounded-md flex items-center justify-center transition-all ${
+                isActive
+                  ? 'bg-emerald-500'
+                  : 'bg-slate-700 group-hover:bg-slate-600'
+              }`}>
+                {isActive && (
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                )}
+              </div>
 
+              {/* Label */}
+              <div className="flex-1 min-w-0">
+                <span className={`text-sm font-medium block truncate ${
+                  isActive ? 'text-white' : 'text-slate-400'
+                }`}>
+                  {layer.label}
+                </span>
+              </div>
+
+              {/* Isolate button */}
               {isActive && (
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     isolateLayer(layer.id);
                   }}
-                  className="text-[10px] bg-emerald-900 hover:bg-emerald-800 px-3 py-1 rounded-lg text-emerald-200"
+                  className="opacity-0 group-hover:opacity-100 text-[10px] bg-emerald-500/20 hover:bg-emerald-500 px-2.5 py-1 rounded-lg text-emerald-400 hover:text-white font-semibold transition-all"
                 >
-                  Isolate
+                  Solo
                 </button>
               )}
             </div>
@@ -132,8 +250,14 @@ export function LayerControls() {
       </div>
 
       {/* Footer */}
-      <div className="p-4 text-xs text-gray-500 border-t border-[#1e2937]">
-        12 layers • Fully functional • 3D Z-axis enabled
+      <div className="p-4 border-t border-slate-800">
+        <div className="flex items-center justify-between text-xs text-slate-500">
+          <span>LexWire v2.0</span>
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-emerald-400">{is3D ? '3D Active' : 'Ready'}</span>
+          </div>
+        </div>
       </div>
     </div>
   );

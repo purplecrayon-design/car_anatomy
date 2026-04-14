@@ -5,7 +5,7 @@ import { useSelectedComponentStore } from '@/stores/useSelectedComponentStore';
 import { useManualStore } from '@/stores/useManualStore';
 import { useNotesStore } from '@/stores/useNotesStore';
 
-const VIEWBOX = { width: 1200, height: 800 };
+const VIEWBOX = { width: 2000, height: 800 };
 
 export function VehicleCanvas() {
   const svgRef = useRef<SVGSVGElement>(null);
@@ -138,7 +138,7 @@ export function VehicleCanvas() {
       ref={containerRef}
       className="relative w-full h-full overflow-hidden"
       style={{
-        background: '#F8F6F0',
+        background: 'linear-gradient(180deg, #0f172a 0%, #1e293b 100%)',
         perspective: is3D ? '1200px' : 'none',
       }}
     >
@@ -164,11 +164,24 @@ export function VehicleCanvas() {
         {/* Background gradient */}
         <defs>
           <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#F8F6F0" />
-            <stop offset="100%" stopColor="#EDEBE6" />
+            <stop offset="0%" stopColor="#1e293b" />
+            <stop offset="100%" stopColor="#0f172a" />
           </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
         </defs>
         <rect width={VIEWBOX.width} height={VIEWBOX.height} fill="url(#bgGradient)" />
+
+        {/* Grid pattern for depth */}
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" strokeWidth="0.5" opacity="0.3"/>
+        </pattern>
+        <rect width={VIEWBOX.width} height={VIEWBOX.height} fill="url(#grid)" />
 
         {/* Vehicle silhouette */}
         <g opacity={globalOpacity / 100}>
@@ -201,22 +214,22 @@ export function VehicleCanvas() {
       <div className="absolute bottom-6 right-6 flex flex-col gap-2">
         <button
           onClick={() => setTransform((t) => ({ ...t, scale: Math.min(3, t.scale * 1.2) }))}
-          className="w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center text-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+          className="w-11 h-11 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-xl shadow-lg flex items-center justify-center text-lg font-medium text-white hover:bg-slate-700 hover:border-emerald-500/50 active:scale-95 transition-all"
         >
           +
         </button>
-        <div className="w-10 h-8 bg-white rounded-lg shadow-md flex items-center justify-center text-xs text-gray-500">
+        <div className="w-11 h-9 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-xl shadow-lg flex items-center justify-center text-xs font-mono text-emerald-400">
           {Math.round(transform.scale * 100)}%
         </div>
         <button
           onClick={() => setTransform((t) => ({ ...t, scale: Math.max(0.5, t.scale * 0.8) }))}
-          className="w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center text-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+          className="w-11 h-11 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-xl shadow-lg flex items-center justify-center text-lg font-medium text-white hover:bg-slate-700 hover:border-emerald-500/50 active:scale-95 transition-all"
         >
           −
         </button>
         <button
           onClick={resetView}
-          className="w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center text-xs text-gray-500 hover:bg-gray-50 transition-colors mt-2"
+          className="w-11 h-11 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-xl shadow-lg flex items-center justify-center text-sm text-slate-400 hover:text-emerald-400 hover:bg-slate-700 active:scale-95 transition-all mt-2"
           title="Reset view"
         >
           ⟲
@@ -225,24 +238,27 @@ export function VehicleCanvas() {
 
       {/* 3D Rotation Controls */}
       {is3D && (
-        <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur rounded-xl shadow-lg p-4">
-          <div className="text-xs font-semibold text-gray-600 mb-3">3D View</div>
+        <div className="absolute bottom-6 left-6 bg-slate-800/95 backdrop-blur border border-slate-700 rounded-2xl shadow-xl p-4">
+          <div className="text-xs font-semibold text-emerald-400 mb-3 flex items-center gap-2">
+            <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+            3D View Active
+          </div>
           <div className="flex gap-2 mb-3">
             <button
               onClick={() => set3DRotation({ x: 0, y: 0, z: 0 })}
-              className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 rounded-lg"
+              className="px-3 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
             >
               Side
             </button>
             <button
               onClick={() => set3DRotation({ x: 15, y: -30, z: 0 })}
-              className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 rounded-lg"
+              className="px-3 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
             >
               3/4 Front
             </button>
             <button
               onClick={() => set3DRotation({ x: 15, y: 30, z: 0 })}
-              className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 rounded-lg"
+              className="px-3 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
             >
               3/4 Rear
             </button>
@@ -250,24 +266,24 @@ export function VehicleCanvas() {
           <div className="flex gap-2 mb-3">
             <button
               onClick={() => set3DRotation({ x: 45, y: 0, z: 0 })}
-              className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 rounded-lg"
+              className="px-3 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
             >
               Top
             </button>
             <button
               onClick={() => set3DRotation({ x: -30, y: 0, z: 0 })}
-              className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 rounded-lg"
+              className="px-3 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
             >
               Under
             </button>
             <button
               onClick={() => set3DRotation({ x: 0, y: -90, z: 0 })}
-              className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 rounded-lg"
+              className="px-3 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
             >
               Front
             </button>
           </div>
-          <div className="text-[10px] text-gray-400">Hold Shift + drag to rotate</div>
+          <div className="text-[10px] text-slate-500">Hold Shift + drag to rotate</div>
         </div>
       )}
 
@@ -277,7 +293,7 @@ export function VehicleCanvas() {
           {visibleLayers.map((layer) => (
             <span
               key={layer.id}
-              className="px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-gray-700 shadow-sm"
+              className="px-3 py-1.5 bg-slate-800/90 backdrop-blur-sm border border-slate-700 rounded-full text-xs font-medium text-slate-300 shadow-lg"
             >
               {layer.name}
             </span>
@@ -288,9 +304,15 @@ export function VehicleCanvas() {
       {/* Empty state */}
       {visibleLayers.length === 0 && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="text-center">
-            <p className="text-gray-400 text-sm">No layers visible</p>
-            <p className="text-gray-300 text-xs mt-1">Enable layers in the sidebar</p>
+          <div className="text-center bg-slate-800/50 backdrop-blur rounded-2xl p-8 border border-slate-700">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-700/50 flex items-center justify-center">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="1.5">
+                <path d="M3 7l6 3 6-3 6 3V17l-6 3-6-3-6 3V7z" />
+                <path d="M9 10v10M15 7v10" />
+              </svg>
+            </div>
+            <p className="text-slate-400 text-sm font-medium">No layers visible</p>
+            <p className="text-slate-500 text-xs mt-1">Enable layers in the sidebar to explore</p>
           </div>
         </div>
       )}

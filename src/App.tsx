@@ -24,7 +24,7 @@ function AppContent() {
   }
 
   return (
-    <div className="flex h-screen bg-[#F8F6F0] overflow-hidden">
+    <div className="flex h-screen bg-slate-950 overflow-hidden">
       {/* Left sidebar */}
       <LayerControls />
 
