@@ -43,7 +43,7 @@ export function Dashboard() {
           Dashboard
         </h1>
         <p style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 4 }}>
-          1997 Lexus ES300 / 1MZ-FE V6 Explorer
+          97' Vehicle Explorer
         </p>
       </div>
 

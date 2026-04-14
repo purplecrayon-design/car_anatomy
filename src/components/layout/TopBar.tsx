@@ -60,7 +60,7 @@ export function TopBar() {
               color: 'var(--text-primary)',
             }}
           >
-            LEXWIRE
+            97'
           </span>
         </div>
 

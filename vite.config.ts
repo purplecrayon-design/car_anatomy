@@ -31,11 +31,11 @@ export default defineConfig({
         ],
       },
       manifest: {
-        name: 'LexWire — ES300 Wiring Explorer',
-        short_name: 'LexWire',
-        description: 'Interactive wiring diagram for 1997 Lexus ES300',
-        theme_color: '#1a1a2e',
-        background_color: '#07070b',
+        name: "97' Vehicle Explorer",
+        short_name: "97'",
+        description: "97' Vehicle Anatomy Explorer",
+        theme_color: '#0071e3',
+        background_color: '#f5f5f7',
         display: 'standalone',
         icons: [
           { src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
