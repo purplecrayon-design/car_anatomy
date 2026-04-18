@@ -33,7 +33,7 @@ export function Notepad() {
 
   return (
     <div
-      className={`absolute top-6 right-6 transition-all duration-300 ${
+      className={`hidden md:block absolute top-4 right-4 md:top-6 md:right-6 transition-all duration-300 ${
         isExpanded ? 'w-80' : 'w-auto'
       }`}
     >
