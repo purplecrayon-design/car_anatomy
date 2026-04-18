@@ -192,6 +192,8 @@ export function VehicleCanvas() {
           transformOrigin: 'center',
           transformStyle: is3D ? 'preserve-3d' : 'flat',
           transition: isRotating || isDragging ? 'none' : 'transform 0.1s ease-out',
+          shapeRendering: 'geometricPrecision',
+          imageRendering: 'auto',
         }}
       >
         {/* Background gradient */}
