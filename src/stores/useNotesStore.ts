@@ -119,7 +119,7 @@ export const useNotesStore = create<NotesState>()(
       },
     }),
     {
-      name: 'lexwire-notes',
+      name: 'car-anatomy-notes',
       partialize: (state) => ({
         notes: state.notes,
         componentStatuses: state.componentStatuses,

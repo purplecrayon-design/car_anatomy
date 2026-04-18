@@ -6,7 +6,7 @@ export function exportSession(data: SessionExport): void {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'lexwire-session-' + Date.now() + '.json';
+  a.download = 'car-anatomy-session-' + Date.now() + '.json';
   a.click();
   URL.revokeObjectURL(url);
 }

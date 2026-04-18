@@ -113,7 +113,7 @@ export function CommandPalette() {
 
   // Load recent searches from localStorage
   useEffect(() => {
-    const saved = localStorage.getItem('lexwire-recent-searches');
+    const saved = localStorage.getItem('car-anatomy-recent-searches');
     if (saved) {
       try {
         setRecentSearches(JSON.parse(saved));
@@ -159,7 +159,7 @@ export function CommandPalette() {
         // Save to recent searches
         const updated = [query, ...recentSearches.filter((s) => s !== query)].slice(0, 10);
         setRecentSearches(updated);
-        localStorage.setItem('lexwire-recent-searches', JSON.stringify(updated));
+        localStorage.setItem('car-anatomy-recent-searches', JSON.stringify(updated));
       } else if (item.type === 'action') {
         (item.data as QuickAction).action();
       } else if (item.type === 'recent') {

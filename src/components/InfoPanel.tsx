@@ -148,7 +148,7 @@ export function InfoPanel() {
                 {selectedComponent.systems.map((sys) => (
                   <span
                     key={sys}
-                    className="px-2 py-0.5 bg-slate-800 rounded text-[10px] font-medium text-slate-400 uppercase tracking-wide"
+                    className="px-2 py-1 bg-slate-800 rounded text-xs font-medium text-slate-400 uppercase tracking-wide"
                   >
                     {sys.replace('-', ' ')}
                   </span>
@@ -177,7 +177,7 @@ export function InfoPanel() {
                 Also fits 1997 Toyota Camry (1MZ-FE)
               </p>
             </div>
-            <p className="text-[11px] text-amber-500/70 mt-1 pl-6">
+            <p className="text-xs text-amber-500/70 mt-1 pl-6">
               Identical or similar part — consider both when replacing
             </p>
           </div>
@@ -185,23 +185,24 @@ export function InfoPanel() {
       </div>
 
       {/* Status selector */}
-      <div className="px-5 py-3 border-b border-slate-800">
-        <label className="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-2">
+      <div className="px-5 py-4 border-b border-slate-800">
+        <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
           Component Status
         </label>
-        <div className="flex gap-1.5">
+        <div className="flex gap-2">
           {STATUS_OPTIONS.map((opt) => (
             <button
               key={opt.value}
               onClick={() => setComponentStatus(selectedComponent.id, opt.value)}
-              className={`flex-1 px-2 py-2 rounded-lg text-xs font-medium transition-all ${
+              className={`flex-1 px-3 py-3 rounded-xl text-sm font-semibold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 ${
                 status === opt.value
-                  ? 'text-white shadow-lg scale-105'
-                  : 'text-slate-400 bg-slate-800 hover:bg-slate-700'
+                  ? 'text-white shadow-lg scale-[1.02] focus:ring-white/50'
+                  : 'text-slate-400 bg-slate-800 hover:bg-slate-700 focus:ring-slate-500'
               }`}
               style={{
                 backgroundColor: status === opt.value ? opt.color : undefined,
               }}
+              aria-pressed={status === opt.value}
             >
               {opt.label}
             </button>
@@ -233,7 +234,7 @@ export function InfoPanel() {
             {selectedComponent.manual ? (
               <>
                 <div>
-                  <label className="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
                     Haynes Manual Reference
                   </label>
                   <div className="p-4 bg-slate-800 rounded-xl border border-slate-700">
@@ -263,7 +264,7 @@ export function InfoPanel() {
 
             {selectedComponent.wiring && (
               <div>
-                <label className="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
                   Wiring Reference
                 </label>
                 <div className="p-4 bg-slate-800 rounded-xl border border-slate-700">
@@ -342,7 +343,7 @@ export function InfoPanel() {
             {selectedComponent.obd ? (
               <div className="space-y-4">
                 <div>
-                  <label className="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
                     Related PIDs
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -358,7 +359,7 @@ export function InfoPanel() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
                     Expected Range
                   </label>
                   <div className="p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl">
@@ -370,7 +371,7 @@ export function InfoPanel() {
 
                 {selectedComponent.obd.redFlags.length > 0 && (
                   <div>
-                    <label className="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                    <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
                       Red Flags
                     </label>
                     <ul className="space-y-2">
@@ -414,7 +415,7 @@ export function InfoPanel() {
                   <button
                     key={tag.value}
                     onClick={() => toggleTag(tag.value)}
-                    className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold transition-all ${
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all min-h-[32px] ${
                       selectedTags.includes(tag.value)
                         ? 'bg-emerald-500 text-white'
                         : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
@@ -436,7 +437,7 @@ export function InfoPanel() {
             {/* Notes list */}
             {notes.length > 0 && (
               <div>
-                <label className="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
                   Notes ({notes.length})
                 </label>
                 <ul className="space-y-2">
@@ -447,11 +448,11 @@ export function InfoPanel() {
                     >
                       <p className="text-sm text-slate-300">{note.text}</p>
                       {note.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-1 mt-2">
+                        <div className="flex flex-wrap gap-1.5 mt-2">
                           {note.tags.map((tag) => (
                             <span
                               key={tag}
-                              className={`px-1.5 py-0.5 rounded text-[9px] font-semibold ${
+                              className={`px-2 py-0.5 rounded text-xs font-semibold ${
                                 tag === 'problem'
                                   ? 'bg-red-500/20 text-red-400'
                                   : 'bg-slate-700 text-slate-400'
@@ -462,13 +463,13 @@ export function InfoPanel() {
                           ))}
                         </div>
                       )}
-                      <div className="flex items-center justify-between mt-3 pt-2 border-t border-slate-700">
-                        <span className="text-[10px] text-slate-500">
+                      <div className="flex items-center justify-between mt-3 pt-3 border-t border-slate-700">
+                        <span className="text-xs text-slate-500">
                           {new Date(note.createdAt).toLocaleDateString()}
                         </span>
                         <button
                           onClick={() => deleteNote(selectedComponent.id, note.id)}
-                          className="text-[10px] text-red-400 hover:text-red-300 font-medium"
+                          className="px-3 py-1.5 text-xs text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg font-medium transition-colors min-h-[32px]"
                         >
                           Delete
                         </button>

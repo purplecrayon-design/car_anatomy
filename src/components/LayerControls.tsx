@@ -252,7 +252,7 @@ export function LayerControls() {
       {/* Footer */}
       <div className="p-4 border-t border-slate-800">
         <div className="flex items-center justify-between text-xs text-slate-500">
-          <span>LexWire v2.0</span>
+          <span>Car Anatomy v3.0</span>
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span className="text-emerald-400">{is3D ? '3D Active' : 'Ready'}</span>

@@ -7,7 +7,7 @@ import { SplashScreen } from './components/shared/SplashScreen';
 import { ErrorBoundary } from './components/shared/ErrorBoundary';
 import './styles/global.css';
 
-const SPLASH_SEEN_KEY = 'car-anatomy-splash-seen';
+const SPLASH_SEEN_KEY = 'car-anatomy-v3-splash-seen';
 
 function AppContent() {
   const [showSplash, setShowSplash] = useState(() => {

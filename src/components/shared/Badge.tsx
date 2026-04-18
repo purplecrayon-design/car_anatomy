@@ -46,8 +46,8 @@ export function Badge({ children, variant = 'default', systemColor, size = 'sm' 
   const styles = VARIANT_STYLES[variant];
   const isSystem = variant === 'system' && systemColor;
 
-  const padding = size === 'sm' ? '2px 6px' : '4px 8px';
-  const fontSize = size === 'sm' ? 8 : 9;
+  const padding = size === 'sm' ? '4px 8px' : '6px 10px';
+  const fontSize = size === 'sm' ? 10 : 11;
 
   return (
     <span

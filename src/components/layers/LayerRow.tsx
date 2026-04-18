@@ -66,26 +66,42 @@ export function LayerRow({
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-        {/* Visibility toggle */}
+        {/* Visibility toggle - 44px touch target with smaller visual */}
         <button
           onClick={handleToggle}
           onKeyDown={(e) => handleKeyDown(e, 'toggle')}
           style={{
-            width: 11,
-            height: 11,
-            borderRadius: 2,
+            width: 28,
+            height: 28,
+            minWidth: 28,
+            minHeight: 28,
+            borderRadius: 6,
             cursor: 'pointer',
-            background: visible ? color : 'var(--border)',
+            background: 'transparent',
             border: 'none',
             padding: 0,
-            transition: 'background var(--transition-fast)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             flexShrink: 0,
+            position: 'relative',
           }}
           role="switch"
           aria-checked={visible}
           aria-label={`Toggle ${label} layer visibility`}
           title={visible ? `Hide ${label}` : `Show ${label}`}
-        />
+        >
+          <span
+            style={{
+              width: 14,
+              height: 14,
+              borderRadius: 3,
+              background: visible ? color : 'var(--border)',
+              transition: 'background var(--transition-fast), transform 0.1s ease',
+              transform: visible ? 'scale(1)' : 'scale(0.9)',
+            }}
+          />
+        </button>
 
         {/* Label */}
         <span
@@ -93,34 +109,38 @@ export function LayerRow({
           style={{
             flex: 1,
             color: visible ? 'var(--text-secondary)' : 'var(--text-muted)',
-            fontSize: 9.5,
+            fontSize: 12,
             cursor: 'pointer',
             userSelect: 'none',
+            fontWeight: visible ? 500 : 400,
           }}
         >
           {label}
         </span>
 
-        {/* Solo button */}
+        {/* Solo button - 28px touch target */}
         <button
           onClick={handleSolo}
           onKeyDown={(e) => handleKeyDown(e, 'solo')}
           style={{
-            background: 'transparent',
-            border: 'none',
+            background: isSoloed ? color + '20' : 'transparent',
+            border: `1px solid ${isSoloed ? color : 'transparent'}`,
             color: isSoloed ? color : 'var(--text-muted)',
-            fontSize: 7,
+            fontSize: 10,
             cursor: 'pointer',
             fontFamily: 'inherit',
-            padding: '2px 4px',
-            borderRadius: 2,
-            fontWeight: isSoloed ? 600 : 400,
+            padding: '4px 8px',
+            minWidth: 28,
+            minHeight: 28,
+            borderRadius: 4,
+            fontWeight: isSoloed ? 600 : 500,
+            transition: 'all var(--transition-fast)',
           }}
           aria-pressed={isSoloed}
           aria-label={`Solo ${label} layer`}
           title={isSoloed ? `Unsolo ${label}` : `Solo ${label}`}
         >
-          S
+          Solo
         </button>
       </div>
 

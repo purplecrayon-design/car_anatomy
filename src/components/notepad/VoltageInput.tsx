@@ -76,11 +76,11 @@ export function VoltageInput({ testPointId, testPointLabel, expectedVoltage = 12
       }}
     >
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{ fontSize: 10, color: 'var(--text-secondary)', fontWeight: 500 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+        <span style={{ fontSize: 12, color: 'var(--text-secondary)', fontWeight: 500 }}>
           {testPointLabel}
         </span>
-        <span style={{ fontSize: 9, color: 'var(--text-muted)' }}>
+        <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>
           Expected: {expectedVoltage}V
         </span>
       </div>
@@ -130,15 +130,17 @@ export function VoltageInput({ testPointId, testPointLabel, expectedVoltage = 12
           onClick={handleSubmit}
           disabled={!actual}
           style={{
-            padding: '8px 12px',
+            padding: '10px 16px',
+            minHeight: 40,
             background: 'var(--accent)',
             border: 'none',
             borderRadius: 'var(--radius-sm)',
             color: 'var(--bg-base)',
-            fontSize: 10,
+            fontSize: 12,
             fontWeight: 600,
             cursor: actual ? 'pointer' : 'not-allowed',
             opacity: actual ? 1 : 0.5,
+            transition: 'transform 0.1s ease, opacity 0.15s ease',
           }}
           aria-label="Record voltage reading"
         >
@@ -146,22 +148,25 @@ export function VoltageInput({ testPointId, testPointLabel, expectedVoltage = 12
         </button>
       </div>
 
-      {/* Condition selector */}
-      <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+      {/* Condition selector - 36px touch targets */}
+      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
         {CONDITIONS.map((c) => (
           <button
             key={c.value}
             onClick={() => setCondition(c.value)}
             style={{
-              padding: '4px 8px',
+              padding: '8px 12px',
+              minHeight: 36,
               background: condition === c.value ? 'var(--bg-base)' : 'transparent',
               border: `1px solid ${
                 condition === c.value ? 'var(--accent)' : 'var(--border-subtle)'
               }`,
               borderRadius: 'var(--radius-sm)',
               color: condition === c.value ? 'var(--text-primary)' : 'var(--text-muted)',
-              fontSize: 8,
+              fontSize: 11,
+              fontWeight: 500,
               cursor: 'pointer',
+              transition: 'all 0.15s ease',
             }}
             aria-pressed={condition === c.value}
           >
@@ -176,21 +181,21 @@ export function VoltageInput({ testPointId, testPointLabel, expectedVoltage = 12
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: 6,
-            padding: '6px 8px',
+            gap: 8,
+            padding: '10px 12px',
             background: resultColors[previewResult] + '15',
             borderRadius: 'var(--radius-sm)',
           }}
         >
           <div
             style={{
-              width: 6,
-              height: 6,
+              width: 8,
+              height: 8,
               borderRadius: 'var(--radius-full)',
               background: resultColors[previewResult],
             }}
           />
-          <span style={{ fontSize: 9, color: resultColors[previewResult] }}>
+          <span style={{ fontSize: 12, color: resultColors[previewResult], fontWeight: 500 }}>
             {previewResult === 'pass' && 'Within spec'}
             {previewResult === 'warning' && 'Marginal - verify'}
             {previewResult === 'fail' && 'Out of spec'}

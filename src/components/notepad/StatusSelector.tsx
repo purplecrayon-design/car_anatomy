@@ -40,33 +40,36 @@ export function StatusSelector({ componentId, componentLabel, status, onStatusCh
       }}
     >
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{ fontSize: 10, color: 'var(--text-secondary)', fontWeight: 500 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+        <span style={{ fontSize: 12, color: 'var(--text-secondary)', fontWeight: 500 }}>
           {componentLabel}
         </span>
         <button
           onClick={handleCycle}
           style={{
-            padding: '4px 8px',
+            padding: '8px 12px',
+            minHeight: 36,
             background: 'transparent',
             border: `1px solid ${config.border}`,
             borderRadius: 'var(--radius-sm)',
             color: config.color,
-            fontSize: 9,
+            fontSize: 12,
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
-            gap: 4,
+            gap: 6,
+            fontWeight: 500,
+            transition: 'all 0.15s ease',
           }}
           aria-label={`Cycle status, currently ${config.label}`}
         >
-          <span style={{ fontSize: 12 }}>{config.icon}</span>
+          <span style={{ fontSize: 14 }}>{config.icon}</span>
           {config.label}
         </button>
       </div>
 
-      {/* Status buttons */}
-      <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+      {/* Status buttons - 36px minimum touch targets */}
+      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
         {STATUS_ORDER.map((s) => {
           const cfg = STATUS_MAP[s];
           const isActive = s === status;
@@ -76,17 +79,23 @@ export function StatusSelector({ componentId, componentLabel, status, onStatusCh
               key={s}
               onClick={() => handleSelect(s)}
               style={{
-                padding: '4px 8px',
+                padding: '8px 12px',
+                minWidth: 36,
+                minHeight: 36,
                 background: isActive ? cfg.bg : 'var(--bg-base)',
                 border: `1px solid ${isActive ? cfg.border : 'var(--border-subtle)'}`,
                 borderRadius: 'var(--radius-sm)',
                 color: isActive ? cfg.color : 'var(--text-muted)',
-                fontSize: 8,
+                fontSize: 16,
                 cursor: 'pointer',
                 transition: 'all 0.15s ease',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
               aria-pressed={isActive}
               aria-label={`Set status to ${cfg.label}`}
+              title={cfg.label}
             >
               {cfg.icon}
             </button>

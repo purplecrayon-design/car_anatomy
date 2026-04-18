@@ -4,7 +4,7 @@ import type { ComponentStatusEntry, VoltageReading, Annotation } from '@/types/d
 import type { TourProgress } from '@/types/tour';
 import type { QuizScore } from '@/types/quiz';
 
-export class LexWireDB extends Dexie {
+export class CarAnatomyDB extends Dexie {
   sessions!: Table<DiagnosticSession>;
   componentStatuses!: Table<ComponentStatusEntry>;
   voltageReadings!: Table<VoltageReading>;
@@ -13,7 +13,7 @@ export class LexWireDB extends Dexie {
   quizScores!: Table<QuizScore>;
 
   constructor() {
-    super('LexWireDB');
+    super('CarAnatomyDB');
     this.version(1).stores({
       sessions: '++id, name, vehicleId, createdAt, updatedAt',
       componentStatuses: '++id, sessionId, componentId, status, updatedAt',
@@ -25,4 +25,4 @@ export class LexWireDB extends Dexie {
   }
 }
 
-export const db = new LexWireDB();
+export const db = new CarAnatomyDB();

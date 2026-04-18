@@ -109,7 +109,7 @@ export function Disclaimer({ isOpen, onAccept, onDecline }: Props) {
             Educational Tool Disclaimer
           </h2>
           <p style={{ marginBottom: 16 }}>
-            LexWire is an educational tool designed to help users understand automotive
+            Car Anatomy is an educational tool designed to help users understand automotive
             electrical systems. This application is intended for learning purposes only.
           </p>
 
@@ -151,7 +151,7 @@ export function Disclaimer({ isOpen, onAccept, onDecline }: Props) {
           <p style={{ marginBottom: 16 }}>
             The creators and contributors of this application assume no responsibility
             for any damage, injury, or loss resulting from the use of this tool. By using
-            LexWire, you acknowledge that automotive electrical work carries inherent
+            Car Anatomy, you acknowledge that automotive electrical work carries inherent
             risks and agree to proceed at your own risk.
           </p>
 

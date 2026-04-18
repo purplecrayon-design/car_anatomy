@@ -42,7 +42,7 @@ export function ShareButton({ variant = 'full', disabled = false }: Props) {
       // Try native share API first (mobile)
       if (navigator.share) {
         await navigator.share({
-          title: 'LexWire Session',
+          title: 'Car Anatomy Session',
           text: sessionName || 'Diagnostic session',
           url,
         });

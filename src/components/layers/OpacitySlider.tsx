@@ -109,7 +109,7 @@ export function OpacitySlider({
             transition: isDragging ? 'none' : 'width var(--transition-fast)',
           }}
         />
-        {/* Thumb */}
+        {/* Thumb - larger touch target with smaller visual */}
         <div
           role="slider"
           tabIndex={disabled ? -1 : 0}
@@ -124,23 +124,37 @@ export function OpacitySlider({
             left: `${value}%`,
             top: '50%',
             transform: 'translate(-50%, -50%)',
-            width: 10,
-            height: 10,
+            width: 24,
+            height: 24,
             borderRadius: 'var(--radius-full)',
-            background: color,
-            border: '2px solid var(--bg-elevated)',
-            boxShadow: 'var(--shadow-sm)',
+            background: 'transparent',
             cursor: disabled ? 'not-allowed' : 'grab',
             transition: isDragging ? 'none' : 'left var(--transition-fast)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
-        />
+        >
+          <span
+            style={{
+              width: 14,
+              height: 14,
+              borderRadius: 'var(--radius-full)',
+              background: color,
+              border: '2px solid var(--bg-elevated)',
+              boxShadow: 'var(--shadow-sm)',
+              transition: 'transform 0.1s ease',
+            }}
+          />
+        </div>
       </div>
       <span
         style={{
-          fontSize: 8,
+          fontSize: 11,
           color: 'var(--text-muted)',
-          minWidth: 24,
+          minWidth: 28,
           textAlign: 'right',
+          fontVariantNumeric: 'tabular-nums',
         }}
       >
         {value}%

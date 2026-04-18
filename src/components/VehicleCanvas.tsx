@@ -105,13 +105,36 @@ export function VehicleCanvas() {
     setIsRotating(false);
   }, []);
 
-  // Zoom handler
+  // Zoom handler - normalized for trackpad vs mouse wheel
   const handleWheel = useCallback((e: React.WheelEvent) => {
     e.preventDefault();
-    const delta = e.deltaY > 0 ? 0.9 : 1.1;
+    e.stopPropagation();
+
+    // Normalize deltaY - trackpads send many small events, mouse wheels send fewer large ones
+    // ctrlKey is true for pinch-to-zoom gestures on trackpads
+    const isPinchGesture = e.ctrlKey;
+    const rawDelta = e.deltaY;
+
+    // Much gentler zoom: 0.5-2% per event depending on input type
+    let zoomIntensity: number;
+    if (isPinchGesture) {
+      // Pinch gestures - very gentle
+      zoomIntensity = 0.005;
+    } else if (Math.abs(rawDelta) > 50) {
+      // Mouse wheel (typically 100+ per notch)
+      zoomIntensity = 0.03;
+    } else {
+      // Trackpad scroll (typically 1-10 per event)
+      zoomIntensity = 0.008;
+    }
+
+    // Calculate zoom factor based on normalized delta
+    const normalizedDelta = Math.sign(rawDelta) * Math.min(Math.abs(rawDelta), 100);
+    const zoomFactor = 1 - (normalizedDelta * zoomIntensity);
+
     setTransform((t) => ({
       ...t,
-      scale: Math.max(0.5, Math.min(3, t.scale * delta)),
+      scale: Math.max(0.3, Math.min(4, t.scale * zoomFactor)),
     }));
   }, []);
 
@@ -140,8 +163,18 @@ export function VehicleCanvas() {
       style={{
         background: 'linear-gradient(180deg, #0f172a 0%, #1e293b 100%)',
         perspective: is3D ? '1200px' : 'none',
+        touchAction: 'none', // Prevent browser handling of touch/trackpad gestures
+        isolation: 'isolate', // Create new stacking context
       }}
+      onWheel={(e) => e.preventDefault()} // Prevent scroll from bubbling to parent
     >
+      {/* Inner canvas wrapper - transforms are contained here */}
+      <div
+        className="absolute inset-0 overflow-hidden"
+        style={{
+          contain: 'layout paint', // CSS containment for performance
+        }}
+      >
       <svg
         ref={svgRef}
         width="100%"
@@ -209,11 +242,12 @@ export function VehicleCanvas() {
           );
         })}
       </svg>
+      </div>
 
-      {/* Controls overlay */}
+      {/* Controls overlay - positioned outside the transform container */}
       <div className="absolute bottom-6 right-6 flex flex-col gap-2">
         <button
-          onClick={() => setTransform((t) => ({ ...t, scale: Math.min(3, t.scale * 1.2) }))}
+          onClick={() => setTransform((t) => ({ ...t, scale: Math.min(4, t.scale * 1.15) }))}
           className="w-11 h-11 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-xl shadow-lg flex items-center justify-center text-lg font-medium text-white hover:bg-slate-700 hover:border-emerald-500/50 active:scale-95 transition-all"
         >
           +
@@ -222,7 +256,7 @@ export function VehicleCanvas() {
           {Math.round(transform.scale * 100)}%
         </div>
         <button
-          onClick={() => setTransform((t) => ({ ...t, scale: Math.max(0.5, t.scale * 0.8) }))}
+          onClick={() => setTransform((t) => ({ ...t, scale: Math.max(0.3, t.scale * 0.85) }))}
           className="w-11 h-11 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-xl shadow-lg flex items-center justify-center text-lg font-medium text-white hover:bg-slate-700 hover:border-emerald-500/50 active:scale-95 transition-all"
         >
           −

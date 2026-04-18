@@ -90,21 +90,22 @@ export function MobileTabBar({ activeTab, onTabChange }: Props) {
               padding: '8px 0',
             }}
           >
-            {/* Icon */}
+            {/* Icon - 36px touch target */}
             <div
               style={{
-                width: 28,
-                height: 28,
-                borderRadius: 'var(--radius-sm)',
+                width: 36,
+                height: 36,
+                borderRadius: 'var(--radius-md)',
                 background: isActive ? 'var(--accent)' : 'var(--bg-elevated)',
                 color: isActive ? 'var(--bg-base)' : 'var(--text-muted)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: 600,
-                transition: 'background 0.15s ease, color 0.15s ease',
+                transition: 'background 0.15s ease, color 0.15s ease, transform 0.1s ease',
                 position: 'relative',
+                transform: isActive ? 'scale(1.05)' : 'scale(1)',
               }}
             >
               {tab.icon}
@@ -116,8 +117,8 @@ export function MobileTabBar({ activeTab, onTabChange }: Props) {
                     position: 'absolute',
                     top: -2,
                     right: -2,
-                    width: 8,
-                    height: 8,
+                    width: 10,
+                    height: 10,
                     borderRadius: 'var(--radius-full)',
                     background: 'var(--accent)',
                     border: '2px solid var(--bg-surface)',
@@ -132,13 +133,13 @@ export function MobileTabBar({ activeTab, onTabChange }: Props) {
                     position: 'absolute',
                     top: -4,
                     right: -8,
-                    minWidth: 16,
-                    height: 14,
-                    padding: '0 4px',
+                    minWidth: 18,
+                    height: 16,
+                    padding: '0 5px',
                     borderRadius: 'var(--radius-full)',
                     background: 'var(--success)',
                     color: 'var(--bg-base)',
-                    fontSize: 8,
+                    fontSize: 10,
                     fontWeight: 600,
                     display: 'flex',
                     alignItems: 'center',
@@ -153,9 +154,9 @@ export function MobileTabBar({ activeTab, onTabChange }: Props) {
             {/* Label */}
             <span
               style={{
-                fontSize: 9,
+                fontSize: 11,
                 color: isActive ? 'var(--text-primary)' : 'var(--text-muted)',
-                fontWeight: isActive ? 500 : 400,
+                fontWeight: isActive ? 600 : 400,
                 transition: 'color 0.15s ease',
               }}
             >
