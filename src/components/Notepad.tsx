@@ -41,7 +41,7 @@ export function Notepad() {
       {!isExpanded && (
         <button
           onClick={() => setIsExpanded(true)}
-          className="flex items-center gap-3 px-4 py-2.5 bg-slate-800/95 backdrop-blur border border-slate-700 rounded-full shadow-xl hover:bg-slate-700 hover:border-emerald-500/50 transition-all group"
+          className="flex items-center gap-3 px-4 py-2.5 bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 rounded-full shadow-2xl hover:bg-slate-700 hover:border-emerald-500/50 hover:shadow-emerald-500/10 transition-all group"
         >
           <div className="flex items-center gap-2">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" className="group-hover:scale-110 transition-transform">
@@ -79,7 +79,7 @@ export function Notepad() {
 
       {/* Expanded view */}
       {isExpanded && (
-        <div className="bg-slate-800/95 backdrop-blur border border-slate-700 rounded-2xl shadow-xl overflow-hidden">
+        <div className="bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 rounded-3xl shadow-2xl overflow-hidden">
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-slate-700">
             <div className="flex items-center gap-2">

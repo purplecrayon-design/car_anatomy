@@ -1,35 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Background colors - Warm light palette */
-  --bg-base: #F8F6F0;
-  --bg-surface: #FFFFFF;
-  --bg-elevated: #FFFFFF;
+  /* Background colors - Dark theme */
+  --bg-base: #0f172a;
+  --bg-surface: #1e293b;
+  --bg-elevated: #334155;
 
   /* Border colors */
-  --border: #E5E2DA;
-  --border-subtle: #EDEBE6;
+  --border: #334155;
+  --border-subtle: #475569;
 
-  /* Text colors - Maximum contrast */
-  --text-primary: #111111;
-  --text-secondary: #333333;
-  --text-muted: #666666;
-  --text-ghost: #999999;
+  /* Text colors */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-ghost: #64748b;
 
-  /* Accent colors */
-  --accent: #006D8C;
-  --accent-gold: #B8A47E;
-  --success: #2D8659;
-  --warning: #C4841D;
-  --danger: #C4392D;
+  /* Accent colors - Emerald */
+  --accent: #10b981;
+  --accent-hover: #34d399;
+  --accent-glow: rgba(16, 185, 129, 0.3);
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
 
   /* System colors */
-  --system-charging: #006D8C;
-  --system-starting: #C4841D;
-  --system-power: #8B4513;
-  --system-engine: #6B5B73;
-  --system-lighting: #B8A47E;
-  --system-comfort: #2D8659;
+  --system-charging: #10b981;
+  --system-starting: #f59e0b;
+  --system-power: #ef4444;
+  --system-engine: #8b5cf6;
+  --system-lighting: #eab308;
+  --system-comfort: #06b6d4;
 
   /* Spacing scale */
   --space-1: 4px;
@@ -41,24 +42,36 @@
   --space-7: 48px;
   --space-8: 64px;
 
-  /* Border radius - Subtle, refined */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  /* Border radius - Soft, modern */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
   --radius-full: 9999px;
 
   /* Typography */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Consolas', monospace;
 
-  /* Transitions */
-  --transition-fast: 0.15s ease;
-  --transition-normal: 0.25s ease;
-  --transition-slow: 0.4s ease;
+  /* Transitions - Smooth cubic-bezier */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.2, 0, 0.08, 1);
+  --transition-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* Shadows - Soft, premium */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
+  /* Shadows - Visible depth */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 24px var(--accent-glow);
+
+  /* Glassmorphism */
+  --glass-bg: rgba(15, 23, 42, 0.85);
+  --glass-bg-light: rgba(30, 41, 59, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: blur(16px);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -114,10 +127,10 @@ button:disabled {
   color: #ffffff;
 }
 
-/* Scrollbar styling - Minimal */
+/* Scrollbar styling - Minimal dark */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -131,6 +144,31 @@ button:disabled {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-ghost);
+}
+
+/* Glassmorphism utility classes */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-light {
+  background: var(--glass-bg-light);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+}
+
+/* Glow effects */
+.glow-accent {
+  box-shadow: var(--shadow-glow);
+}
+
+/* Smooth transitions on all interactive elements */
+button, a, input, select, textarea {
+  transition: all var(--transition-fast);
 }
 
 /* Reduced motion */

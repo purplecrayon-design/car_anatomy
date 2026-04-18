@@ -91,10 +91,10 @@ export function InfoPanel() {
 
   if (!selectedComponent) {
     return (
-      <aside className="w-80 bg-slate-900 border-l border-slate-800 flex flex-col h-full">
+      <aside className="w-80 bg-slate-900/95 backdrop-blur-xl border-l border-slate-800/50 flex flex-col h-full shadow-xl">
         <div className="flex-1 flex items-center justify-center p-8">
           <div className="text-center">
-            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-slate-800 flex items-center justify-center">
+            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-slate-800/80 backdrop-blur flex items-center justify-center shadow-lg">
               <svg
                 width="32"
                 height="32"
@@ -135,7 +135,7 @@ export function InfoPanel() {
   };
 
   return (
-    <aside className="w-80 bg-slate-900 border-l border-slate-800 flex flex-col h-full overflow-hidden">
+    <aside className="w-80 bg-slate-900/95 backdrop-blur-xl border-l border-slate-800/50 flex flex-col h-full overflow-hidden shadow-xl">
       {/* Header */}
       <div className="p-5 border-b border-slate-800">
         <div className="flex items-start justify-between">
@@ -194,10 +194,10 @@ export function InfoPanel() {
             <button
               key={opt.value}
               onClick={() => setComponentStatus(selectedComponent.id, opt.value)}
-              className={`flex-1 px-3 py-3 rounded-xl text-sm font-semibold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 ${
+              className={`flex-1 px-3 py-3 rounded-2xl text-sm font-semibold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 ${
                 status === opt.value
-                  ? 'text-white shadow-lg scale-[1.02] focus:ring-white/50'
-                  : 'text-slate-400 bg-slate-800 hover:bg-slate-700 focus:ring-slate-500'
+                  ? 'text-white shadow-lg shadow-current/30 scale-[1.02] focus:ring-white/50'
+                  : 'text-slate-400 bg-slate-800/80 backdrop-blur hover:bg-slate-700 focus:ring-slate-500'
               }`}
               style={{
                 backgroundColor: status === opt.value ? opt.color : undefined,
@@ -237,7 +237,7 @@ export function InfoPanel() {
                   <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
                     Haynes Manual Reference
                   </label>
-                  <div className="p-4 bg-slate-800 rounded-xl border border-slate-700">
+                  <div className="p-4 bg-slate-800/80 backdrop-blur rounded-2xl border border-slate-700/50 shadow-lg">
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-xs text-slate-400">
                         {selectedComponent.manual.pdf}
@@ -267,7 +267,7 @@ export function InfoPanel() {
                 <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
                   Wiring Reference
                 </label>
-                <div className="p-4 bg-slate-800 rounded-xl border border-slate-700">
+                <div className="p-4 bg-slate-800/80 backdrop-blur rounded-2xl border border-slate-700/50 shadow-lg">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xs text-slate-400">
                       {selectedComponent.wiring.pdf}

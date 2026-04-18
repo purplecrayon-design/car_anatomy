@@ -245,25 +245,25 @@ export function VehicleCanvas() {
       </div>
 
       {/* Controls overlay - positioned outside the transform container */}
-      <div className="absolute bottom-6 right-6 flex flex-col gap-2">
+      <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 flex flex-col gap-2">
         <button
           onClick={() => setTransform((t) => ({ ...t, scale: Math.min(4, t.scale * 1.15) }))}
-          className="w-11 h-11 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-xl shadow-lg flex items-center justify-center text-lg font-medium text-white hover:bg-slate-700 hover:border-emerald-500/50 active:scale-95 transition-all"
+          className="w-12 h-12 md:w-11 md:h-11 bg-slate-800/85 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-xl flex items-center justify-center text-lg font-medium text-white hover:bg-slate-700 hover:border-emerald-500/50 hover:shadow-emerald-500/20 active:scale-95 transition-all"
         >
           +
         </button>
-        <div className="w-11 h-9 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-xl shadow-lg flex items-center justify-center text-xs font-mono text-emerald-400">
+        <div className="w-12 h-10 md:w-11 md:h-9 bg-slate-800/85 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-xl flex items-center justify-center text-xs font-mono text-emerald-400">
           {Math.round(transform.scale * 100)}%
         </div>
         <button
           onClick={() => setTransform((t) => ({ ...t, scale: Math.max(0.3, t.scale * 0.85) }))}
-          className="w-11 h-11 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-xl shadow-lg flex items-center justify-center text-lg font-medium text-white hover:bg-slate-700 hover:border-emerald-500/50 active:scale-95 transition-all"
+          className="w-12 h-12 md:w-11 md:h-11 bg-slate-800/85 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-xl flex items-center justify-center text-lg font-medium text-white hover:bg-slate-700 hover:border-emerald-500/50 hover:shadow-emerald-500/20 active:scale-95 transition-all"
         >
           −
         </button>
         <button
           onClick={resetView}
-          className="w-11 h-11 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-xl shadow-lg flex items-center justify-center text-sm text-slate-400 hover:text-emerald-400 hover:bg-slate-700 active:scale-95 transition-all mt-2"
+          className="w-12 h-12 md:w-11 md:h-11 bg-slate-800/85 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-xl flex items-center justify-center text-sm text-slate-400 hover:text-emerald-400 hover:bg-slate-700 hover:shadow-emerald-500/20 active:scale-95 transition-all mt-2"
           title="Reset view"
         >
           ⟲
@@ -272,7 +272,7 @@ export function VehicleCanvas() {
 
       {/* 3D Rotation Controls */}
       {is3D && (
-        <div className="absolute bottom-6 left-6 bg-slate-800/95 backdrop-blur border border-slate-700 rounded-2xl shadow-xl p-4">
+        <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 bg-slate-800/85 backdrop-blur-xl border border-slate-700/50 rounded-3xl shadow-2xl p-4">
           <div className="text-xs font-semibold text-emerald-400 mb-3 flex items-center gap-2">
             <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
             3D View Active
@@ -323,11 +323,11 @@ export function VehicleCanvas() {
 
       {/* Layer indicator */}
       {visibleLayers.length > 0 && (
-        <div className="absolute top-6 left-6 flex flex-wrap gap-2">
+        <div className="absolute top-4 left-4 md:top-6 md:left-6 flex flex-wrap gap-2">
           {visibleLayers.map((layer) => (
             <span
               key={layer.id}
-              className="px-3 py-1.5 bg-slate-800/90 backdrop-blur-sm border border-slate-700 rounded-full text-xs font-medium text-slate-300 shadow-lg"
+              className="px-3 py-1.5 bg-slate-800/85 backdrop-blur-xl border border-slate-700/50 rounded-full text-xs font-medium text-slate-300 shadow-xl"
             >
               {layer.name}
             </span>
@@ -338,8 +338,8 @@ export function VehicleCanvas() {
       {/* Empty state */}
       {visibleLayers.length === 0 && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="text-center bg-slate-800/50 backdrop-blur rounded-2xl p-8 border border-slate-700">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-700/50 flex items-center justify-center">
+          <div className="text-center bg-slate-800/70 backdrop-blur-xl rounded-3xl p-8 border border-slate-700/50 shadow-2xl">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-700/60 flex items-center justify-center shadow-lg">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="1.5">
                 <path d="M3 7l6 3 6-3 6 3V17l-6 3-6-3-6 3V7z" />
                 <path d="M9 10v10M15 7v10" />

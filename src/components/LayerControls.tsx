@@ -34,13 +34,13 @@ export function LayerControls() {
   } = useLayersStore();
 
   return (
-    <div className="w-72 bg-slate-900 border-r border-slate-800 h-screen flex flex-col overflow-hidden">
+    <div className="w-72 bg-slate-900/95 backdrop-blur-xl border-r border-slate-800/50 h-screen flex flex-col overflow-hidden shadow-xl">
       {/* Vehicle Selector */}
       <div className="px-4 py-4 border-b border-slate-800">
         <div className="relative">
           <button
             onClick={() => setIsVehicleDropdownOpen(!isVehicleDropdownOpen)}
-            className="w-full flex items-center justify-between px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-xl hover:border-emerald-500/50 transition-all group"
+            className="w-full flex items-center justify-between px-3 py-2.5 bg-slate-800/80 backdrop-blur border border-slate-700/50 rounded-2xl hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/10 transition-all group"
           >
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-emerald-500/20 rounded-lg flex items-center justify-center">
@@ -68,7 +68,7 @@ export function LayerControls() {
 
           {/* Dropdown */}
           {isVehicleDropdownOpen && (
-            <div className="absolute top-full left-0 right-0 mt-2 bg-slate-800 border border-slate-700 rounded-xl shadow-xl overflow-hidden z-50">
+            <div className="absolute top-full left-0 right-0 mt-2 bg-slate-800/95 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-2xl overflow-hidden z-50">
               {availableVehicles.map((vehicle) => (
                 <button
                   key={vehicle.id}
@@ -119,10 +119,10 @@ export function LayerControls() {
       <div className="px-4 py-3 border-b border-slate-800">
         <button
           onClick={toggle3D}
-          className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl transition-all ${
+          className={`w-full flex items-center justify-between px-3 py-2.5 rounded-2xl transition-all ${
             is3D
-              ? 'bg-emerald-500/20 border border-emerald-500/50'
-              : 'bg-slate-800 border border-slate-700 hover:border-slate-600'
+              ? 'bg-emerald-500/20 border border-emerald-500/50 shadow-lg shadow-emerald-500/20'
+              : 'bg-slate-800/80 backdrop-blur border border-slate-700/50 hover:border-slate-600 hover:shadow-md'
           }`}
         >
           <div className="flex items-center gap-3">
@@ -154,19 +154,19 @@ export function LayerControls() {
       <div className="px-4 py-3 border-b border-slate-800 flex gap-2">
         <button
           onClick={() => toggleAll(true)}
-          className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white text-sm py-2.5 rounded-xl font-semibold active:scale-95 transition-all"
+          className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white text-sm py-2.5 rounded-2xl font-semibold active:scale-95 shadow-lg shadow-emerald-600/30 hover:shadow-emerald-500/40 transition-all"
         >
           All On
         </button>
         <button
           onClick={() => toggleAll(false)}
-          className="flex-1 bg-slate-700 hover:bg-slate-600 text-white text-sm py-2.5 rounded-xl font-semibold active:scale-95 transition-all"
+          className="flex-1 bg-slate-700/80 backdrop-blur hover:bg-slate-600 text-white text-sm py-2.5 rounded-2xl font-semibold active:scale-95 transition-all"
         >
           All Off
         </button>
         <button
           onClick={resetAll}
-          className="px-3 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-sm rounded-xl active:scale-95 transition-all"
+          className="px-3 bg-slate-800/80 backdrop-blur hover:bg-slate-700 text-slate-400 hover:text-white text-sm rounded-2xl active:scale-95 transition-all"
           title="Reset to defaults"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -204,9 +204,9 @@ export function LayerControls() {
             <div
               key={layer.id}
               onClick={() => toggleLayer(layer.id)}
-              className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer transition-all ${
+              className={`group flex items-center gap-3 px-3 py-2.5 rounded-2xl cursor-pointer transition-all ${
                 isActive
-                  ? 'bg-slate-800 border border-slate-700'
+                  ? 'bg-slate-800/80 backdrop-blur border border-slate-700/50 shadow-sm'
                   : 'hover:bg-slate-800/50 border border-transparent'
               }`}
             >

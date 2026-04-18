@@ -26,8 +26,8 @@ export function SplashScreen({ onComplete }: Props) {
 
   return (
     <div
-      className={`fixed inset-0 z-[10000] flex items-center justify-center bg-[#0f172a] transition-opacity duration-700 ${
-        phase === 'exit' ? 'opacity-0' : 'opacity-100'
+      className={`fixed inset-0 z-[10000] flex items-center justify-center bg-gradient-to-b from-[#0f172a] to-[#1e293b] transition-all duration-700 ${
+        phase === 'exit' ? 'opacity-0 scale-105 blur-sm' : 'opacity-100 scale-100 blur-0'
       }`}
     >
       <div className="relative flex flex-col items-center">
@@ -46,6 +46,7 @@ export function SplashScreen({ onComplete }: Props) {
             className={`text-emerald-400 text-2xl font-bold tracking-[0.2em] uppercase transition-all duration-1000 ${
               phase === 'enter' ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0'
             }`}
+            style={{ textShadow: '0 0 30px rgba(16, 185, 129, 0.5)' }}
           >
             CAR ANATOMY
           </div>
