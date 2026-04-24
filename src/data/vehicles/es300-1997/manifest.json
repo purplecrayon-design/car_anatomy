@@ -1,5 +1,5 @@
 {
-  "id": "lexus-es300-1997",
+  "id": "es300",
   "name": "1997 Lexus ES300",
   "make": "Lexus",
   "model": "ES300",
@@ -27,7 +27,7 @@
     "4P2": "Venetian Red Pearl"
   },
   "defaultColor": "051",
-  "silhouette": "silhouette-side.svg",
+  "silhouette": "silhouettes/side-view.svg",
   "layers": [
     {
       "id": "chassis",

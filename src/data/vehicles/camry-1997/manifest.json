@@ -1,5 +1,5 @@
 {
-  "id": "toyota-camry-1997",
+  "id": "es300",
   "name": "1997 Toyota Camry",
   "make": "Toyota",
   "model": "Camry",
@@ -26,7 +26,7 @@
     "4M9": "Cashmere Beige Metallic"
   },
   "defaultColor": "040",
-  "silhouette": "silhouette-side.svg",
+  "silhouette": "silhouettes/side-view.svg",
   "layers": [
     {
       "id": "chassis",

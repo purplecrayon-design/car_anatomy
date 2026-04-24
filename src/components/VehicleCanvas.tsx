@@ -7,6 +7,38 @@ import { useNotesStore } from '@/stores/useNotesStore';
 
 const VIEWBOX = { width: 2000, height: 800 };
 
+// Clickable component hotspots positioned over the car diagram
+const COMPONENT_HOTSPOTS = [
+  // Engine bay area (front of car)
+  { id: 'engine-block', x: 380, y: 340, w: 120, h: 100, label: 'Engine' },
+  { id: 'cylinder-head', x: 360, y: 280, w: 80, h: 60, label: 'Cylinder Head' },
+  { id: 'alternator', x: 280, y: 360, w: 60, h: 50, label: 'Alternator' },
+  { id: 'starter-motor', x: 480, y: 420, w: 60, h: 40, label: 'Starter' },
+  { id: 'throttle-body', x: 420, y: 300, w: 50, h: 40, label: 'Throttle' },
+  { id: 'water-pump', x: 320, y: 380, w: 50, h: 40, label: 'Water Pump' },
+  { id: 'thermostat', x: 340, y: 320, w: 40, h: 30, label: 'Thermostat' },
+  { id: 'fuel-rail', x: 400, y: 320, w: 60, h: 30, label: 'Fuel Rail' },
+
+  // Front components
+  { id: 'radiator', x: 180, y: 340, w: 80, h: 120, label: 'Radiator' },
+  { id: 'battery', x: 240, y: 300, w: 60, h: 50, label: 'Battery' },
+  { id: 'headlight-left', x: 140, y: 360, w: 50, h: 60, label: 'Headlight' },
+
+  // Front suspension/brakes
+  { id: 'front-strut', x: 280, y: 480, w: 60, h: 80, label: 'Front Strut' },
+  { id: 'front-brake-caliper', x: 240, y: 540, w: 50, h: 50, label: 'Brake Caliper' },
+  { id: 'front-brake-rotor', x: 220, y: 520, w: 70, h: 70, label: 'Brake Rotor' },
+
+  // Underbody / exhaust
+  { id: 'catalytic-converter', x: 600, y: 560, w: 100, h: 40, label: 'Catalytic Converter' },
+
+  // Cabin area
+  { id: 'ecu', x: 750, y: 360, w: 60, h: 40, label: 'ECU' },
+
+  // Rear / fuel system
+  { id: 'fuel-pump', x: 1500, y: 440, w: 80, h: 60, label: 'Fuel Pump' },
+];
+
 export function VehicleCanvas() {
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -221,7 +253,7 @@ export function VehicleCanvas() {
         {/* Vehicle silhouette */}
         <g opacity={globalOpacity / 100}>
           <image
-            href={`/data/vehicles/${currentVehicle.id}/silhouette-side.svg`}
+            href={`/data/vehicles/${currentVehicle.id}/${currentVehicle.silhouette}`}
             width={VIEWBOX.width}
             height={VIEWBOX.height}
             preserveAspectRatio="xMidYMid meet"
@@ -243,6 +275,34 @@ export function VehicleCanvas() {
             </g>
           );
         })}
+
+        {/* Clickable component hotspots */}
+        <g className="component-hotspots">
+          {COMPONENT_HOTSPOTS.map((hotspot) => (
+            <rect
+              key={hotspot.id}
+              data-component-id={hotspot.id}
+              x={hotspot.x}
+              y={hotspot.y}
+              width={hotspot.w}
+              height={hotspot.h}
+              rx={8}
+              fill="transparent"
+              stroke="transparent"
+              strokeWidth={2}
+              style={{ cursor: 'pointer' }}
+              className="hotspot-rect"
+              onMouseEnter={(e) => {
+                (e.target as SVGRectElement).setAttribute('stroke', '#10b981');
+                (e.target as SVGRectElement).setAttribute('fill', 'rgba(16, 185, 129, 0.1)');
+              }}
+              onMouseLeave={(e) => {
+                (e.target as SVGRectElement).setAttribute('stroke', 'transparent');
+                (e.target as SVGRectElement).setAttribute('fill', 'transparent');
+              }}
+            />
+          ))}
+        </g>
       </svg>
       </div>
 
