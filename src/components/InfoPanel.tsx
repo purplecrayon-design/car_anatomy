@@ -91,7 +91,7 @@ export function InfoPanel() {
 
   if (!selectedComponent) {
     return (
-      <aside className="w-full h-full bg-slate-900 border-l border-slate-800/60 flex flex-col">
+      <aside style={{ width: '100%', height: '100%', background: '#0f172a', borderLeft: '1px solid #1e293b', display: 'flex', flexDirection: 'column' }}>
         <div className="flex-1 flex items-center justify-center p-8">
           <div className="text-center">
             <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-slate-800/80 backdrop-blur flex items-center justify-center shadow-lg">
@@ -135,7 +135,7 @@ export function InfoPanel() {
   };
 
   return (
-    <aside className="w-full h-full bg-slate-900 border-l border-slate-800/60 flex flex-col overflow-hidden">
+    <aside style={{ width: '100%', height: '100%', background: '#0f172a', borderLeft: '1px solid #1e293b', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       {/* Header */}
       <div className="p-5 border-b border-slate-800">
         <div className="flex items-start justify-between">
