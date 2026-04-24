@@ -1,11 +1,9 @@
-import { useRef, useCallback, useState } from 'react';
+import { useRef, useCallback, useState, useEffect } from 'react';
 import { useVehicleStore } from '@/stores/useVehicleStore';
 import { useLayersStore } from '@/stores/useLayersStore';
 import { useSelectedComponentStore } from '@/stores/useSelectedComponentStore';
 import { useManualStore } from '@/stores/useManualStore';
 import { useNotesStore } from '@/stores/useNotesStore';
-
-const VIEWBOX = { width: 2000, height: 800 };
 
 // Clickable component hotspots positioned over the car diagram
 const COMPONENT_HOTSPOTS = [
@@ -40,8 +38,8 @@ const COMPONENT_HOTSPOTS = [
 ];
 
 export function VehicleCanvas() {
-  const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
 
   // Stores
   const { currentVehicle } = useVehicleStore();
@@ -56,6 +54,19 @@ export function VehicleCanvas() {
   const [isRotating, setIsRotating] = useState(false);
   const dragStart = useRef({ x: 0, y: 0, tx: 0, ty: 0 });
   const rotateStart = useRef({ x: 0, y: 0, rx: 0, ry: 0 });
+
+  // Track container size
+  useEffect(() => {
+    const updateSize = () => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        setContainerSize({ width: rect.width, height: rect.height });
+      }
+    };
+    updateSize();
+    window.addEventListener('resize', updateSize);
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
 
   // Handle component click
   const handleClick = useCallback(
@@ -180,28 +191,42 @@ export function VehicleCanvas() {
     ? `rotateX(${rotation3D.x}deg) rotateY(${rotation3D.y}deg) rotateZ(${rotation3D.z}deg)`
     : '';
 
+  // Calculate SVG dimensions to fill container while maintaining aspect ratio
+  const svgViewBox = { width: 2000, height: 800 };
+  const aspectRatio = svgViewBox.width / svgViewBox.height; // 2.5
+
+  let svgWidth = containerSize.width;
+  let svgHeight = containerSize.width / aspectRatio;
+
+  // If calculated height is less than container height, scale by height instead
+  if (svgHeight < containerSize.height) {
+    svgHeight = containerSize.height;
+    svgWidth = containerSize.height * aspectRatio;
+  }
+
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 flex items-center justify-center"
       style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
         background: 'linear-gradient(180deg, #0f172a 0%, #1e293b 100%)',
-        perspective: is3D ? '1200px' : 'none',
-        touchAction: 'none',
+        overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
       onWheel={(e) => e.preventDefault()}
     >
-      {/* SVG Container - fills available space and centers the diagram */}
-      <div
-        className="w-full h-full flex items-center justify-center overflow-hidden"
-        style={{
-          transformStyle: is3D ? 'preserve-3d' : 'flat',
-        }}
-      >
+      {/* SVG Canvas */}
+      {containerSize.width > 0 && (
         <svg
-          ref={svgRef}
-          viewBox={`0 0 ${VIEWBOX.width} ${VIEWBOX.height}`}
-          preserveAspectRatio="xMidYMid meet"
+          viewBox={`0 0 ${svgViewBox.width} ${svgViewBox.height}`}
+          width={svgWidth}
+          height={svgHeight}
           onClick={handleClick}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
@@ -209,14 +234,12 @@ export function VehicleCanvas() {
           onMouseLeave={handleMouseUp}
           onWheel={handleWheel}
           style={{
-            width: '100%',
-            height: '100%',
-            maxWidth: '100%',
-            maxHeight: '100%',
             cursor: isDragging || isRotating ? 'grabbing' : 'grab',
             transform: `translate(${transform.x}px, ${transform.y}px) scale(${transform.scale}) ${transform3D}`,
             transformOrigin: 'center center',
             transition: isRotating || isDragging ? 'none' : 'transform 0.15s ease-out',
+            perspective: is3D ? '1200px' : 'none',
+            transformStyle: is3D ? 'preserve-3d' : 'flat',
           }}
         >
           {/* Background */}
@@ -225,13 +248,6 @@ export function VehicleCanvas() {
               <stop offset="0%" stopColor="#1e293b" />
               <stop offset="100%" stopColor="#0f172a" />
             </linearGradient>
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
             <filter id="selectedGlow">
               <feGaussianBlur stdDeviation="8" result="blur" />
               <feFlood floodColor="#10b981" floodOpacity="0.6" />
@@ -242,20 +258,20 @@ export function VehicleCanvas() {
               </feMerge>
             </filter>
           </defs>
-          <rect width={VIEWBOX.width} height={VIEWBOX.height} fill="url(#bgGradient)" />
+          <rect width={svgViewBox.width} height={svgViewBox.height} fill="url(#bgGradient)" />
 
           {/* Grid pattern */}
           <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
             <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#334155" strokeWidth="0.5" opacity="0.4" />
           </pattern>
-          <rect width={VIEWBOX.width} height={VIEWBOX.height} fill="url(#grid)" />
+          <rect width={svgViewBox.width} height={svgViewBox.height} fill="url(#grid)" />
 
           {/* Vehicle silhouette */}
           <g opacity={globalOpacity / 100}>
             <image
               href={`/data/vehicles/${currentVehicle.id}/${currentVehicle.silhouette}`}
-              width={VIEWBOX.width}
-              height={VIEWBOX.height}
+              width={svgViewBox.width}
+              height={svgViewBox.height}
               preserveAspectRatio="xMidYMid meet"
             />
           </g>
@@ -267,8 +283,8 @@ export function VehicleCanvas() {
               <g key={layer.id} opacity={opacity}>
                 <image
                   href={`/data/vehicles/${currentVehicle.id}/layers/${layer.file}`}
-                  width={VIEWBOX.width}
-                  height={VIEWBOX.height}
+                  width={svgViewBox.width}
+                  height={svgViewBox.height}
                   preserveAspectRatio="xMidYMid meet"
                   style={{ pointerEvents: 'none' }}
                 />
@@ -282,7 +298,6 @@ export function VehicleCanvas() {
               const isSelected = selectedComponent?.id === hotspot.id;
               return (
                 <g key={hotspot.id}>
-                  {/* Selection highlight ring */}
                   {isSelected && (
                     <rect
                       x={hotspot.x - 4}
@@ -326,28 +341,28 @@ export function VehicleCanvas() {
             })}
           </g>
         </svg>
-      </div>
+      )}
 
       {/* Zoom controls */}
-      <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 flex flex-col gap-2 z-10">
+      <div className="absolute bottom-4 right-4 flex flex-col gap-2 z-10">
         <button
           onClick={() => setTransform((t) => ({ ...t, scale: Math.min(4, t.scale * 1.2) }))}
-          className="w-11 h-11 bg-slate-800/90 backdrop-blur-xl border border-slate-700/60 rounded-xl shadow-lg flex items-center justify-center text-lg font-medium text-white hover:bg-slate-700 hover:border-emerald-500/50 active:scale-95 transition-all"
+          className="w-10 h-10 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-xl flex items-center justify-center text-lg font-medium text-white hover:bg-slate-700 hover:border-emerald-500/50 active:scale-95 transition-all"
         >
           +
         </button>
-        <div className="w-11 h-9 bg-slate-800/90 backdrop-blur-xl border border-slate-700/60 rounded-xl shadow-lg flex items-center justify-center text-xs font-mono text-emerald-400">
+        <div className="w-10 h-8 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-xl flex items-center justify-center text-[10px] font-mono text-emerald-400">
           {Math.round(transform.scale * 100)}%
         </div>
         <button
           onClick={() => setTransform((t) => ({ ...t, scale: Math.max(0.3, t.scale * 0.8) }))}
-          className="w-11 h-11 bg-slate-800/90 backdrop-blur-xl border border-slate-700/60 rounded-xl shadow-lg flex items-center justify-center text-lg font-medium text-white hover:bg-slate-700 hover:border-emerald-500/50 active:scale-95 transition-all"
+          className="w-10 h-10 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-xl flex items-center justify-center text-lg font-medium text-white hover:bg-slate-700 hover:border-emerald-500/50 active:scale-95 transition-all"
         >
           −
         </button>
         <button
           onClick={resetView}
-          className="w-11 h-11 bg-slate-800/90 backdrop-blur-xl border border-slate-700/60 rounded-xl shadow-lg flex items-center justify-center text-sm text-slate-400 hover:text-emerald-400 hover:bg-slate-700 active:scale-95 transition-all mt-1"
+          className="w-10 h-10 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-xl flex items-center justify-center text-sm text-slate-400 hover:text-emerald-400 hover:bg-slate-700 active:scale-95 transition-all mt-1"
           title="Reset view"
         >
           ⟲
@@ -356,7 +371,7 @@ export function VehicleCanvas() {
 
       {/* 3D Controls */}
       {is3D && (
-        <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 bg-slate-800/90 backdrop-blur-xl border border-slate-700/60 rounded-2xl shadow-xl p-3 z-10">
+        <div className="absolute bottom-4 left-4 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-xl p-3 z-10">
           <div className="text-xs font-semibold text-emerald-400 mb-2 flex items-center gap-2">
             <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
             3D View
@@ -364,19 +379,19 @@ export function VehicleCanvas() {
           <div className="flex gap-1.5 mb-2">
             <button
               onClick={() => set3DRotation({ x: 0, y: 0, z: 0 })}
-              className="px-2.5 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
+              className="px-2 py-1 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
             >
               Side
             </button>
             <button
               onClick={() => set3DRotation({ x: 15, y: -30, z: 0 })}
-              className="px-2.5 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
+              className="px-2 py-1 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
             >
               3/4
             </button>
             <button
               onClick={() => set3DRotation({ x: 35, y: 0, z: 0 })}
-              className="px-2.5 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
+              className="px-2 py-1 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
             >
               Top
             </button>
@@ -387,18 +402,18 @@ export function VehicleCanvas() {
 
       {/* Active layers indicator */}
       {visibleLayers.length > 0 && (
-        <div className="absolute top-4 left-4 md:top-5 md:left-5 flex flex-wrap gap-1.5 max-w-[300px] z-10">
-          {visibleLayers.slice(0, 4).map((layer) => (
+        <div className="absolute top-4 left-4 flex flex-wrap gap-1.5 max-w-[280px] z-10">
+          {visibleLayers.slice(0, 3).map((layer) => (
             <span
               key={layer.id}
-              className="px-2.5 py-1 bg-slate-800/90 backdrop-blur-xl border border-slate-700/60 rounded-full text-[11px] font-medium text-slate-300 shadow-lg"
+              className="px-2 py-1 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-full text-[10px] font-medium text-slate-300"
             >
               {layer.name}
             </span>
           ))}
-          {visibleLayers.length > 4 && (
-            <span className="px-2.5 py-1 bg-emerald-600/80 backdrop-blur-xl rounded-full text-[11px] font-medium text-white shadow-lg">
-              +{visibleLayers.length - 4} more
+          {visibleLayers.length > 3 && (
+            <span className="px-2 py-1 bg-emerald-600/80 rounded-full text-[10px] font-medium text-white">
+              +{visibleLayers.length - 3}
             </span>
           )}
         </div>
@@ -407,9 +422,9 @@ export function VehicleCanvas() {
       {/* Empty state */}
       {visibleLayers.length === 0 && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-          <div className="text-center bg-slate-800/80 backdrop-blur-xl rounded-2xl p-6 border border-slate-700/60 shadow-2xl">
-            <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-slate-700/60 flex items-center justify-center">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="1.5">
+          <div className="text-center bg-slate-800/80 backdrop-blur rounded-xl p-6 border border-slate-700">
+            <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-slate-700/60 flex items-center justify-center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="1.5">
                 <path d="M3 7l6 3 6-3 6 3V17l-6 3-6-3-6 3V7z" />
                 <path d="M9 10v10M15 7v10" />
               </svg>

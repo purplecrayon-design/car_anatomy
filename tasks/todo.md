@@ -111,3 +111,126 @@
 - Top-down view
 - Real Haynes manual screenshots
 - OBD scanner integration
+
+---
+
+## Vehicle Folder Consolidation ✓ COMPLETE
+
+- [x] 1. Copy detailed layers from `lexus-es300-1997/layers/` to `es300/layers/`
+- [x] 2. Ensure silhouette files exist in `es300/silhouettes/`
+- [x] 3. Update `ANATOMY_LAYERS` in `src/types/anatomy.ts` to 12 layers
+- [x] 4. Update `VehicleCanvas.tsx` path from `silhouettes/layers/` to `layers/`
+- [x] 5. Delete redundant `lexus-es300-1997` folder
+- [x] 6. Delete old `es300/silhouettes/layers/` folder
+- [x] 7. Verify app loads correctly
+
+### Review
+
+**Changes Made:**
+1. Created `es300/layers/` and copied 12 detailed SVGs (3-11 KB each) from `lexus-es300-1997/layers/`
+2. Updated `ANATOMY_LAYERS` in `src/types/anatomy.ts` from 7 layers to 12 layers
+3. Changed layer path in `VehicleCanvas.tsx` from `silhouettes/layers/` to `layers/`
+4. Deleted redundant `lexus-es300-1997/` folder
+5. Deleted old `es300/silhouettes/layers/` folder (kept silhouettes for base car outline)
+
+**Final Structure:**
+```
+public/data/vehicles/es300/
+├── silhouettes/
+│   └── side-view.svg       # Base car outline
+└── layers/
+    ├── chassis.svg
+    ├── engine-mechanical.svg
+    ├── engine-wiring.svg
+    ├── full-wiring.svg
+    ├── fuel-system.svg
+    ├── cooling-system.svg
+    ├── intake-exhaust.svg
+    ├── suspension-steering.svg
+    ├── brakes.svg
+    ├── body-electrical.svg
+    ├── hvac.svg
+    └── drivetrain.svg
+```
+
+**Files Modified:**
+- `src/types/anatomy.ts` - Updated ANATOMY_LAYERS array
+- `src/components/diagram/VehicleCanvas.tsx` - Updated layer path
+
+**Build:** Successful (67 modules, 209 KB JS)
+
+---
+
+## Phase 4: PRD Rehaul & Polish (Current)
+
+### Root Cause Analysis
+After reviewing the codebase, I found these issues:
+
+1. **Vehicle ID Mismatch** - Manifest uses `id: "lexus-es300-1997"` but SVG files are in `public/data/vehicles/es300/`. The VehicleCanvas tries to load from `lexus-es300-1997` folder which no longer exists.
+
+2. **No Clickable Hotspots** - The SVG layer images are loaded with `pointerEvents: 'none'`. There are no actual clickable component regions to trigger InfoPanel.
+
+3. **Layout OK** - The 3-column layout code exists and works, but the canvas appears empty because of #1.
+
+4. **InfoPanel, Notepad, SplashScreen** - All properly implemented and functional.
+
+### Tasks
+
+- [x] 1. **Fix Vehicle ID** - Update manifest.json `id` from "lexus-es300-1997" to "es300" to match folder structure
+- [x] 2. **Update Camry Manifest** - Ensure Camry also points to correct paths (shares es300 assets)
+- [x] 3. **Add Clickable Component Hotspots** - Created 17 interactive hotspot regions in VehicleCanvas
+- [x] 4. **Fix Silhouette Path** - VehicleCanvas now uses `currentVehicle.silhouette` from manifest
+- [x] 5. **Build & Test** - Build passes (211 KB JS)
+
+### Files Modified
+
+| File | Change |
+|------|--------|
+| `src/data/vehicles/es300-1997/manifest.json` | `id: "es300"`, `silhouette: "silhouettes/side-view.svg"` |
+| `src/data/vehicles/camry-1997/manifest.json` | `id: "es300"`, `silhouette: "silhouettes/side-view.svg"` |
+| `src/components/VehicleCanvas.tsx` | Added 17 clickable hotspots, fixed silhouette path |
+
+### Review
+
+**What was fixed:**
+1. Vehicle ID now matches folder structure (`es300` → `public/data/vehicles/es300/`)
+2. Silhouette loads from correct path (`silhouettes/side-view.svg`)
+3. 17 clickable component hotspots added with hover highlighting
+4. Camry shares ES300 assets (same 1MZ-FE platform)
+
+**How it works now:**
+1. Splash screen shows on first visit
+2. VehicleCanvas loads silhouette + layers from `es300/` folder
+3. Hovering over component areas highlights them in emerald
+4. Clicking a hotspot triggers InfoPanel with component details
+5. LayerControls toggle visibility of all 12 layers
+6. Vehicle selector switches between ES300/Camry (same SVGs, different metadata)
+
+**Build:** Successful (211 KB JS)
+
+---
+
+## Phase 5: Canvas Layout Fix ✓ COMPLETE
+
+### Problem
+Canvas was tiny and stuck in top-left 1/16 of screen with massive empty space.
+
+### Tasks Completed
+- [x] 1. **Fix SVG scaling** - Use proper `preserveAspectRatio="xMidYMid meet"` and centered flexbox container
+- [x] 2. **Fix 3-column layout** - App.tsx now uses fixed sidebar widths (280px/320px) with flex-1 center
+- [x] 3. **Remove hardcoded widths** - LayerControls and InfoPanel now fill their containers
+- [x] 4. **Add selection highlight** - Clicked components show emerald glow/pulse effect
+- [x] 5. **Build & push** - Deployed to Netlify
+
+### Files Modified
+| File | Change |
+|------|--------|
+| `src/App.tsx` | Fixed 3-column layout with proper flex structure |
+| `src/components/VehicleCanvas.tsx` | Fixed SVG scaling, centered container, selection glow |
+| `src/components/LayerControls.tsx` | Removed hardcoded width, fills container |
+| `src/components/InfoPanel.tsx` | Removed hardcoded width, fills container |
+
+### Result
+- Canvas now fills available space and centers properly
+- Works in both normal and full-screen mode
+- Selection highlight shows which component is active
