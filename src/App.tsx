@@ -33,8 +33,7 @@ function AppContent() {
   // Mobile layout - tab-based navigation
   if (isMobile) {
     return (
-      <div className="flex flex-col h-screen bg-slate-950 overflow-hidden">
-        {/* Mobile content area */}
+      <div className="flex flex-col h-screen h-[100dvh] bg-slate-950 overflow-hidden">
         <main className="flex-1 relative overflow-hidden pb-14">
           {mobileTab === 'diagram' && (
             <>
@@ -58,27 +57,29 @@ function AppContent() {
             </div>
           )}
         </main>
-
-        {/* Bottom tab bar */}
         <MobileTabBar activeTab={mobileTab} onTabChange={setMobileTab} />
       </div>
     );
   }
 
-  // Desktop layout - 3-column
+  // Desktop layout - 3-column with fixed sidebars
   return (
-    <div className="flex h-screen bg-slate-950 overflow-hidden">
-      {/* Left sidebar */}
-      <LayerControls />
+    <div className="h-screen h-[100dvh] bg-slate-950 overflow-hidden flex">
+      {/* Left sidebar - LayerControls (fixed 280px) */}
+      <aside className="w-[280px] flex-shrink-0 h-full overflow-hidden">
+        <LayerControls />
+      </aside>
 
-      {/* Main canvas area */}
-      <main className="flex-1 relative overflow-hidden">
+      {/* Main canvas area - fills remaining space */}
+      <main className="flex-1 relative overflow-hidden min-w-0">
         <VehicleCanvas />
         <Notepad />
       </main>
 
-      {/* Right info panel */}
-      <InfoPanel />
+      {/* Right sidebar - InfoPanel (fixed 320px) */}
+      <aside className="w-[320px] flex-shrink-0 h-full overflow-hidden">
+        <InfoPanel />
+      </aside>
     </div>
   );
 }

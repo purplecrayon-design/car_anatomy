@@ -34,7 +34,7 @@ export function LayerControls() {
   } = useLayersStore();
 
   return (
-    <div className="w-full md:w-80 bg-slate-900/95 backdrop-blur-xl md:border-r border-slate-800/50 h-full flex flex-col overflow-hidden shadow-xl">
+    <div className="w-full h-full bg-slate-900 border-r border-slate-800/60 flex flex-col overflow-hidden">
       {/* Vehicle Selector */}
       <div className="px-4 py-4 border-b border-slate-800">
         <div className="relative">

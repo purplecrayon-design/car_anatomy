@@ -46,7 +46,7 @@ export function VehicleCanvas() {
   // Stores
   const { currentVehicle } = useVehicleStore();
   const { activeLayers, layerOpacity, globalOpacity, isolatedLayer, is3D, rotation3D, set3DRotation } = useLayersStore();
-  const { setSelectedComponent } = useSelectedComponentStore();
+  const { selectedComponent, setSelectedComponent } = useSelectedComponentStore();
   const { getData } = useManualStore();
   const { trackComponentVisit } = useNotesStore();
 
@@ -80,13 +80,12 @@ export function VehicleCanvas() {
     [isDragging, getData, setSelectedComponent, trackComponentVisit]
   );
 
-  // Pan handlers (or 3D rotation when in 3D mode)
+  // Pan handlers
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => {
       if (e.button !== 0) return;
 
       if (is3D && e.shiftKey) {
-        // 3D rotation mode (hold shift)
         setIsRotating(true);
         rotateStart.current = {
           x: e.clientX,
@@ -137,32 +136,25 @@ export function VehicleCanvas() {
     setIsRotating(false);
   }, []);
 
-  // Zoom handler - normalized for trackpad vs mouse wheel
+  // Zoom handler
   const handleWheel = useCallback((e: React.WheelEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
-    // Normalize deltaY - trackpads send many small events, mouse wheels send fewer large ones
-    // ctrlKey is true for pinch-to-zoom gestures on trackpads
     const isPinchGesture = e.ctrlKey;
     const rawDelta = e.deltaY;
 
-    // Much gentler zoom: 0.5-2% per event depending on input type
     let zoomIntensity: number;
     if (isPinchGesture) {
-      // Pinch gestures - very gentle
       zoomIntensity = 0.005;
     } else if (Math.abs(rawDelta) > 50) {
-      // Mouse wheel (typically 100+ per notch)
       zoomIntensity = 0.03;
     } else {
-      // Trackpad scroll (typically 1-10 per event)
       zoomIntensity = 0.008;
     }
 
-    // Calculate zoom factor based on normalized delta
     const normalizedDelta = Math.sign(rawDelta) * Math.min(Math.abs(rawDelta), 100);
-    const zoomFactor = 1 - (normalizedDelta * zoomIntensity);
+    const zoomFactor = 1 - normalizedDelta * zoomIntensity;
 
     setTransform((t) => ({
       ...t,
@@ -185,230 +177,245 @@ export function VehicleCanvas() {
 
   // Build 3D transform string
   const transform3D = is3D
-    ? `perspective(1200px) rotateX(${rotation3D.x}deg) rotateY(${rotation3D.y}deg) rotateZ(${rotation3D.z}deg)`
+    ? `rotateX(${rotation3D.x}deg) rotateY(${rotation3D.y}deg) rotateZ(${rotation3D.z}deg)`
     : '';
 
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-full overflow-hidden"
+      className="absolute inset-0 flex items-center justify-center"
       style={{
         background: 'linear-gradient(180deg, #0f172a 0%, #1e293b 100%)',
         perspective: is3D ? '1200px' : 'none',
-        touchAction: 'none', // Prevent browser handling of touch/trackpad gestures
-        isolation: 'isolate', // Create new stacking context
+        touchAction: 'none',
       }}
-      onWheel={(e) => e.preventDefault()} // Prevent scroll from bubbling to parent
+      onWheel={(e) => e.preventDefault()}
     >
-      {/* Inner canvas wrapper - transforms are contained here */}
+      {/* SVG Container - fills available space and centers the diagram */}
       <div
-        className="absolute inset-0 overflow-hidden"
+        className="w-full h-full flex items-center justify-center overflow-hidden"
         style={{
-          contain: 'layout paint', // CSS containment for performance
-        }}
-      >
-      <svg
-        ref={svgRef}
-        width="100%"
-        height="100%"
-        viewBox={`0 0 ${VIEWBOX.width} ${VIEWBOX.height}`}
-        onClick={handleClick}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-        onWheel={handleWheel}
-        style={{
-          cursor: isDragging || isRotating ? 'grabbing' : 'grab',
-          transform: `translate(${transform.x}px, ${transform.y}px) scale(${transform.scale}) ${transform3D}`,
-          transformOrigin: 'center',
           transformStyle: is3D ? 'preserve-3d' : 'flat',
-          transition: isRotating || isDragging ? 'none' : 'transform 0.1s ease-out',
-          shapeRendering: 'geometricPrecision',
-          imageRendering: 'auto',
         }}
       >
-        {/* Background gradient */}
-        <defs>
-          <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#1e293b" />
-            <stop offset="100%" stopColor="#0f172a" />
-          </linearGradient>
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-            <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-        </defs>
-        <rect width={VIEWBOX.width} height={VIEWBOX.height} fill="url(#bgGradient)" />
+        <svg
+          ref={svgRef}
+          viewBox={`0 0 ${VIEWBOX.width} ${VIEWBOX.height}`}
+          preserveAspectRatio="xMidYMid meet"
+          onClick={handleClick}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          onWheel={handleWheel}
+          style={{
+            width: '100%',
+            height: '100%',
+            maxWidth: '100%',
+            maxHeight: '100%',
+            cursor: isDragging || isRotating ? 'grabbing' : 'grab',
+            transform: `translate(${transform.x}px, ${transform.y}px) scale(${transform.scale}) ${transform3D}`,
+            transformOrigin: 'center center',
+            transition: isRotating || isDragging ? 'none' : 'transform 0.15s ease-out',
+          }}
+        >
+          {/* Background */}
+          <defs>
+            <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#1e293b" />
+              <stop offset="100%" stopColor="#0f172a" />
+            </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+              <feMerge>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <filter id="selectedGlow">
+              <feGaussianBlur stdDeviation="8" result="blur" />
+              <feFlood floodColor="#10b981" floodOpacity="0.6" />
+              <feComposite in2="blur" operator="in" />
+              <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <rect width={VIEWBOX.width} height={VIEWBOX.height} fill="url(#bgGradient)" />
 
-        {/* Grid pattern for depth */}
-        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" strokeWidth="0.5" opacity="0.3"/>
-        </pattern>
-        <rect width={VIEWBOX.width} height={VIEWBOX.height} fill="url(#grid)" />
+          {/* Grid pattern */}
+          <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#334155" strokeWidth="0.5" opacity="0.4" />
+          </pattern>
+          <rect width={VIEWBOX.width} height={VIEWBOX.height} fill="url(#grid)" />
 
-        {/* Vehicle silhouette */}
-        <g opacity={globalOpacity / 100}>
-          <image
-            href={`/data/vehicles/${currentVehicle.id}/${currentVehicle.silhouette}`}
-            width={VIEWBOX.width}
-            height={VIEWBOX.height}
-            preserveAspectRatio="xMidYMid meet"
-          />
-        </g>
-
-        {/* Layer overlays */}
-        {visibleLayers.map((layer) => {
-          const opacity = ((layerOpacity[layer.id] ?? 100) / 100) * (globalOpacity / 100);
-          return (
-            <g key={layer.id} opacity={opacity}>
-              <image
-                href={`/data/vehicles/${currentVehicle.id}/layers/${layer.file}`}
-                width={VIEWBOX.width}
-                height={VIEWBOX.height}
-                preserveAspectRatio="xMidYMid meet"
-                style={{ pointerEvents: 'none' }}
-              />
-            </g>
-          );
-        })}
-
-        {/* Clickable component hotspots */}
-        <g className="component-hotspots">
-          {COMPONENT_HOTSPOTS.map((hotspot) => (
-            <rect
-              key={hotspot.id}
-              data-component-id={hotspot.id}
-              x={hotspot.x}
-              y={hotspot.y}
-              width={hotspot.w}
-              height={hotspot.h}
-              rx={8}
-              fill="transparent"
-              stroke="transparent"
-              strokeWidth={2}
-              style={{ cursor: 'pointer' }}
-              className="hotspot-rect"
-              onMouseEnter={(e) => {
-                (e.target as SVGRectElement).setAttribute('stroke', '#10b981');
-                (e.target as SVGRectElement).setAttribute('fill', 'rgba(16, 185, 129, 0.1)');
-              }}
-              onMouseLeave={(e) => {
-                (e.target as SVGRectElement).setAttribute('stroke', 'transparent');
-                (e.target as SVGRectElement).setAttribute('fill', 'transparent');
-              }}
+          {/* Vehicle silhouette */}
+          <g opacity={globalOpacity / 100}>
+            <image
+              href={`/data/vehicles/${currentVehicle.id}/${currentVehicle.silhouette}`}
+              width={VIEWBOX.width}
+              height={VIEWBOX.height}
+              preserveAspectRatio="xMidYMid meet"
             />
-          ))}
-        </g>
-      </svg>
+          </g>
+
+          {/* Layer overlays */}
+          {visibleLayers.map((layer) => {
+            const opacity = ((layerOpacity[layer.id] ?? 100) / 100) * (globalOpacity / 100);
+            return (
+              <g key={layer.id} opacity={opacity}>
+                <image
+                  href={`/data/vehicles/${currentVehicle.id}/layers/${layer.file}`}
+                  width={VIEWBOX.width}
+                  height={VIEWBOX.height}
+                  preserveAspectRatio="xMidYMid meet"
+                  style={{ pointerEvents: 'none' }}
+                />
+              </g>
+            );
+          })}
+
+          {/* Clickable component hotspots */}
+          <g className="component-hotspots">
+            {COMPONENT_HOTSPOTS.map((hotspot) => {
+              const isSelected = selectedComponent?.id === hotspot.id;
+              return (
+                <g key={hotspot.id}>
+                  {/* Selection highlight ring */}
+                  {isSelected && (
+                    <rect
+                      x={hotspot.x - 4}
+                      y={hotspot.y - 4}
+                      width={hotspot.w + 8}
+                      height={hotspot.h + 8}
+                      rx={12}
+                      fill="none"
+                      stroke="#10b981"
+                      strokeWidth={3}
+                      filter="url(#selectedGlow)"
+                      className="animate-pulse"
+                    />
+                  )}
+                  <rect
+                    data-component-id={hotspot.id}
+                    x={hotspot.x}
+                    y={hotspot.y}
+                    width={hotspot.w}
+                    height={hotspot.h}
+                    rx={8}
+                    fill={isSelected ? 'rgba(16, 185, 129, 0.2)' : 'transparent'}
+                    stroke={isSelected ? '#10b981' : 'transparent'}
+                    strokeWidth={2}
+                    style={{ cursor: 'pointer' }}
+                    onMouseEnter={(e) => {
+                      if (!isSelected) {
+                        (e.target as SVGRectElement).setAttribute('stroke', '#10b981');
+                        (e.target as SVGRectElement).setAttribute('fill', 'rgba(16, 185, 129, 0.1)');
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isSelected) {
+                        (e.target as SVGRectElement).setAttribute('stroke', 'transparent');
+                        (e.target as SVGRectElement).setAttribute('fill', 'transparent');
+                      }
+                    }}
+                  />
+                </g>
+              );
+            })}
+          </g>
+        </svg>
       </div>
 
-      {/* Controls overlay - positioned outside the transform container */}
-      <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 flex flex-col gap-2">
+      {/* Zoom controls */}
+      <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 flex flex-col gap-2 z-10">
         <button
-          onClick={() => setTransform((t) => ({ ...t, scale: Math.min(4, t.scale * 1.15) }))}
-          className="w-12 h-12 md:w-11 md:h-11 bg-slate-800/85 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-xl flex items-center justify-center text-lg font-medium text-white hover:bg-slate-700 hover:border-emerald-500/50 hover:shadow-emerald-500/20 active:scale-95 transition-all"
+          onClick={() => setTransform((t) => ({ ...t, scale: Math.min(4, t.scale * 1.2) }))}
+          className="w-11 h-11 bg-slate-800/90 backdrop-blur-xl border border-slate-700/60 rounded-xl shadow-lg flex items-center justify-center text-lg font-medium text-white hover:bg-slate-700 hover:border-emerald-500/50 active:scale-95 transition-all"
         >
           +
         </button>
-        <div className="w-12 h-10 md:w-11 md:h-9 bg-slate-800/85 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-xl flex items-center justify-center text-xs font-mono text-emerald-400">
+        <div className="w-11 h-9 bg-slate-800/90 backdrop-blur-xl border border-slate-700/60 rounded-xl shadow-lg flex items-center justify-center text-xs font-mono text-emerald-400">
           {Math.round(transform.scale * 100)}%
         </div>
         <button
-          onClick={() => setTransform((t) => ({ ...t, scale: Math.max(0.3, t.scale * 0.85) }))}
-          className="w-12 h-12 md:w-11 md:h-11 bg-slate-800/85 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-xl flex items-center justify-center text-lg font-medium text-white hover:bg-slate-700 hover:border-emerald-500/50 hover:shadow-emerald-500/20 active:scale-95 transition-all"
+          onClick={() => setTransform((t) => ({ ...t, scale: Math.max(0.3, t.scale * 0.8) }))}
+          className="w-11 h-11 bg-slate-800/90 backdrop-blur-xl border border-slate-700/60 rounded-xl shadow-lg flex items-center justify-center text-lg font-medium text-white hover:bg-slate-700 hover:border-emerald-500/50 active:scale-95 transition-all"
         >
           −
         </button>
         <button
           onClick={resetView}
-          className="w-12 h-12 md:w-11 md:h-11 bg-slate-800/85 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-xl flex items-center justify-center text-sm text-slate-400 hover:text-emerald-400 hover:bg-slate-700 hover:shadow-emerald-500/20 active:scale-95 transition-all mt-2"
+          className="w-11 h-11 bg-slate-800/90 backdrop-blur-xl border border-slate-700/60 rounded-xl shadow-lg flex items-center justify-center text-sm text-slate-400 hover:text-emerald-400 hover:bg-slate-700 active:scale-95 transition-all mt-1"
           title="Reset view"
         >
           ⟲
         </button>
       </div>
 
-      {/* 3D Rotation Controls */}
+      {/* 3D Controls */}
       {is3D && (
-        <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 bg-slate-800/85 backdrop-blur-xl border border-slate-700/50 rounded-3xl shadow-2xl p-4">
-          <div className="text-xs font-semibold text-emerald-400 mb-3 flex items-center gap-2">
+        <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 bg-slate-800/90 backdrop-blur-xl border border-slate-700/60 rounded-2xl shadow-xl p-3 z-10">
+          <div className="text-xs font-semibold text-emerald-400 mb-2 flex items-center gap-2">
             <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-            3D View Active
+            3D View
           </div>
-          <div className="flex gap-2 mb-3">
+          <div className="flex gap-1.5 mb-2">
             <button
               onClick={() => set3DRotation({ x: 0, y: 0, z: 0 })}
-              className="px-3 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
+              className="px-2.5 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
             >
               Side
             </button>
             <button
               onClick={() => set3DRotation({ x: 15, y: -30, z: 0 })}
-              className="px-3 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
+              className="px-2.5 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
             >
-              3/4 Front
+              3/4
             </button>
             <button
-              onClick={() => set3DRotation({ x: 15, y: 30, z: 0 })}
-              className="px-3 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
-            >
-              3/4 Rear
-            </button>
-          </div>
-          <div className="flex gap-2 mb-3">
-            <button
-              onClick={() => set3DRotation({ x: 45, y: 0, z: 0 })}
-              className="px-3 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
+              onClick={() => set3DRotation({ x: 35, y: 0, z: 0 })}
+              className="px-2.5 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
             >
               Top
             </button>
-            <button
-              onClick={() => set3DRotation({ x: -30, y: 0, z: 0 })}
-              className="px-3 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
-            >
-              Under
-            </button>
-            <button
-              onClick={() => set3DRotation({ x: 0, y: -90, z: 0 })}
-              className="px-3 py-1.5 text-xs bg-slate-700 hover:bg-emerald-600 text-slate-300 hover:text-white rounded-lg transition-all"
-            >
-              Front
-            </button>
           </div>
-          <div className="text-[10px] text-slate-500">Hold Shift + drag to rotate</div>
+          <div className="text-[10px] text-slate-500">Shift+drag to rotate</div>
         </div>
       )}
 
-      {/* Layer indicator */}
+      {/* Active layers indicator */}
       {visibleLayers.length > 0 && (
-        <div className="absolute top-4 left-4 md:top-6 md:left-6 flex flex-wrap gap-2">
-          {visibleLayers.map((layer) => (
+        <div className="absolute top-4 left-4 md:top-5 md:left-5 flex flex-wrap gap-1.5 max-w-[300px] z-10">
+          {visibleLayers.slice(0, 4).map((layer) => (
             <span
               key={layer.id}
-              className="px-3 py-1.5 bg-slate-800/85 backdrop-blur-xl border border-slate-700/50 rounded-full text-xs font-medium text-slate-300 shadow-xl"
+              className="px-2.5 py-1 bg-slate-800/90 backdrop-blur-xl border border-slate-700/60 rounded-full text-[11px] font-medium text-slate-300 shadow-lg"
             >
               {layer.name}
             </span>
           ))}
+          {visibleLayers.length > 4 && (
+            <span className="px-2.5 py-1 bg-emerald-600/80 backdrop-blur-xl rounded-full text-[11px] font-medium text-white shadow-lg">
+              +{visibleLayers.length - 4} more
+            </span>
+          )}
         </div>
       )}
 
       {/* Empty state */}
       {visibleLayers.length === 0 && (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="text-center bg-slate-800/70 backdrop-blur-xl rounded-3xl p-8 border border-slate-700/50 shadow-2xl">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-700/60 flex items-center justify-center shadow-lg">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="1.5">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+          <div className="text-center bg-slate-800/80 backdrop-blur-xl rounded-2xl p-6 border border-slate-700/60 shadow-2xl">
+            <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-slate-700/60 flex items-center justify-center">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="1.5">
                 <path d="M3 7l6 3 6-3 6 3V17l-6 3-6-3-6 3V7z" />
                 <path d="M9 10v10M15 7v10" />
               </svg>
             </div>
-            <p className="text-slate-400 text-sm font-medium">No layers visible</p>
-            <p className="text-slate-500 text-xs mt-1">Enable layers in the sidebar to explore</p>
+            <p className="text-slate-300 text-sm font-medium">No layers visible</p>
+            <p className="text-slate-500 text-xs mt-1">Enable layers in the sidebar</p>
           </div>
         </div>
       )}
