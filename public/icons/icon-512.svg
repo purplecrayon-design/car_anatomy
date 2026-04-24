@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#0f172a" rx="80"/>
+  <text x="256" y="220" text-anchor="middle" font-family="system-ui, sans-serif" font-size="160" font-weight="300" fill="#ffffff">97</text>
+  <text x="256" y="320" text-anchor="middle" font-family="system-ui, sans-serif" font-size="42" font-weight="600" fill="#10b981" letter-spacing="8">EXPLORER</text>
+  <rect x="120" y="360" width="272" height="3" fill="#10b981" opacity="0.5"/>
+  <text x="256" y="420" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="#64748b">CAR ANATOMY</text>
+</svg>
